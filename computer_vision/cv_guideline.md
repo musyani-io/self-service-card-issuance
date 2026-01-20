@@ -15,11 +15,11 @@
 ### Task 1.1: Install Required Software
 
 - [ ] Update Raspberry Pi OS to latest version
-- [ ] Install Python 3.9 or higher
-- [ ] Install OpenCV library (`python3-opencv`)
-- [ ] Install pyzbar library for barcode reading
-- [ ] Install Pillow for image handling
-- [ ] Install picamera2 (if using Pi Camera Module)
+- [x] Install Python 3.9 or higher
+- [x] Install OpenCV library (`python3-opencv`)
+- [x] Install pyzbar library for barcode reading
+- [x] Install Pillow for image handling
+- [x] Install picamera2 (if using Pi Camera Module)
 - [ ] Verify all installations with version checks
 
 **Success Criteria:** All libraries import without errors in Python
@@ -45,10 +45,10 @@
 ### Task 1.3: Set Up Development Environment
 
 - [ ] Create project directory structure (as defined)
-- [ ] Initialize Git repository (optional but recommended)
-- [ ] Create virtual environment for Python dependencies
-- [ ] Create `requirements.txt` file with all dependencies
-- [ ] Set up IDE/editor (VS Code, Thonny, or preferred)
+- [x] Initialize Git repository (optional but recommended)
+- [x] Create virtual environment for Python dependencies
+- [x] Create `requirements.txt` file with all dependencies
+- [x] Set up IDE/editor (VS Code, Thonny, or preferred)
 
 **Success Criteria:** Directory structure matches specification, can run Python scripts from project root
 
