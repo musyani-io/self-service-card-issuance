@@ -1,0 +1,1 @@
+# Card-slot mapping, availability checks, inventory tracking

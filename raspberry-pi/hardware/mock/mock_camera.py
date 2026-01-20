@@ -1,0 +1,1 @@
+# Returns fake barcode data from console input

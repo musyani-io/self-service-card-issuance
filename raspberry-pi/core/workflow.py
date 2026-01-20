@@ -1,0 +1,1 @@
+# Main state machine: preload → notify → retrieve

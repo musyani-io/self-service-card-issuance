@@ -39,3 +39,6 @@ calibration_report.txt
 # OS
 .DS_Store
 Thumbs.db
+
+# Miscallenous
+DESCRIPTION.md
