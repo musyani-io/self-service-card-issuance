@@ -1,1 +1,41 @@
-venv
+# Virtual Environment
+venv/
+env/
+ENV/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+
+# Testing
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+*.cover
+
+# Logs
+*.log
+logs/
+
+# Computer Vision specific
+computer_vision/data/sample_barcodes/*.jpg
+computer_vision/data/sample_barcodes/*.png
+computer_vision/data/calibration_images/*.jpg
+computer_vision/data/calibration_images/*.png
+optimization_report.txt
+calibration_report.txt
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db

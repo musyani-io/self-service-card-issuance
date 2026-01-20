@@ -13,4 +13,4 @@ An automated system to authenticate a user, accept and verify the user's ID card
 
 - Look into two-factor authentication way.
 - How will you handle busy periods?
-- Come up with a working real prototype in 20 weeks.
+- Come up with a working real prototype in 20 weeks (that sorts cards in real-time).
