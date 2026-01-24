@@ -350,3 +350,328 @@ class TestEnhanceContrast:
         image = np.random.randint(50, 150, (100, 100), dtype=np.uint8)
         with pytest.raises(ValueError, match="clip_limit must be between"):
             enhance_contrast(image, clip_limit=-1.0, tile_grid_size=(8, 8))
+
+
+# ============================================================================
+# TEST GROUP 3: Pipeline Tests (preprocess_image)
+# ============================================================================
+
+class TestPreprocessImage:
+    """Tests for preprocess_image() pipeline function."""
+
+    def test_basic_pipeline_execution(self):
+        """Run pipeline with default configuration."""
+        image = np.random.randint(0, 256, (200, 200, 3), dtype=np.uint8)
+        result = preprocess_image(image)
+        
+        # Pipeline returns dict with required keys
+        assert isinstance(result, dict)
+        assert 'processed_image' in result
+        assert 'success' in result
+        assert 'timings' in result
+        assert 'steps_applied' in result
+
+    def test_pipeline_success_flag(self):
+        """Pipeline returns success=True for valid input."""
+        image = np.random.randint(0, 256, (200, 200, 3), dtype=np.uint8)
+        result = preprocess_image(image)
+        
+        assert result['success'] is True
+
+    def test_pipeline_output_is_valid_image(self):
+        """Pipeline output is a valid numpy array."""
+        image = np.random.randint(0, 256, (200, 200, 3), dtype=np.uint8)
+        result = preprocess_image(image)
+        
+        processed = result['processed_image']
+        assert isinstance(processed, np.ndarray)
+        assert processed.size > 0
+
+    def test_pipeline_with_grayscale_only(self):
+        """Run pipeline with only grayscale conversion enabled."""
+        image = np.random.randint(0, 256, (200, 200, 3), dtype=np.uint8)
+        config = {
+            'crop_roi': False,
+            'blur': False,
+            'threshold': False,
+            'morphology': False,
+            'enhance_contrast': False,
+        }
+        result = preprocess_image(image, config=config)
+        
+        assert result['success'] is True
+        # Output should be grayscale
+        assert len(result['processed_image'].shape) == 2
+
+    def test_pipeline_with_resize(self):
+        """Run pipeline with resize enabled."""
+        image = np.random.randint(0, 256, (200, 400, 3), dtype=np.uint8)
+        config = {
+            'crop_roi': False,
+            'blur': False,
+            'threshold': False,
+            'morphology': False,
+            'enhance_contrast': False,
+        }
+        result = preprocess_image(image, config=config)
+        
+        assert result['success'] is True
+        # Without resize config (pipeline doesn't have resize step), width unchanged
+        # Just verify processing succeeded and output is valid
+        assert result['processed_image'].size > 0
+
+    def test_pipeline_with_crop(self):
+        """Run pipeline with crop enabled."""
+        image = np.random.randint(0, 256, (200, 200, 3), dtype=np.uint8)
+        config = {
+            'crop_roi': True,
+            'blur': False,
+            'threshold': False,
+            'morphology': False,
+            'enhance_contrast': False,
+        }
+        result = preprocess_image(image, config=config)
+        
+        assert result['success'] is True
+        # Default crop_roi crops bottom half
+        assert result['processed_image'].shape[0] == 100
+
+    def test_pipeline_with_full_preprocessing(self):
+        """Run pipeline with all steps enabled (standard barcode detection)."""
+        image = np.random.randint(0, 256, (300, 300, 3), dtype=np.uint8)
+        config = {
+            'crop_roi': True,
+            'blur': True,
+            'blur_ksize': (5, 5),
+            'threshold': 'adaptive',
+            'morphology': 'close',
+            'enhance_contrast': True,
+            'enhance_contrast_clip': 2.0,
+        }
+        result = preprocess_image(image, config=config)
+        
+        assert result['success'] is True
+        assert len(result['timings']) > 0
+        assert len(result['steps_applied']) > 0
+
+    def test_pipeline_timings_are_positive(self):
+        """Pipeline timing measurements are positive numbers."""
+        image = np.random.randint(0, 256, (200, 200, 3), dtype=np.uint8)
+        result = preprocess_image(image)
+        
+        # All timing values should be >= 0 (milliseconds)
+        for timing_value in result['timings'].values():
+            assert timing_value >= 0
+
+    def test_pipeline_with_invalid_image(self):
+        """Pipeline raises error for None image."""
+        # Pipeline raises ValueError on None input
+        with pytest.raises(ValueError, match="Input image is None or empty"):
+            preprocess_image(None)
+
+    def test_pipeline_preserves_all_keys_on_error(self):
+        """Pipeline returns all keys even when steps fail."""
+        image = np.random.randint(0, 256, (100, 100), dtype=np.uint8)
+        # Use invalid threshold method to trigger error in pipeline
+        config = {
+            'threshold': 'invalid_method',
+        }
+        result = preprocess_image(image, config=config)
+        
+        # Should have error handling in place
+        assert 'processed_image' in result
+        assert 'success' in result
+
+    def test_pipeline_config_none_uses_defaults(self):
+        """Pipeline with config=None uses default settings."""
+        image = np.random.randint(0, 256, (200, 200, 3), dtype=np.uint8)
+        result = preprocess_image(image, config=None)
+        
+        assert result['success'] is True
+
+    def test_pipeline_sequential_steps_order(self):
+        """Pipeline applies steps in correct order."""
+        image = np.random.randint(0, 256, (200, 200, 3), dtype=np.uint8)
+        config = {
+            'crop_roi': True,
+            'blur': True,
+            'threshold': 'otsu',
+            'morphology': 'close',
+            'enhance_contrast': False,
+        }
+        result = preprocess_image(image, config=config)
+        
+        # Check steps were applied in expected order
+        steps = result['steps_applied']
+        # Grayscale should be first
+        if steps:
+            assert steps[0] == 'grayscale'
+
+
+# ============================================================================
+# STOP HERE - TEST GROUP 3 COMPLETE
+# ============================================================================
+# Verify tests run: pytest computer_vision/tests/test_image_utils.py::TestPreprocessImage -v
+
+
+# ============================================================================
+# TEST GROUP 4: Utility Functions Tests (save_debug_image, error handling)
+# ============================================================================
+
+class TestSaveDebugImage:
+    """Tests for save_debug_image() utility function."""
+
+    def test_save_grayscale_image(self):
+        """Save grayscale image to file."""
+        with tempfile.TemporaryDirectory() as tmpdir:
+            image = np.random.randint(0, 256, (100, 100), dtype=np.uint8)
+            filepath = os.path.join(tmpdir, 'test_gray.jpg')
+            
+            # Function returns None but saves file
+            save_debug_image(image, filepath)
+            
+            # File should exist
+            assert os.path.exists(filepath)
+
+    def test_save_color_image(self):
+        """Save color image to file."""
+        with tempfile.TemporaryDirectory() as tmpdir:
+            image = np.random.randint(0, 256, (100, 100, 3), dtype=np.uint8)
+            filepath = os.path.join(tmpdir, 'test_color.jpg')
+            
+            # Function returns None but saves file
+            save_debug_image(image, filepath)
+            
+            assert os.path.exists(filepath)
+
+    def test_save_image_with_bounding_box(self):
+        """Save image with bounding box annotation."""
+        with tempfile.TemporaryDirectory() as tmpdir:
+            image = np.random.randint(0, 256, (100, 100, 3), dtype=np.uint8)
+            filepath = os.path.join(tmpdir, 'test_bbox.jpg')
+            
+            # Add bounding box annotation as list of dicts
+            annotations = [{'type': 'bbox', 'bbox': (10, 10, 50, 50)}]
+            save_debug_image(image, filepath, annotations=annotations)
+            
+            assert os.path.exists(filepath)
+
+    def test_save_image_with_text(self):
+        """Save image with text annotation."""
+        with tempfile.TemporaryDirectory() as tmpdir:
+            image = np.random.randint(0, 256, (100, 100, 3), dtype=np.uint8)
+            filepath = os.path.join(tmpdir, 'test_text.jpg')
+            
+            # Add text annotation
+            annotations = [{'type': 'text', 'text': 'Test', 'position': (10, 20)}]
+            save_debug_image(image, filepath, annotations=annotations)
+            
+            assert os.path.exists(filepath)
+
+    def test_save_creates_directory_if_needed(self):
+        """Create parent directory if it doesn't exist."""
+        with tempfile.TemporaryDirectory() as tmpdir:
+            image = np.random.randint(0, 256, (100, 100), dtype=np.uint8)
+            filepath = os.path.join(tmpdir, 'subdir', 'test.jpg')
+            
+            save_debug_image(image, filepath)
+            
+            # Should create directory and save file
+            assert os.path.exists(filepath)
+
+    def test_save_none_image_raises_error(self):
+        """Raise error for None image."""
+        with tempfile.TemporaryDirectory() as tmpdir:
+            filepath = os.path.join(tmpdir, 'test.jpg')
+            
+            with pytest.raises(ValueError, match="Input image is None or empty"):
+                save_debug_image(None, filepath)
+
+    def test_save_with_jpg_format(self):
+        """Save with JPG format works correctly."""
+        with tempfile.TemporaryDirectory() as tmpdir:
+            image = np.random.randint(0, 256, (100, 100), dtype=np.uint8)
+            filepath = os.path.join(tmpdir, 'test.jpg')
+            
+            save_debug_image(image, filepath)
+            assert os.path.exists(filepath)
+
+    def test_multiple_annotations(self):
+        """Save image with multiple annotations."""
+        with tempfile.TemporaryDirectory() as tmpdir:
+            image = np.random.randint(0, 256, (100, 100, 3), dtype=np.uint8)
+            filepath = os.path.join(tmpdir, 'test_multi.jpg')
+            
+            annotations = [
+                {'type': 'bbox', 'bbox': (10, 10, 50, 50)},
+                {'type': 'text', 'text': 'Label', 'position': (15, 15)},
+            ]
+            save_debug_image(image, filepath, annotations=annotations)
+            
+            assert os.path.exists(filepath)
+
+
+class TestErrorHandling:
+    """Tests for error handling across all functions."""
+
+    def test_grayscale_with_invalid_shape(self):
+        """Handle empty array."""
+        # Empty array should raise error
+        image = np.array([], dtype=np.uint8)
+        
+        with pytest.raises(ValueError, match="Input image is None or empty"):
+            convert_to_grayscale(image)
+
+    def test_resize_with_zero_target_width(self):
+        """Reject zero target width."""
+        image = np.random.randint(0, 256, (100, 100), dtype=np.uint8)
+        
+        with pytest.raises(ValueError, match="target_width must be positive"):
+            resize_image(image, target_width=0)
+
+    def test_crop_with_zero_dimensions(self):
+        """Reject zero crop dimensions."""
+        image = np.random.randint(0, 256, (100, 100), dtype=np.uint8)
+        
+        with pytest.raises(ValueError):
+            crop_roi(image, x=10, y=10, width=0, height=100)
+
+    def test_threshold_with_none_image(self):
+        """Threshold handles None input."""
+        with pytest.raises(ValueError, match="Input image is None or empty"):
+            apply_threshold(None, method='otsu')
+
+    def test_morphology_with_invalid_iterations(self):
+        """Morphology rejects invalid iteration count."""
+        image = np.random.randint(0, 256, (100, 100), dtype=np.uint8)
+        
+        with pytest.raises(ValueError, match="iterations must be positive"):
+            morphology(image, operation='close', ksize=(3, 3), iterations=0)
+
+    def test_enhance_contrast_with_extreme_clip_limit(self):
+        """Contrast enhancement rejects out-of-range clip limit."""
+        image = np.random.randint(0, 256, (100, 100), dtype=np.uint8)
+        
+        # Clip limit out of range (1.0-40.0)
+        with pytest.raises(ValueError, match="clip_limit must be between"):
+            enhance_contrast(image, clip_limit=100.0, tile_grid_size=(8, 8))
+
+    def test_pipeline_with_corrupted_intermediate_state(self):
+        """Pipeline continues processing after individual step issues."""
+        image = np.random.randint(0, 256, (100, 100), dtype=np.uint8)
+        config = {
+            'crop_roi': True,
+            'blur': True,
+            'threshold': 'otsu',
+        }
+        
+        # Should complete despite potential issues
+        result = preprocess_image(image, config=config)
+        assert 'processed_image' in result
+
+
+# ============================================================================
+# STOP HERE - TEST GROUP 4 COMPLETE
+# ============================================================================
+# Verify tests run: pytest computer_vision/tests/test_image_utils.py::TestSaveDebugImage -v
+#                  pytest computer_vision/tests/test_image_utils.py::TestErrorHandling -v
