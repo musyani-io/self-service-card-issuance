@@ -1,1 +1,0 @@
-# Entry point: parses --mode flag, initializes system

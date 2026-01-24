@@ -1,1 +1,0 @@
-# Abstract base classes defining hardware contracts

@@ -1,1 +1,0 @@
-# Simulates STM32 responses (success/jam/timeout)

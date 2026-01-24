@@ -1,1 +1,0 @@
--- Table definitions (students, cards, transactions, logs)

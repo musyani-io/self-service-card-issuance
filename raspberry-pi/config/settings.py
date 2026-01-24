@@ -1,1 +1,0 @@
-# System constants: OTP timeout, retry limits, DB credentials

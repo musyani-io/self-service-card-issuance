@@ -1,1 +1,0 @@
-# Barcode scanning using picamera2 + pyzbar

@@ -1,1 +1,0 @@
-# Test end-to-end retrieval scenarios

@@ -1,1 +1,0 @@
-# Python classes representing DB tables

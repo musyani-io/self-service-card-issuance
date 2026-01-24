@@ -1,1 +1,0 @@
-# Hardware parameters: SPI pins, camera resolution, baud rates
