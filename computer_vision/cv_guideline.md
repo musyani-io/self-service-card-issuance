@@ -14,13 +14,13 @@
 
 ### Task 1.1: Install Required Software
 
-- [ ] Update Raspberry Pi OS to latest version
-- [ ] Install Python 3.9 or higher
-- [ ] Install OpenCV library (`python3-opencv`)
-- [ ] Install pyzbar library for barcode reading
-- [ ] Install Pillow for image handling
-- [ ] Install picamera2 (if using Pi Camera Module)
-- [ ] Verify all installations with version checks
+- [x] Update Raspberry Pi OS to latest version
+- [x] Install Python 3.9 or higher
+- [x] Install OpenCV library (`python3-opencv`)
+- [x] Install pyzbar library for barcode reading
+- [x] Install Pillow for image handling
+- [x] Install picamera2 (if using Pi Camera Module)
+- [x] Verify all installations with version checks
 
 **Success Criteria:** All libraries import without errors in Python
 
@@ -44,7 +44,7 @@
 
 ### Task 1.3: Set Up Development Environment
 
-- [ ] Create project directory structure (as defined)
+- [x] Create project directory structure (as defined)
 - [x] Initialize Git repository (optional but recommended)
 - [x] Create virtual environment for Python dependencies
 - [x] Create `requirements.txt` file with all dependencies
@@ -58,7 +58,7 @@
 
 ### Task 1.4: Prepare Test Data
 
-- [ ] Obtain 5-10 sample ID cards (with permission) OR create mock cards with barcodes
+- [x] Obtain 5-10 sample ID cards (with permission) OR create mock cards with barcodes
 - [ ] Photograph sample cards at various angles (0°, 15°, 30°)
 - [ ] Photograph cards under different lighting conditions
 - [ ] Save images to `data/sample_barcodes/` directory
