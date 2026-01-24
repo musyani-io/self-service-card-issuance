@@ -138,11 +138,11 @@
 
 ### Task 3.2: Implement Advanced Preprocessing
 
-- [ ] Add Gaussian blur function (reduce noise)
-- [ ] Add adaptive thresholding function (handle lighting variations)
-- [ ] Add morphological operations (close gaps in barcode lines)
-- [ ] Add contrast enhancement function
-- [ ] Test each function on sample images, compare before/after
+- [x] Add Gaussian blur function (reduce noise)
+- [x] Add adaptive thresholding function (handle lighting variations)
+- [x] Add morphological operations (close gaps in barcode lines)
+- [x] Add contrast enhancement function
+- [x] Test each function on sample images, compare before/after
 
 **Success Criteria:** Preprocessing improves barcode visibility in poor-quality images
 
@@ -152,11 +152,11 @@
 
 ### Task 3.3: Create Preprocessing Pipeline
 
-- [ ] Write function that chains preprocessing steps
-- [ ] Make pipeline configurable (enable/disable specific steps)
-- [ ] Add timing measurements to identify slow operations
-- [ ] Optimize processing order for best results
-- [ ] Document which preprocessing helps which image problems
+- [x] Write function that chains preprocessing steps
+- [x] Make pipeline configurable (enable/disable specific steps)
+- [x] Add timing measurements to identify slow operations
+- [x] Optimize processing order for best results
+- [x] Document which preprocessing helps which image problems
 
 **Success Criteria:** Pipeline processes image in under 200ms
 
@@ -168,9 +168,9 @@
 
 - [x] Create `tests/test_image_utils.py`
 - [x] Test each preprocessing function individually
-- [ ] Test full pipeline with various image qualities
-- [ ] Verify output images are valid
-- [ ] Run all tests and fix bugs
+- [x] Test full pipeline with various image qualities
+- [x] Verify output images are valid
+- [x] Run all tests and fix bugs
 
 **Success Criteria:** All preprocessing tests pass
 
