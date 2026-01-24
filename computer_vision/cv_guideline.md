@@ -60,8 +60,8 @@
 
 - [x] Obtain 5-10 sample ID cards (with permission) OR create mock cards with barcodes
 - [ ] Photograph sample cards at various angles (0°, 15°, 30°)
-- [ ] Photograph cards under different lighting conditions
-- [ ] Save images to `data/sample_barcodes/` directory
+- [x] Photograph cards under different lighting conditions
+- [x] Save images to `data/sample_barcodes/` directory
 - [ ] Document each image (filename format: `card_ID_angle_lighting.jpg`)
 
 **Success Criteria:** At least 20 test images captured and organized
@@ -124,8 +124,8 @@
 
 ### Task 3.1: Implement Basic Preprocessing Functions
 
-- [ ] Create `image_utils.py` file
-- [ ] Write function to convert image to grayscale
+- [x] Create `image_utils.py` file
+- [x] Write function to convert image to grayscale
 - [ ] Write function to resize image (maintain aspect ratio)
 - [ ] Write function to crop image to region of interest
 - [ ] Write function to save debug images with annotations
