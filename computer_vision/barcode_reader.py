@@ -42,8 +42,15 @@ def detect_barcode_location(image: np.ndarray) -> Optional[Dict]:
         ...     x, y, w, h = result['bbox']
         ...     print(f"Barcode found at ({x}, {y}), size: {w}x{h}")
     """
-    if image is None or image.size == 0:
-        raise ValueError("Input image is None or empty")
+    # Input validation
+    if image is None:
+        raise ValueError("Image cannot be None")
+    if not isinstance(image, np.ndarray):
+        raise ValueError(f"Image must be numpy array, got {type(image)}")
+    if image.size == 0:
+        raise ValueError("Image array is empty")
+    if len(image.shape) not in (2, 3):
+        raise ValueError(f"Image must be 2D or 3D array, got shape {image.shape}")
     
     # pyzbar works with grayscale or color images
     # Detect barcodes using pyzbar
@@ -170,6 +177,12 @@ def get_barcode_confidence(image: np.ndarray, bbox: Tuple[int, int, int, int]) -
     """
     if image is None or image.size == 0:
         raise ValueError("Input image is None or empty")
+    
+    if bbox is None:
+        raise ValueError("Bounding box cannot be None")
+    
+    if not isinstance(bbox, tuple) or len(bbox) != 4:
+        raise ValueError(f"Bounding box must be tuple of 4 values, got {type(bbox)}")
     
     x, y, w, h = bbox
     
@@ -571,3 +584,270 @@ def handle_decode_error(image: np.ndarray,
         'retry_recommended': max_retries > 0,
         'preprocessing_suggestions': preprocessing_suggestions
     }
+
+
+# ============================================================================
+# TASK 4.3: Integration - Combine Detection + Decoding with Pipeline
+# ============================================================================
+
+def scan_card(image: np.ndarray,
+              expected_format: Optional[str] = None,
+              max_retries: int = 3,
+              preprocessing_config: Optional[Dict] = None) -> Optional[Dict]:
+    """
+    Complete card scanning workflow: detect and decode barcode with retries.
+    
+    Combines barcode detection (Task 4.1) and decoding (Task 4.2) with the
+    preprocessing pipeline (Phase 3) to provide a single function for scanning
+    ID cards. Automatically retries with progressive preprocessing if initial
+    scan fails.
+    
+    Workflow:
+    1. Attempt barcode detection on original image
+    2. If found, decode and validate the barcode data
+    3. Return scan result with metadata
+    4. If failed and retries available:
+       - Apply preprocessing with different settings
+       - Retry detection/decoding with each variant
+    5. Return None after exhausting retries
+    
+    Args:
+        image (np.ndarray): Input image (BGR, RGB, or grayscale).
+                           Should be from camera capture or loaded from file.
+        expected_format (Optional[str]): Expected barcode format for validation.
+                                        Options: None, 'student_id', 'employee_id',
+                                        'card_number', or custom regex pattern.
+                                        If None, basic format validation is used.
+        max_retries (int): Maximum retry attempts if first scan fails. Default: 3.
+                          Set to 0 to disable retries (single attempt only).
+        preprocessing_config (Optional[Dict]): Custom preprocessing pipeline config.
+                                             Keys match preprocess_image() config:
+                                             - 'convert_to_gray': bool
+                                             - 'apply_resize': bool
+                                             - 'apply_blur': bool
+                                             - 'apply_threshold': bool
+                                             - 'apply_morphology': bool
+                                             - 'apply_contrast': bool
+                                             If None, uses default aggressive settings.
+    
+    Returns:
+        Optional[Dict]: Scan result with structure:
+        {
+            'barcode_id': str,              # Decoded barcode string
+            'barcode_type': str,            # Type (CODE128, QR, etc.)
+            'bbox': (x, y, w, h),          # Bounding box coordinates
+            'confidence': float,            # Confidence score (0-1)
+            'valid_format': bool,          # Whether data matches expected format
+            'detection_attempts': int,     # Number of detection attempts
+            'scan_status': str,            # 'success', 'format_invalid', 'not_found'
+        }
+        Returns None if barcode not found after all retries.
+    
+    Raises:
+        ValueError: If image is None or has invalid shape.
+    
+    Examples:
+        >>> image = cv2.imread('id_card.jpg')
+        >>> result = scan_card(image, expected_format='student_id')
+        >>> if result:
+        >>>     print(f"Student ID: {result['barcode_id']}")
+        >>>     print(f"Confidence: {result['confidence']:.1%}")
+        >>> else:
+        >>>     print("Card scan failed after all retries")
+    
+    Notes:
+        - First attempt uses original image (no preprocessing)
+        - Retries use increasingly aggressive preprocessing
+        - Each retry logs the preprocessing configuration used
+        - Stops early if valid barcode found (doesn't use all retries)
+        - Returns detected barcode even if format validation fails
+        - Use expected_format to enforce ID type constraints
+    """
+    # Input validation
+    if image is None:
+        raise ValueError("Image cannot be None")
+    if not isinstance(image, np.ndarray):
+        raise ValueError(f"Image must be numpy array, got {type(image)}")
+    if image.size == 0:
+        raise ValueError("Image array is empty")
+    if len(image.shape) not in (2, 3):
+        raise ValueError(f"Image must be 2D or 3D array, got shape {image.shape}")
+    
+    # Set default preprocessing config if not provided
+    if preprocessing_config is None:
+        preprocessing_config = {
+            'convert_to_gray': True,
+            'apply_resize': False,
+            'apply_blur': True,
+            'apply_threshold': True,
+            'apply_morphology': True,
+            'apply_contrast': True,
+        }
+    
+    # Import preprocessing pipeline (avoid circular import at top)
+    from .image_utils import preprocess_image
+    
+    # Track attempts
+    attempt = 0
+    
+    # Attempt 1: Try original image without preprocessing
+    detection = detect_barcode_location(image)
+    attempt += 1
+    
+    if detection:
+        # Barcode found on original image
+        barcode_id = decode_barcode(image)
+        
+        if barcode_id:
+            # Successfully decoded
+            is_valid = validate_barcode_format(barcode_id, expected_format)
+            
+            return {
+                'barcode_id': barcode_id,
+                'barcode_type': detection.get('type', 'UNKNOWN'),
+                'bbox': detection.get('bbox'),
+                'confidence': detection.get('quality', 0.5),
+                'valid_format': is_valid,
+                'detection_attempts': attempt,
+                'scan_status': 'success' if is_valid else 'format_invalid'
+            }
+    
+    # Attempt 2-N: Try with preprocessing if retries enabled
+    if max_retries > 0:
+        for retry in range(max_retries):
+            attempt += 1
+            
+            # Create progressive preprocessing config for this retry
+            # Retry 1: blur + threshold
+            # Retry 2: blur + threshold + morphology
+            # Retry 3: full pipeline with contrast
+            
+            if retry == 0:
+                # First retry: enable blur and threshold
+                prep_config = preprocessing_config.copy()
+                prep_config['apply_blur'] = True
+                prep_config['apply_threshold'] = True
+                prep_config['apply_morphology'] = False
+                prep_config['apply_contrast'] = False
+            elif retry == 1:
+                # Second retry: add morphology
+                prep_config = preprocessing_config.copy()
+                prep_config['apply_blur'] = True
+                prep_config['apply_threshold'] = True
+                prep_config['apply_morphology'] = True
+                prep_config['apply_contrast'] = False
+            else:
+                # Third+ retry: full pipeline including contrast
+                prep_config = preprocessing_config.copy()
+                prep_config['apply_blur'] = True
+                prep_config['apply_threshold'] = True
+                prep_config['apply_morphology'] = True
+                prep_config['apply_contrast'] = True
+            
+            # Apply preprocessing
+            try:
+                preprocessed = preprocess_image(image, prep_config)
+                # Extract the processed image from the returned dict
+                if not preprocessed.get('success', False):
+                    continue
+                preprocessed_image = preprocessed.get('processed_image')
+                if preprocessed_image is None or preprocessed_image.size == 0:
+                    continue
+            except Exception:
+                # Preprocessing failed, skip this retry
+                continue
+            
+            # Try detection on preprocessed image
+            detection = detect_barcode_location(preprocessed_image)
+            
+            if detection:
+                # Try decoding from preprocessed image
+                barcode_id = decode_barcode(preprocessed_image)
+                
+                if barcode_id:
+                    # Successfully decoded from preprocessed image
+                    is_valid = validate_barcode_format(barcode_id, expected_format)
+                    
+                    return {
+                        'barcode_id': barcode_id,
+                        'barcode_type': detection.get('type', 'UNKNOWN'),
+                        'bbox': detection.get('bbox'),
+                        'confidence': detection.get('quality', 0.5),
+                        'valid_format': is_valid,
+                        'detection_attempts': attempt,
+                        'scan_status': 'success' if is_valid else 'format_invalid'
+                    }
+    
+    # All attempts exhausted, barcode not found
+    return None
+
+
+def scan_card_with_diagnostics(image: np.ndarray,
+                               expected_format: Optional[str] = None,
+                               max_retries: int = 3) -> Dict:
+    """
+    Scan card with detailed diagnostic information on failure.
+    
+    Wraps scan_card() and provides comprehensive failure analysis when
+    barcode detection/decoding fails. Returns diagnostic data about the
+    image and failure reasons to aid in debugging or retry strategies.
+    
+    Args:
+        image (np.ndarray): Input image (BGR, RGB, or grayscale).
+        expected_format (Optional[str]): Expected barcode format for validation.
+        max_retries (int): Maximum retry attempts. Default: 3.
+    
+    Returns:
+        Dict: Result dictionary with keys:
+              - 'success': bool, whether scan succeeded
+              - 'scan_result': Optional[Dict], result from scan_card() if successful
+              - 'error_info': Optional[Dict], diagnostic info if failed
+                - 'error_message': Reason for failure
+                - 'image_shape': (height, width, channels)
+                - 'image_stats': {'mean': float, 'std': float}
+                - 'suggested_actions': List of recovery suggestions
+                - 'preprocessing_suggestions': List of preprocessing functions to try
+    
+    Examples:
+        >>> result = scan_card_with_diagnostics(image, 'student_id')
+        >>> if result['success']:
+        >>>     print(f"Found: {result['scan_result']['barcode_id']}")
+        >>> else:
+        >>>     print(f"Failure: {result['error_info']['error_message']}")
+        >>>     print(f"Try: {result['error_info']['suggested_actions']}")
+    
+    Notes:
+        - Always returns a dictionary (never None)
+        - Useful for user-facing applications that need detailed feedback
+        - Use scan_card() for simple true/false detection in production
+        - Diagnostic info helps optimize preprocessing for specific cards
+    """
+    # Input validation
+    if image is None:
+        raise ValueError("Image cannot be None")
+    if not isinstance(image, np.ndarray):
+        raise ValueError(f"Image must be numpy array, got {type(image)}")
+    
+    # Attempt to scan
+    scan_result = scan_card(image, expected_format, max_retries)
+    
+    if scan_result:
+        # Scan successful
+        return {
+            'success': True,
+            'scan_result': scan_result,
+            'error_info': None
+        }
+    else:
+        # Scan failed, get diagnostics
+        error_info = handle_decode_error(
+            image,
+            "Barcode detection/decoding failed after all retry attempts",
+            {'max_retries': max_retries}
+        )
+        
+        return {
+            'success': False,
+            'scan_result': None,
+            'error_info': error_info
+        }
