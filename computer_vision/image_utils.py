@@ -7,7 +7,8 @@ for barcode detection.
 
 import cv2
 import numpy as np
-from typing import Tuple, Optional
+import time
+from typing import Tuple, Optional, Dict
 
 
 def convert_to_grayscale(image: np.ndarray) -> np.ndarray:
@@ -250,18 +251,320 @@ def save_debug_image(image: np.ndarray, filepath: str,
         raise IOError(f"Failed to save image to {filepath}")
 
 
-def apply_threshold(image, method='adaptive'):
+def gaussian_blur(image: np.ndarray, ksize: Tuple[int, int] = (3, 3), sigma: float = 0) -> np.ndarray:
+    """
+    Apply Gaussian blur to reduce noise before thresholding.
+
+    Blurring smooths minor variations while preserving edges reasonably well,
+    which helps barcodes with speckle noise or compression artifacts.
+
+    Args:
+        image: Input image (color or grayscale)
+        ksize: Kernel size (width, height). Must be odd and positive.
+        sigma: Standard deviation in X/Y. 0 lets OpenCV compute from ksize.
+
+    Returns:
+        Blurred image as numpy array
+
+    Raises:
+        ValueError: If image is None/empty or kernel size is invalid
+    """
+    if image is None or image.size == 0:
+        raise ValueError("Input image is None or empty")
+
+    kx, ky = ksize
+    if kx <= 0 or ky <= 0 or kx % 2 == 0 or ky % 2 == 0:
+        raise ValueError(f"Kernel size must be odd and positive, got {ksize}")
+
+    # Apply Gaussian blur to reduce noise; sigma=0 lets OpenCV infer it
+    blurred = cv2.GaussianBlur(image, ksize, sigmaX=sigma, sigmaY=sigma)
+
+    return blurred
+
+
+def apply_threshold(
+    image: np.ndarray,
+    method: str = 'adaptive',
+    block_size: int = 11,
+    C: int = 2,
+    thresh: int = 128,
+    max_value: int = 255,
+) -> np.ndarray:
     """
     Apply thresholding to enhance barcode contrast.
-    
+
+    Supports adaptive (default), Otsu, and simple binary thresholding. Input is
+    automatically converted to grayscale to ensure correct processing.
+
     Args:
-        image: Input grayscale image
+        image: Input image (color or grayscale)
         method: Thresholding method ('adaptive', 'otsu', 'binary')
-        
+        block_size: Neighborhood size for adaptive threshold (must be odd > 1)
+        C: Constant subtracted from mean/weighted mean in adaptive threshold
+        thresh: Threshold value for simple binary method
+        max_value: Maximum value to use with THRESH_BINARY operations
+
     Returns:
-        Thresholded binary image
+        Thresholded binary image (uint8, values 0 or 255)
+
+    Raises:
+        ValueError: If image is invalid or parameters are out of range
     """
-    pass
+    if image is None or image.size == 0:
+        raise ValueError("Input image is None or empty")
+
+    # Ensure grayscale
+    gray = convert_to_grayscale(image)
+
+    method = method.lower()
+
+    if method == 'adaptive':
+        if block_size <= 1 or block_size % 2 == 0:
+            raise ValueError(f"block_size must be odd and > 1, got {block_size}")
+
+        # Adaptive Gaussian: good for uneven lighting on cards
+        thresh_img = cv2.adaptiveThreshold(
+            gray,
+            max_value,
+            cv2.ADAPTIVE_THRESH_GAUSSIAN_C,
+            cv2.THRESH_BINARY,
+            block_size,
+            C,
+        )
+
+    elif method == 'otsu':
+        # Otsu automatically finds a global threshold
+        _, thresh_img = cv2.threshold(gray, 0, max_value, cv2.THRESH_BINARY + cv2.THRESH_OTSU)
+
+    elif method == 'binary':
+        # Simple global binary threshold
+        _, thresh_img = cv2.threshold(gray, thresh, max_value, cv2.THRESH_BINARY)
+
+    else:
+        raise ValueError("method must be one of: 'adaptive', 'otsu', 'binary'")
+
+    return thresh_img
+
+
+def morphology(
+    image: np.ndarray,
+    operation: str = 'close',
+    ksize: Tuple[int, int] = (3, 3),
+    iterations: int = 1,
+) -> np.ndarray:
+    """
+    Apply morphological operations to close gaps and clean barcode image.
+
+    Morphological operations help fill small holes in barcode lines and remove noise.
+    Closing (default) fills interior gaps; opening removes exterior noise.
+
+    Args:
+        image: Input binary image (typically from thresholding, values 0 or 255)
+        operation: 'close' (fill gaps, default) or 'open' (remove noise)
+        ksize: Kernel size (width, height). Must be odd and positive.
+        iterations: Number of times to apply operation. More = stronger effect.
+
+    Returns:
+        Morphologically processed binary image
+
+    Raises:
+        ValueError: If image is invalid, parameters invalid, or operation unknown
+    """
+    if image is None or image.size == 0:
+        raise ValueError("Input image is None or empty")
+
+    kx, ky = ksize
+    if kx <= 0 or ky <= 0 or kx % 2 == 0 or ky % 2 == 0:
+        raise ValueError(f"Kernel size must be odd and positive, got {ksize}")
+
+    if iterations <= 0:
+        raise ValueError(f"iterations must be positive, got {iterations}")
+
+    operation = operation.lower()
+
+    # Create rectangular kernel for morphological operations
+    kernel = cv2.getStructuringElement(cv2.MORPH_RECT, ksize)
+
+    if operation == 'close':
+        # Closing: dilate then erode (fills interior gaps in barcode lines)
+        result = cv2.morphologyEx(image, cv2.MORPH_CLOSE, kernel, iterations=iterations)
+
+    elif operation == 'open':
+        # Opening: erode then dilate (removes small noise on exterior)
+        result = cv2.morphologyEx(image, cv2.MORPH_OPEN, kernel, iterations=iterations)
+
+    else:
+        raise ValueError("operation must be one of: 'close', 'open'")
+
+    return result
+
+
+def enhance_contrast(
+    image: np.ndarray,
+    clip_limit: float = 2.0,
+    tile_grid_size: Tuple[int, int] = (8, 8),
+) -> np.ndarray:
+    """
+    Enhance local contrast using CLAHE (Contrast Limited Adaptive Histogram Equalization).
+
+    CLAHE improves contrast in specific regions of the image, helpful when barcode area
+    has uneven lighting or low contrast. More localized than global histogram equalization.
+
+    Args:
+        image: Input grayscale image (will auto-convert if color provided)
+        clip_limit: Contrast limit threshold. Higher = more contrast (range 1.0 to 40.0, default 2.0).
+                   Too high may introduce artifacts.
+        tile_grid_size: Size of grid tiles for local enhancement (width, height).
+                       Larger tiles = smoother, more global effect. Default (8, 8).
+
+    Returns:
+        Contrast-enhanced grayscale image
+
+    Raises:
+        ValueError: If image is invalid or parameters out of range
+    """
+    if image is None or image.size == 0:
+        raise ValueError("Input image is None or empty")
+
+    if not (1.0 <= clip_limit <= 40.0):
+        raise ValueError(f"clip_limit must be between 1.0 and 40.0, got {clip_limit}")
+
+    tx, ty = tile_grid_size
+    if tx <= 0 or ty <= 0:
+        raise ValueError(f"tile_grid_size must be positive, got {tile_grid_size}")
+
+    # Convert to grayscale if needed
+    gray = convert_to_grayscale(image)
+
+    # Create CLAHE object and apply
+    clahe = cv2.createCLAHE(clipLimit=clip_limit, tileGridSize=tile_grid_size)
+    enhanced = clahe.apply(gray)
+
+    return enhanced
+
+
+def preprocess_image(
+    image: np.ndarray,
+    config: Optional[Dict] = None,
+) -> Dict:
+    """
+    Apply configurable preprocessing pipeline for barcode detection.
+
+    Chains multiple preprocessing steps in optimal order with timing measurements.
+    All steps are optional and configurable via config dictionary. Returns structured
+    result with processed image, timing info, and steps applied for debugging.
+
+    Args:
+        image: Input image (color or grayscale)
+        config: Configuration dictionary with optional keys:
+                - 'crop_roi': bool (default True) - crop bottom half of image
+                - 'blur': bool (default True) - apply Gaussian blur
+                - 'blur_ksize': tuple (default (3,3)) - kernel size for blur
+                - 'enhance_contrast': bool (default False) - apply CLAHE
+                - 'enhance_contrast_clip': float (default 2.0) - CLAHE clip limit
+                - 'threshold': str (default 'otsu') - 'otsu'/'adaptive'/'binary'/False
+                - 'morphology': str (default False) - 'close'/'open'/False
+
+    Returns:
+        dict with keys:
+        - 'processed_image': final processed image (grayscale)
+        - 'timings': dict of step timings in milliseconds
+        - 'steps_applied': list of steps that were applied
+        - 'success': bool indicating all steps completed without error
+
+    Raises:
+        ValueError: If image is None or invalid
+    """
+    if image is None or image.size == 0:
+        raise ValueError("Input image is None or empty")
+
+    # Initialize config with defaults
+    if config is None:
+        config = {}
+
+    default_config = {
+        'crop_roi': True,
+        'blur': True,
+        'blur_ksize': (3, 3),
+        'enhance_contrast': False,
+        'enhance_contrast_clip': 2.0,
+        'threshold': 'otsu',
+        'morphology': False,
+    }
+    # Merge user config into defaults (user values override)
+    final_config = {**default_config, **config}
+
+    # Track timing and steps applied
+    timings = {}
+    steps_applied = []
+    current_image = image
+
+    try:
+        # Step 1: Convert to grayscale (always first)
+        start = time.time()
+        current_image = convert_to_grayscale(current_image)
+        timings['grayscale'] = round((time.time() - start) * 1000, 2)
+        steps_applied.append('grayscale')
+
+        # Step 2: Crop ROI (optional, early)
+        if final_config['crop_roi']:
+            start = time.time()
+            current_image = crop_roi(current_image)
+            timings['crop_roi'] = round((time.time() - start) * 1000, 2)
+            steps_applied.append('crop_roi')
+
+        # Step 3: Gaussian blur (optional)
+        if final_config['blur']:
+            start = time.time()
+            ksize = final_config['blur_ksize']
+            current_image = gaussian_blur(current_image, ksize=ksize)
+            timings['blur'] = round((time.time() - start) * 1000, 2)
+            steps_applied.append('blur')
+
+        # Step 4: Contrast enhancement (optional)
+        if final_config['enhance_contrast']:
+            start = time.time()
+            clip_limit = final_config['enhance_contrast_clip']
+            current_image = enhance_contrast(current_image, clip_limit=clip_limit)
+            timings['enhance_contrast'] = round((time.time() - start) * 1000, 2)
+            steps_applied.append('enhance_contrast')
+
+        # Step 5: Thresholding (optional)
+        if final_config['threshold']:
+            start = time.time()
+            method = final_config['threshold']
+            current_image = apply_threshold(current_image, method=method)
+            timings['threshold'] = round((time.time() - start) * 1000, 2)
+            steps_applied.append(f'threshold_{method}')
+
+        # Step 6: Morphological operations (optional, last)
+        if final_config['morphology']:
+            start = time.time()
+            operation = final_config['morphology']
+            current_image = morphology(current_image, operation=operation)
+            timings['morphology'] = round((time.time() - start) * 1000, 2)
+            steps_applied.append(f'morphology_{operation}')
+
+        # Calculate total processing time
+        total_time = sum(timings.values())
+        timings['total'] = round(total_time, 2)
+
+        return {
+            'processed_image': current_image,
+            'timings': timings,
+            'steps_applied': steps_applied,
+            'success': True,
+        }
+
+    except Exception as e:
+        # Return partial result on error
+        return {
+            'processed_image': current_image,
+            'timings': timings,
+            'steps_applied': steps_applied,
+            'success': False,
+            'error': str(e),
+        }
 
 
 def crop_region(image, roi):
