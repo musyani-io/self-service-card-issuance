@@ -166,8 +166,8 @@
 
 ### Task 3.4: Test Image Utilities
 
-- [ ] Create `tests/test_image_utils.py`
-- [ ] Test each preprocessing function individually
+- [x] Create `tests/test_image_utils.py`
+- [x] Test each preprocessing function individually
 - [ ] Test full pipeline with various image qualities
 - [ ] Verify output images are valid
 - [ ] Run all tests and fix bugs

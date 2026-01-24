@@ -158,3 +158,195 @@ class TestCropROI:
         image = np.random.randint(0, 256, (100, 100, 3), dtype=np.uint8)
         with pytest.raises(ValueError, match="outside image bounds"):
             crop_roi(image, x=200, y=50, width=50, height=50)
+
+
+class TestGaussianBlur:
+    """Tests for gaussian_blur() function."""
+
+    def test_basic_blur_grayscale(self):
+        """Apply Gaussian blur to grayscale image."""
+        # Create grayscale image with noise
+        image = np.random.randint(0, 256, (100, 100), dtype=np.uint8)
+        result = gaussian_blur(image, ksize=(5, 5), sigma=1.0)
+        
+        # Output should have same shape
+        assert result.shape == (100, 100)
+        # Blur should reduce noise (different from input)
+        assert not np.array_equal(result, image)
+
+    def test_blur_color_image(self):
+        """Apply Gaussian blur to color image."""
+        image = np.random.randint(0, 256, (100, 100, 3), dtype=np.uint8)
+        result = gaussian_blur(image, ksize=(5, 5), sigma=1.0)
+        
+        # Output should preserve shape and channels
+        assert result.shape == (100, 100, 3)
+
+    def test_different_kernel_sizes(self):
+        """Test blur with different kernel sizes."""
+        image = np.random.randint(0, 256, (100, 100), dtype=np.uint8)
+        
+        # Test ksize=3, 5, 7
+        result_3 = gaussian_blur(image, ksize=(3, 3), sigma=1.0)
+        result_5 = gaussian_blur(image, ksize=(5, 5), sigma=1.0)
+        result_7 = gaussian_blur(image, ksize=(7, 7), sigma=1.0)
+        
+        # All should have same shape
+        assert result_3.shape == result_5.shape == result_7.shape == (100, 100)
+        # Larger kernel = stronger blur (different results)
+        assert not np.array_equal(result_3, result_5)
+
+    def test_invalid_even_kernel_size(self):
+        """Raise error for even kernel size (must be odd)."""
+        image = np.random.randint(0, 256, (100, 100), dtype=np.uint8)
+        with pytest.raises(ValueError, match="must be odd"):
+            gaussian_blur(image, ksize=(4, 4), sigma=1.0)
+
+    def test_none_image_raises_error(self):
+        """Raise error for None image."""
+        with pytest.raises(ValueError, match="Input image is None or empty"):
+            gaussian_blur(None, ksize=(5, 5), sigma=1.0)
+
+
+class TestApplyThreshold:
+    """Tests for apply_threshold() function."""
+
+    def test_binary_threshold(self):
+        """Apply binary thresholding."""
+        # Create gradient image
+        image = np.arange(0, 256, dtype=np.uint8).reshape(16, 16)
+        result = apply_threshold(image, method='binary', thresh=128)
+        
+        # Result should be binary (0 or 255 only)
+        assert np.all((result == 0) | (result == 255))
+        assert result.shape == (16, 16)
+
+    def test_otsu_threshold(self):
+        """Apply Otsu's automatic thresholding."""
+        image = np.random.randint(0, 256, (100, 100), dtype=np.uint8)
+        result = apply_threshold(image, method='otsu')
+        
+        # Result should be binary
+        assert np.all((result == 0) | (result == 255))
+        assert result.shape == (100, 100)
+
+    def test_adaptive_threshold(self):
+        """Apply adaptive thresholding."""
+        image = np.random.randint(0, 256, (100, 100), dtype=np.uint8)
+        result = apply_threshold(image, method='adaptive', block_size=11, C=2)
+        
+        # Result should be binary
+        assert np.all((result == 0) | (result == 255))
+        assert result.shape == (100, 100)
+
+    def test_invalid_threshold_method(self):
+        """Raise error for invalid method."""
+        image = np.random.randint(0, 256, (100, 100), dtype=np.uint8)
+        with pytest.raises(ValueError, match="method must be one of"):
+            apply_threshold(image, method='invalid_method')
+
+    def test_invalid_block_size_not_odd(self):
+        """Raise error for even block_size in adaptive threshold."""
+        image = np.random.randint(0, 256, (100, 100), dtype=np.uint8)
+        with pytest.raises(ValueError, match="must be odd"):
+            apply_threshold(image, method='adaptive', block_size=10, C=2)
+
+
+class TestMorphology:
+    """Tests for morphology() function."""
+
+    def test_closing_operation(self):
+        """Apply morphological closing."""
+        image = np.random.randint(0, 256, (100, 100), dtype=np.uint8)
+        result = morphology(image, operation='close', ksize=(3, 3), iterations=1)
+        
+        # Output should have same shape
+        assert result.shape == (100, 100)
+
+    def test_opening_operation(self):
+        """Apply morphological opening."""
+        image = np.random.randint(0, 256, (100, 100), dtype=np.uint8)
+        result = morphology(image, operation='open', ksize=(3, 3), iterations=1)
+        
+        # Output should have same shape
+        assert result.shape == (100, 100)
+
+    def test_multiple_iterations(self):
+        """Apply morphology with multiple iterations."""
+        image = np.random.randint(0, 256, (100, 100), dtype=np.uint8)
+        
+        result_1 = morphology(image, operation='close', ksize=(3, 3), iterations=1)
+        result_2 = morphology(image, operation='close', ksize=(3, 3), iterations=2)
+        
+        # Both should have same shape
+        assert result_1.shape == result_2.shape
+        # Results may differ due to repeated application
+        assert not np.array_equal(result_1, result_2)
+
+    def test_different_kernel_sizes(self):
+        """Test morphology with different kernel sizes."""
+        image = np.random.randint(0, 256, (100, 100), dtype=np.uint8)
+        
+        result_3 = morphology(image, operation='close', ksize=(3, 3), iterations=1)
+        result_5 = morphology(image, operation='close', ksize=(5, 5), iterations=1)
+        
+        # Same shape but different results
+        assert result_3.shape == result_5.shape
+        assert not np.array_equal(result_3, result_5)
+
+    def test_invalid_operation(self):
+        """Raise error for invalid morphology operation."""
+        image = np.random.randint(0, 256, (100, 100), dtype=np.uint8)
+        with pytest.raises(ValueError, match="operation must be one of"):
+            morphology(image, operation='invalid', ksize=(3, 3), iterations=1)
+
+
+class TestEnhanceContrast:
+    """Tests for enhance_contrast() function."""
+
+    def test_clahe_enhancement(self):
+        """Apply CLAHE contrast enhancement."""
+        # Create low-contrast image
+        image = np.random.randint(50, 150, (100, 100), dtype=np.uint8)
+        result = enhance_contrast(image, clip_limit=2.0, tile_grid_size=(8, 8))
+        
+        # Output should have same shape
+        assert result.shape == (100, 100)
+        # Enhancement should change values
+        assert not np.array_equal(result, image)
+
+    def test_color_image_enhancement(self):
+        """Apply CLAHE to color image (converts to grayscale first)."""
+        image = np.random.randint(50, 150, (100, 100, 3), dtype=np.uint8)
+        result = enhance_contrast(image, clip_limit=2.0, tile_grid_size=(8, 8))
+        
+        # Function converts to grayscale internally, so returns 2D array
+        assert result.shape == (100, 100)
+
+    def test_different_clip_limits(self):
+        """Test enhancement with different clip limits."""
+        image = np.random.randint(50, 150, (100, 100), dtype=np.uint8)
+        
+        result_low = enhance_contrast(image, clip_limit=1.0, tile_grid_size=(8, 8))
+        result_high = enhance_contrast(image, clip_limit=4.0, tile_grid_size=(8, 8))
+        
+        # Same shape but different results
+        assert result_low.shape == result_high.shape
+        assert not np.array_equal(result_low, result_high)
+
+    def test_different_tile_sizes(self):
+        """Test enhancement with different tile grid sizes."""
+        image = np.random.randint(50, 150, (100, 100), dtype=np.uint8)
+        
+        result_small = enhance_contrast(image, clip_limit=2.0, tile_grid_size=(4, 4))
+        result_large = enhance_contrast(image, clip_limit=2.0, tile_grid_size=(16, 16))
+        
+        # Same shape but different results
+        assert result_small.shape == result_large.shape
+        assert not np.array_equal(result_small, result_large)
+
+    def test_invalid_clip_limit(self):
+        """Raise error for invalid clip limit."""
+        image = np.random.randint(50, 150, (100, 100), dtype=np.uint8)
+        with pytest.raises(ValueError, match="clip_limit must be between"):
+            enhance_contrast(image, clip_limit=-1.0, tile_grid_size=(8, 8))
