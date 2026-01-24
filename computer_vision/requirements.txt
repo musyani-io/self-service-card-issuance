@@ -4,6 +4,7 @@ jsonschema==4.26.0
 jsonschema-specifications==2025.9.1
 libarchive-c==5.3
 numpy==2.4.1
+opencv-python==4.13.0.90
 OpenEXR==3.4.4
 picamera2==0.3.33
 pidng==4.0.9

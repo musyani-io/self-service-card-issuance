@@ -3,3 +3,17 @@ DESCRIPTION.md
 # Virtual environments
 *venv
 *venv.*
+
+# VS Code
+.vscode
+
+# Pictures used
+*.png
+*.jpg
+*.jpeg
+
+# Cache files
+*pycache*
+
+# Private files
+*research
