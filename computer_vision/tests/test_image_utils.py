@@ -352,10 +352,6 @@ class TestEnhanceContrast:
             enhance_contrast(image, clip_limit=-1.0, tile_grid_size=(8, 8))
 
 
-# ============================================================================
-# TEST GROUP 3: Pipeline Tests (preprocess_image)
-# ============================================================================
-
 class TestPreprocessImage:
     """Tests for preprocess_image() pipeline function."""
 
@@ -508,16 +504,6 @@ class TestPreprocessImage:
             assert steps[0] == 'grayscale'
 
 
-# ============================================================================
-# STOP HERE - TEST GROUP 3 COMPLETE
-# ============================================================================
-# Verify tests run: pytest computer_vision/tests/test_image_utils.py::TestPreprocessImage -v
-
-
-# ============================================================================
-# TEST GROUP 4: Utility Functions Tests (save_debug_image, error handling)
-# ============================================================================
-
 class TestSaveDebugImage:
     """Tests for save_debug_image() utility function."""
 
@@ -668,10 +654,3 @@ class TestErrorHandling:
         # Should complete despite potential issues
         result = preprocess_image(image, config=config)
         assert 'processed_image' in result
-
-
-# ============================================================================
-# STOP HERE - TEST GROUP 4 COMPLETE
-# ============================================================================
-# Verify tests run: pytest computer_vision/tests/test_image_utils.py::TestSaveDebugImage -v
-#                  pytest computer_vision/tests/test_image_utils.py::TestErrorHandling -v
