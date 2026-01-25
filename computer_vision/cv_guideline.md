@@ -126,7 +126,7 @@
 
 - [x] Create `image_utils.py` file
 - [x] Write function to convert image to grayscale
-- [ ] Write function to resize image (maintain aspect ratio)
+- [x] Write function to resize image (maintain aspect ratio)
 - [ ] Write function to crop image to region of interest
 - [ ] Write function to save debug images with annotations
 
