@@ -32,3 +32,44 @@ def convert_to_grayscale(image: np.ndarray) -> np.ndarray:
     gray_image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
 
     return gray_image
+
+
+def resize_image(image: np.ndarray, max_width: int = 640) -> np.ndarray:
+    """
+    Resize image while maintaining aspect ratio
+
+    Parameters:
+        image(np.ndarray): Input image
+        max_width (int): Target width in pixels
+
+    Returns:
+        np.ndarray: Resized image with new shape (new_height, new_width(640))
+
+    Raises:
+        ValueError: If image is None, not NumPy array or max_width <= 0.
+    """
+    
+    # If there's no image
+    if image is None:
+        raise ValueError("Image cannot be None")
+
+    # Checks for NumPy type
+    if not isinstance(image, np.ndarray):
+        raise ValueError(f"Image must be NumPy array. Received: {type(image)}")
+    
+    # Extract OG dimensions
+    og_height, og_width = image[:2]
+
+    scale_factor = max_width / og_width
+
+    new_height = scale_factor * og_height
+    new_width = max_width
+
+    # Handles image already smaller
+    if new_width >= og_width and new_height >= og_height:
+        return image
+    
+    # Actual resizing
+    resized_image = cv2.resize(image, (new_width, new_height), interpolation=cv2.INTER_LINEAR)
+    
+    return resized_image
