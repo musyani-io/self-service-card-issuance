@@ -2,6 +2,7 @@ import cv2
 import numpy as np
 from typing import Optional
 
+
 def convert_to_grayscale(image: np.ndarray) -> np.ndarray:
     """
     Converts color image to grayscale
@@ -19,15 +20,17 @@ def convert_to_grayscale(image: np.ndarray) -> np.ndarray:
     # Check presence
     if image is None:
         raise ValueError("Image cannot be None. Please provide the image")
-    
+
     # Checks type
     if not isinstance(image, np.ndarray):
-        raise ValueError(f"Image must be a NumPy array. Received type: {str(type(image))}")
-    
+        raise ValueError(
+            f"Image must be a NumPy array. Received type: {str(type(image))}"
+        )
+
     # Checks for a color image
     if len(image.shape) != 3 or image.shape[2] != 3:
         raise ValueError(f"Image must have 3 channels. Received shape: {image.shape}")
-    
+
     # Grayscale conversion
     gray_image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
 
@@ -48,7 +51,7 @@ def resize_image(image: np.ndarray, max_width: int = 640) -> np.ndarray:
     Raises:
         ValueError: If image is None, not NumPy array or max_width <= 0.
     """
-    
+
     # If there's no image
     if image is None:
         raise ValueError("Image cannot be None")
@@ -56,7 +59,7 @@ def resize_image(image: np.ndarray, max_width: int = 640) -> np.ndarray:
     # Checks for NumPy type
     if not isinstance(image, np.ndarray):
         raise ValueError(f"Image must be NumPy array. Received: {type(image)}")
-    
+
     # Extract original dimensions
     og_height, og_width = image.shape[:2]
 
@@ -70,6 +73,39 @@ def resize_image(image: np.ndarray, max_width: int = 640) -> np.ndarray:
     new_width = int(max_width)
 
     # Actual resizing
-    resized_image = cv2.resize(image, (new_width, new_height), interpolation=cv2.INTER_LINEAR)
-    
+    resized_image = cv2.resize(
+        image, (new_width, new_height), interpolation=cv2.INTER_LINEAR
+    )
+
     return resized_image
+
+
+def crop_roi(image: np.ndarray) -> np.ndarray:
+    """
+    Crops Region of Interest (ROI)
+
+    Parameters:
+        image(np.ndarray): Input image
+
+    Returns:
+        np.ndarray: A cropped image (bottom half as interest where the barcode lives)
+
+    Raises:
+        ValueError: If the image is not NumPy, is None
+    """
+
+    # Checks for validity of image
+    if image is None:
+        raise ValueError("Image cannot be None")
+
+    # Checks for image's type
+    if not isinstance(image, np.ndarray):
+        raise ValueError(f"Image must be NumPy array. Received: {type(image)}")
+
+    # Obtain dimensions
+    image_height, image_width = image.shape[:2]
+
+    # Cropping the bottom half
+    image_roi = image[image_height // 2 : image_height, 0:image_width]
+
+    return image_roi
