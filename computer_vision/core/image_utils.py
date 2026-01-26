@@ -57,18 +57,18 @@ def resize_image(image: np.ndarray, max_width: int = 640) -> np.ndarray:
     if not isinstance(image, np.ndarray):
         raise ValueError(f"Image must be NumPy array. Received: {type(image)}")
     
-    # Extract OG dimensions
-    og_height, og_width = image[:2]
+    # Extract original dimensions
+    og_height, og_width = image.shape[:2]
+
+    # If already within target width, avoid upscaling to prevent blur
+    if og_width <= max_width:
+        return image
 
     scale_factor = max_width / og_width
 
-    new_height = scale_factor * og_height
-    new_width = max_width
+    new_height = int(og_height * scale_factor)
+    new_width = int(max_width)
 
-    # Handles image already smaller
-    if new_width >= og_width and new_height >= og_height:
-        return image
-    
     # Actual resizing
     resized_image = cv2.resize(image, (new_width, new_height), interpolation=cv2.INTER_LINEAR)
     
