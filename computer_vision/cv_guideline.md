@@ -184,9 +184,9 @@
 
 ### Task 4.1: Implement Basic Barcode Detection
 
-- [ ] Create `barcode_reader.py` file
-- [ ] Write function to detect barcode location in image (using pyzbar)
-- [ ] Extract bounding box coordinates (x, y, width, height)
+- [x] Create `barcode_reader.py` file
+- [x] Write function to detect barcode location in image (using pyzbar)
+- [x] Extract bounding box coordinates (x, y, width, height)
 - [ ] Return confidence score if available
 - [ ] Handle case where no barcode is found
 
