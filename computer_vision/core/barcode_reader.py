@@ -1,6 +1,7 @@
 from typing import List, Dict
 import numpy as np
 from pyzbar.pyzbar import decode
+from computer_vision.core.exceptions import BarcodeNotFoundError
 
 def detect_barcode(image: np.ndarray) -> List[Dict]:
     """
@@ -24,6 +25,14 @@ def detect_barcode(image: np.ndarray) -> List[Dict]:
     detections: List[Dict] = []
     for regions in results:
         x, y, w, h = regions.rect
-        detections.append({"bbox": (x, y, w, h), "type": regions.type})
+        quality = regions.quality
+        
+        if quality >= 50:
+            detections.append({"bbox": (x, y, w, h), "type": regions.type, "quality": quality})
+        else:
+            detections = []
 
-    return detections
+    if len(detections) == 0:
+        raise BarcodeNotFoundError()
+    else:
+        return detections
