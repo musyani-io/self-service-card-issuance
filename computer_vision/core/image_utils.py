@@ -46,7 +46,7 @@ def resize_image(image: np.ndarray, max_width: int = 640) -> np.ndarray:
         max_width (int): Target width in pixels
 
     Returns:
-        np.ndarray: Resized image with new shape (new_height, new_width(640))
+        np.ndarray: Resized image with new shape (new_height, new_width)
 
     Raises:
         ValueError: If image is None, not NumPy array or max_width <= 0.
@@ -63,16 +63,12 @@ def resize_image(image: np.ndarray, max_width: int = 640) -> np.ndarray:
     # Extract original dimensions
     og_height, og_width = image.shape[:2]
 
-    # If already within target width, avoid upscaling to prevent blur
-    if og_width <= max_width:
-        return image
-
     scale_factor = max_width / og_width
 
     new_height = int(og_height * scale_factor)
     new_width = int(max_width)
 
-    # Actual resizing
+    # Actual resizing (supports both upscaling and downscaling)
     resized_image = cv2.resize(
         image, (new_width, new_height), interpolation=cv2.INTER_LINEAR
     )
