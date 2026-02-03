@@ -14,7 +14,7 @@ Instead of relying on barcode scanning, we will use **Optical Character Recognit
 
 ### Pipeline Architecture
 
-```
+```text
 Raw Image → Card Detection → Perspective Correction → ROI Extraction → OCR → Student ID
 ```
 
@@ -65,6 +65,7 @@ Raw Image → Card Detection → Perspective Correction → ROI Extraction → O
   ```
 
 - [x] Test pytesseract import
+
   ```python
   python3 -c "import pytesseract; print('Success!')"
   ```
@@ -81,13 +82,13 @@ Raw Image → Card Detection → Perspective Correction → ROI Extraction → O
 
 **Steps:**
 
-- [ ] Collect 10-15 sample ID cards (with permission)
-- [ ] Photograph cards at different conditions:
+- [x] Collect 10-15 sample ID cards (with permission)
+- [x] Photograph cards at different conditions:
   - Various distances: 20cm, 30cm, 40cm
   - Various angles: 0°, 15°, 30°, 45°
   - Different lighting: bright, dim, natural light, artificial light
   - Different orientations: portrait, landscape, slightly rotated
-- [ ] Save images to `data/test_cards/`
+- [x] Save images to `data/test_cards/`
 - [ ] Document card layout:
   - Where is the student ID located? (top, middle, bottom)
   - What format? (e.g., "2020-04-12345" or "2020/04/12345")
@@ -221,10 +222,12 @@ def detect_card(image: np.ndarray) -> Optional[np.ndarray]:
 **Steps:**
 
 - [ ] Create helper function to order corner points consistently
+
   ```python
   def order_points(corners):
       # Order: top-left, top-right, bottom-right, bottom-left
   ```
+
 - [ ] Implement perspective transformation:
   - Calculate output dimensions based on corner distances
   - Create destination rectangle coordinates
@@ -306,6 +309,7 @@ def straighten_card(image: np.ndarray, corners: np.ndarray) -> np.ndarray:
 - [ ] Add configuration file for ROI parameters:
   - Create `config/ocr_config.py`
   - Define ROI as ratios of card dimensions:
+
     ```python
     STUDENT_ID_ROI = {
         'x_start': 0.10,  # 10% from left
@@ -314,6 +318,7 @@ def straighten_card(image: np.ndarray, corners: np.ndarray) -> np.ndarray:
         'y_end': 0.45     # 45% from top
     }
     ```
+
 - [ ] Make ROI extraction configurable for different card layouts
 
 **Function signature:**
@@ -478,6 +483,7 @@ def extract_roi(card_image: np.ndarray,
   - Page segmentation mode (PSM): Try PSM 6 (uniform block) or PSM 7 (single line)
   - OCR Engine Mode (OEM): Use OEM 3 (default)
   - Whitelist characters (only allow digits, letters, hyphens):
+
     ```python
     config = '--psm 6 -c tessedit_char_whitelist=0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ-/'
     ```
@@ -682,7 +688,7 @@ def extract_student_id_robust(roi: np.ndarray,
 
 - [ ] Create test report template:
 
-  ```
+  ```bash
   ===== OCR Pipeline Test Report =====
   Total Images Tested: X
   Cards Detected: X (XX%)
@@ -881,6 +887,7 @@ def extract_student_id_robust(roi: np.ndarray,
   - Update card status: `mark_card_dispensed(student_id)`
 
 - [ ] Add transaction logging:
+
   ```sql
   CREATE TABLE scan_log (
       id INTEGER PRIMARY KEY,
