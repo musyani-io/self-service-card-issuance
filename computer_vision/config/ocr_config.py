@@ -53,7 +53,7 @@ ID_TOTAL_LENGTH = 13  # Including hyphens
 # Card Detection Parameters
 CARD_DETECTION = {
     'min_area': 10000,           # Minimum contour area in pixels
-    'max_area': 500000,          # Maximum contour area in pixels
+    'max_area': 5000000,         # Maximum contour area in pixels (increased for high-res images)
     'aspect_ratio': 1.6,         # Expected aspect ratio (88/55)
     'aspect_ratio_tolerance': 1.0,  # Allowed deviation (increased for detection)
     'canny_threshold1': 30,      # Lower threshold for Canny edge detection (lowered)

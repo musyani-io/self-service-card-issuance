@@ -67,11 +67,7 @@ def preprocess_for_detection(image: np.ndarray) -> np.ndarray:
     """
     Preprocess image for card edge detection.
     
-    Steps:
-    1. Convert to grayscale
-    2. Apply Gaussian blur to reduce noise
-    3. Apply Canny edge detection
-    4. Morphological operations to connect broken edges
+    Uses simple edge detection focused on card boundaries.
     
     Args:
         image: Input BGR image
@@ -82,9 +78,8 @@ def preprocess_for_detection(image: np.ndarray) -> np.ndarray:
     # Convert to grayscale
     gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
     
-    # Apply stronger Gaussian blur to remove card patterns and text
-    # This helps focus on card boundaries only
-    blurred = cv2.GaussianBlur(gray, (9, 9), 0)
+    # Apply Gaussian blur to remove noise
+    blurred = cv2.GaussianBlur(gray, (7, 7), 0)
     
     # Apply Canny edge detection
     edges = cv2.Canny(
@@ -93,17 +88,14 @@ def preprocess_for_detection(image: np.ndarray) -> np.ndarray:
         CARD_DETECTION['canny_threshold2']
     )
     
-    # More aggressive morphological operations to connect broken edges
+    # Moderate morphological operations
     kernel = np.ones((5, 5), np.uint8)
     
-    # Dilate to thicken and connect edges
+    # Dilate to connect close edges
     edges = cv2.dilate(edges, kernel, iterations=2)
     
-    # Close gaps in edges
-    edges = cv2.morphologyEx(edges, cv2.MORPH_CLOSE, kernel, iterations=2)
-    
-    # Erode slightly to clean up
-    edges = cv2.erode(edges, kernel, iterations=1)
+    # Close small gaps
+    edges = cv2.morphologyEx(edges, cv2.MORPH_CLOSE, kernel, iterations=1)
     
     return edges
 
@@ -138,12 +130,14 @@ def find_card_contours(contours: list, image_shape: Tuple[int, int, int]) -> lis
         if area < min_area or area > max_area:
             continue
         
-        # Approximate contour to polygon
+        # Approximate contour to polygon with MORE aggressive simplification
+        # Higher epsilon = simpler polygon with fewer vertices
         peri = cv2.arcLength(contour, True)
-        approx = cv2.approxPolyDP(contour, 0.02 * peri, True)
+        approx = cv2.approxPolyDP(contour, 0.04 * peri, True)  # Increased from 0.02 to 0.04
         
-        # Card should be a quadrilateral (4 corners)
-        if len(approx) != 4:
+        # Card should be roughly rectangular (4-12 vertices)
+        # Accept slightly imperfect shapes due to broken edges
+        if len(approx) < 4 or len(approx) > 12:  # Increased from 8 to 12
             continue
         
         # Calculate bounding rectangle to check aspect ratio
@@ -186,12 +180,14 @@ def extract_corners(contour: np.ndarray) -> np.ndarray:
     peri = cv2.arcLength(contour, True)
     approx = cv2.approxPolyDP(contour, 0.02 * peri, True)
     
-    # Should have exactly 4 points
+    # If not exactly 4 points, use minimum area bounding rectangle
     if len(approx) != 4:
-        # Fallback: use bounding rectangle corners
+        # Use minimum area bounding rectangle (always gives 4 corners)
         rect = cv2.minAreaRect(contour)
         box = cv2.boxPoints(rect)
-        approx = np.array(box, dtype=np.float32)
+        approx = np.array(box, dtype=np.float32).reshape(4, 2)
+    else:
+        approx = approx.reshape(4, 2)
     
     # Reshape to (4, 2)
     corners = approx.reshape(4, 2)
