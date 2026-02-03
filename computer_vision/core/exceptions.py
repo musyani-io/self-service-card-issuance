@@ -8,6 +8,17 @@ class CardNotFoundError(Exception):
         self.message = message
         super().__init__(self.message)
 
+
+class CardDetectionAmbiguousError(Exception):
+    """
+    Raised when multiple cards are detected in the image
+    """
+
+    def __init__(self, message = "Multiple cards detected in image."):
+        self.message = message
+        super().__init__(self.message)
+
+
 class OCRExtractionError(Exception):
     """
     Raised when OCR fails to extract student ID

@@ -89,7 +89,7 @@ Raw Image → Card Detection → Perspective Correction → ROI Extraction → O
   - Different lighting: bright, dim, natural light, artificial light
   - Different orientations: portrait, landscape, slightly rotated
 - [x] Save images to `data/test_cards/`
-- [ ] Document card layout:
+- [x] Document card layout:
   - Where is the student ID located? (top, middle, bottom)
   - What format? (e.g., "2020-04-12345" or "2020/04/12345")
   - What font is used?
@@ -107,16 +107,16 @@ Raw Image → Card Detection → Perspective Correction → ROI Extraction → O
 
 **Steps:**
 
-- [ ] Create a reference document (`docs/card_layout.md`) with:
+- [x] Create a reference document (`docs/card_layout.md`) with:
   - Physical dimensions of the card
   - Location of student ID text (measure from top-left corner)
   - Student ID format (exact regex pattern)
   - Location of other useful text (name, program, year)
   - Font characteristics
   - Background color/pattern in text regions
-- [ ] Take a high-quality scan of one card
-- [ ] Mark ROI coordinates on the image using an image editor
-- [ ] Document typical variations (older cards vs newer cards)
+- [x] Take a high-quality scan of one card
+- [x] Mark ROI coordinates on the image using an image editor
+- [x] Document typical variations (older cards vs newer cards)
 
 **Success Criteria:** Clear documentation of card layout with measurements
 
