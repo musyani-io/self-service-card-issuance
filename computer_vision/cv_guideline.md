@@ -187,8 +187,8 @@
 - [x] Create `barcode_reader.py` file
 - [x] Write function to detect barcode location in image (using pyzbar)
 - [x] Extract bounding box coordinates (x, y, width, height)
-- [ ] Return confidence score if available
-- [ ] Handle case where no barcode is found
+- [x] Return confidence score if available
+- [x] Handle case where no barcode is found
 
 **Success Criteria:** Detects barcode location in 90%+ of test images
 
@@ -198,11 +198,11 @@
 
 ### Task 4.2: Implement Barcode Decoding
 
-- [ ] Write function to decode barcode data from image
-- [ ] Extract barcode string (student ID)
-- [ ] Extract barcode type (Code128, QR, etc.)
-- [ ] Validate decoded data format
-- [ ] Handle decoding failures gracefully
+- [x] Write function to decode barcode data from image
+- [x] Extract barcode string (student ID)
+- [x] Extract barcode type (Code128, QR, etc.)
+- [x] Validate decoded data format
+- [x] Handle decoding failures gracefully
 
 **Success Criteria:** Decodes barcode data correctly from clear images
 
@@ -260,8 +260,8 @@
 
 ### Task 5.1: Define Custom Exceptions
 
-- [ ] Create `exceptions.py` file
-- [ ] Define `BarcodeNotFoundError` exception
+- [x] Create `exceptions.py` file
+- [x] Define `BarcodeNotFoundError` exception
 - [ ] Define `MultipleBarcodeError` exception
 - [ ] Define `BarcodeDecodeError` exception
 - [ ] Define `CameraError` exception
