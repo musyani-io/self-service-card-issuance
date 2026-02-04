@@ -176,21 +176,10 @@ def extract_corners(contour: np.ndarray) -> np.ndarray:
     Returns:
         Array of 4 corner points, shape (4, 2)
     """
-    # Approximate contour to polygon
-    peri = cv2.arcLength(contour, True)
-    approx = cv2.approxPolyDP(contour, 0.02 * peri, True)
-    
-    # If not exactly 4 points, use minimum area bounding rectangle
-    if len(approx) != 4:
-        # Use minimum area bounding rectangle (always gives 4 corners)
-        rect = cv2.minAreaRect(contour)
-        box = cv2.boxPoints(rect)
-        approx = np.array(box, dtype=np.float32).reshape(4, 2)
-    else:
-        approx = approx.reshape(4, 2)
-    
-    # Reshape to (4, 2)
-    corners = approx.reshape(4, 2)
+    # Use minimum area bounding rectangle for stable corners
+    rect = cv2.minAreaRect(contour)
+    box = cv2.boxPoints(rect)
+    corners = np.array(box, dtype=np.float32).reshape(4, 2)
     
     # Order corners consistently
     corners = order_points(corners)

@@ -45,6 +45,46 @@ ROIS = {
     }
 }
 
+# Anchor-based ROI detection (optional)
+# Uses a detected anchor label (e.g., "NAME") and applies offsets
+# Offsets are fractions of card width/height relative to anchor top-left.
+ANCHOR_OCR = {
+    'anchor_texts': ['NAME'],  # Update to the exact printed label on your card
+    'min_confidence': 50,
+    'psm': 6,
+    'oem': 3,
+    'char_whitelist': 'ABCDEFGHIJKLMNOPQRSTUVWXYZ: ',
+}
+
+# Offsets relative to anchor top-left (fractions of card width/height)
+# These are derived from your fixed ROIs assuming anchor aligns with the name line.
+ANCHOR_ROI_OFFSETS = {
+    'name': {
+        'dx': 0.000,
+        'dy': 0.000,
+        'w': 0.648,
+        'h': 0.073,
+    },
+    'student_id': {
+        'dx': 0.000,
+        'dy': 0.145,
+        'w': 0.261,
+        'h': 0.064,
+    },
+    'program': {
+        'dx': 0.000,
+        'dy': 0.291,
+        'w': 0.648,
+        'h': 0.072,
+    },
+    'expiry_date': {
+        'dx': 0.188,
+        'dy': 0.345,
+        'w': 0.238,
+        'h': 0.073,
+    },
+}
+
 # Student ID Validation Rules
 STUDENT_ID_PATTERN = r'\d{4}-\d{2}-\d{5}'  # Format: 2022-04-07227
 VALID_YEAR_RANGE = (2015, 2030)
