@@ -56,12 +56,10 @@ def straighten_card(image: np.ndarray, corners: np.ndarray) -> np.ndarray:
 
     # Destination points (standardized size)
     width, height = CARD_OUTPUT_SIZE
-    dst = np.array([
-        [0, 0],
-        [width - 1, 0],
-        [width - 1, height - 1],
-        [0, height - 1]
-    ], dtype=np.float32)
+    dst = np.array(
+        [[0, 0], [width - 1, 0], [width - 1, height - 1], [0, height - 1]],
+        dtype=np.float32,
+    )
 
     # Compute perspective transform matrix
     matrix = cv2.getPerspectiveTransform(rect, dst)
@@ -72,7 +70,9 @@ def straighten_card(image: np.ndarray, corners: np.ndarray) -> np.ndarray:
     return warped
 
 
-def get_perspective_transform(image: np.ndarray, corners: np.ndarray) -> Tuple[np.ndarray, np.ndarray]:
+def get_perspective_transform(
+    image: np.ndarray, corners: np.ndarray
+) -> Tuple[np.ndarray, np.ndarray]:
     """
     Get the perspective transform matrix and warped image.
 
@@ -92,12 +92,10 @@ def get_perspective_transform(image: np.ndarray, corners: np.ndarray) -> Tuple[n
     rect = order_points(corners)
     width, height = CARD_OUTPUT_SIZE
 
-    dst = np.array([
-        [0, 0],
-        [width - 1, 0],
-        [width - 1, height - 1],
-        [0, height - 1]
-    ], dtype=np.float32)
+    dst = np.array(
+        [[0, 0], [width - 1, 0], [width - 1, height - 1], [0, height - 1]],
+        dtype=np.float32,
+    )
 
     matrix = cv2.getPerspectiveTransform(rect, dst)
     warped = cv2.warpPerspective(image, matrix, (width, height))
