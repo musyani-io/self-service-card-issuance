@@ -1,22 +1,18 @@
 Card Detection Test Results
 ============================================================
 
-Total Images: 5
-Successful: 4 (80.0%)
-Failed: 1 (20.0%)
+Total Images: 4
+Successful: 4 (100.0%)
+Failed: 0 (0.0%)
 
 Detailed Results:
 ------------------------------------------------------------
 
 sample_3.jpg:
-  Status: failed
-  Error: No card detected
-
-sample_5.jpg:
   Status: success
-  Width: 1752 px
-  Height: 1070 px
-  Aspect Ratio: 1.64
+  Width: 1713 px
+  Height: 1050 px
+  Aspect Ratio: 1.63
 
 sample_2.jpg:
   Status: success
@@ -26,9 +22,9 @@ sample_2.jpg:
 
 sample_4.jpg:
   Status: success
-  Width: 1713 px
-  Height: 1050 px
-  Aspect Ratio: 1.63
+  Width: 1752 px
+  Height: 1070 px
+  Aspect Ratio: 1.64
 
 sample_1.jpg:
   Status: success
