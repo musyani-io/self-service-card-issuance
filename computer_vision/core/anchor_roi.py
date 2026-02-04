@@ -90,7 +90,7 @@ def derive_rois_from_anchor(
         offsets: dict of ROI offsets (fractions of card width/height)
 
     Returns:
-        ROI ratios dict: same format as config.ROIS
+        ROI ratios dict compatible with ROI extraction format
     """
     h, w = card_image.shape[:2]
     ax, ay, _, _ = anchor_box

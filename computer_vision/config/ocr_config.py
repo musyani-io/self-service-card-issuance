@@ -16,35 +16,6 @@ CARD_PHYSICAL = {
 # Resolution: 10 pixels per mm
 CARD_OUTPUT_SIZE = (880, 550)  # Width × Height in pixels
 
-# Region of Interest Definitions
-# Coordinates as percentage of card width/height (0.0 to 1.0)
-ROIS = {
-    'student_id': {
-        'x_start': 0.017,  # % from left
-        'x_end': 0.278,
-        'y_start': 0.527,  # % from top
-        'y_end': 0.591,
-    },
-    'name': {
-        'x_start': 0.017,
-        'x_end': 0.665,
-        'y_start': 0.382,
-        'y_end': 0.455,
-    },
-    'program': {
-        'x_start': 0.017,
-        'x_end': 0.665,
-        'y_start': 0.673,
-        'y_end': 0.745,
-    },
-    'expiry_date': {
-        'x_start': 0.205,
-        'x_end': 0.443,
-        'y_start': 0.727,
-        'y_end': 0.800,
-    }
-}
-
 # Anchor-based ROI detection (optional)
 # Uses a detected anchor label (e.g., "NAME") and applies offsets
 # Offsets are fractions of card width/height relative to anchor top-left.
@@ -57,29 +28,29 @@ ANCHOR_OCR = {
 }
 
 # Offsets relative to anchor top-left (fractions of card width/height)
-# These are derived from your fixed ROIs assuming anchor aligns with the name line.
+# Anchor aligns with the name line.
 ANCHOR_ROI_OFFSETS = {
     'name': {
-        'dx': 0.000,
-        'dy': 0.000,
+        'dx': -0.008,
+        'dy': 0.064,
         'w': 0.648,
         'h': 0.073,
     },
     'student_id': {
-        'dx': 0.000,
-        'dy': 0.145,
+        'dx': -0.010,
+        'dy': 0.198,
         'w': 0.261,
         'h': 0.064,
     },
     'program': {
-        'dx': 0.000,
-        'dy': 0.291,
+        'dx': -0.013,
+        'dy': 0.322,
         'w': 0.648,
         'h': 0.072,
     },
     'expiry_date': {
-        'dx': 0.188,
-        'dy': 0.345,
+        'dx': 0.166,
+        'dy': 0.394,
         'w': 0.238,
         'h': 0.073,
     },

@@ -14,9 +14,9 @@ sample_3.jpg:
 
 sample_5.jpg:
   Status: success
-  Width: 1632 px
-  Height: 1015 px
-  Aspect Ratio: 1.61
+  Width: 1752 px
+  Height: 1070 px
+  Aspect Ratio: 1.64
 
 sample_2.jpg:
   Status: success
@@ -32,6 +32,6 @@ sample_4.jpg:
 
 sample_1.jpg:
   Status: success
-  Width: 2173 px
-  Height: 1348 px
+  Width: 2280 px
+  Height: 1419 px
   Aspect Ratio: 1.61

@@ -179,7 +179,7 @@ EXPIRY_DATE_ROI = {
 ### High-Quality Reference Card
 
 - Save a clean, well-lit photo: `data/test_cards/reference.jpg`
-- Annotate with ROI coordinates if possible: `data/test_results/reference_annotated.jpg`
+- Annotate with anchor label if possible: `data/test_results/reference_annotated.jpg`
 - Include measurements marked on image
 
 ### Multiple Sample Cards
@@ -216,31 +216,40 @@ CARD_PHYSICAL = {
 # Maintains aspect ratio: 88/55 = 1.6
 CARD_OUTPUT_SIZE = (880, 550)  # Width × Height in pixels (10px per mm)
 
-ROIS = {
-    'student_id': {
-        'x_start': 0.017,  # % from left
-        'x_end': 0.278,
-        'y_start': 0.527,  # % from top
-        'y_end': 0.591,
-    },
+ANCHOR_OCR = {
+    'anchor_texts': ['NAME'],  # Update to the exact printed label on your card
+    'min_confidence': 50,
+    'psm': 6,
+    'oem': 3,
+    'char_whitelist': 'ABCDEFGHIJKLMNOPQRSTUVWXYZ: ',
+}
+
+# Offsets relative to anchor top-left (fractions of card width/height)
+ANCHOR_ROI_OFFSETS = {
     'name': {
-        'x_start': 0.017,
-        'x_end': 0.665,
-        'y_start': 0.382,
-        'y_end': 0.455,
+        'dx': 0.000,
+        'dy': 0.000,
+        'w': 0.648,
+        'h': 0.073,
+    },
+    'student_id': {
+        'dx': 0.000,
+        'dy': 0.145,
+        'w': 0.261,
+        'h': 0.064,
     },
     'program': {
-        'x_start': 0.017,
-        'x_end': 0.665,
-        'y_start': 0.673,
-        'y_end': 0.745,
+        'dx': 0.000,
+        'dy': 0.291,
+        'w': 0.648,
+        'h': 0.072,
     },
     'expiry_date': {
-        'x_start': 0.205,
-        'x_end': 0.443,
-        'y_start': 0.727,
-        'y_end': 0.800,
-    }
+        'dx': 0.188,
+        'dy': 0.345,
+        'w': 0.238,
+        'h': 0.073,
+    },
 }
 
 # Student ID Validation
