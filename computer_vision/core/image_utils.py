@@ -46,7 +46,7 @@ def resize_image(image: np.ndarray, max_width: int = 640) -> np.ndarray:
         max_width (int): Target width in pixels
 
     Returns:
-        np.ndarray: Resized image with new shape (new_height, new_width(640))
+        np.ndarray: Resized image with new shape (new_height, new_width)
 
     Raises:
         ValueError: If image is None, not NumPy array or max_width <= 0.
@@ -63,16 +63,12 @@ def resize_image(image: np.ndarray, max_width: int = 640) -> np.ndarray:
     # Extract original dimensions
     og_height, og_width = image.shape[:2]
 
-    # If already within target width, avoid upscaling to prevent blur
-    if og_width <= max_width:
-        return image
-
     scale_factor = max_width / og_width
 
     new_height = int(og_height * scale_factor)
     new_width = int(max_width)
 
-    # Actual resizing
+    # Actual resizing (supports both upscaling and downscaling)
     resized_image = cv2.resize(
         image, (new_width, new_height), interpolation=cv2.INTER_LINEAR
     )
@@ -109,3 +105,89 @@ def crop_roi(image: np.ndarray) -> np.ndarray:
     image_roi = image[image_height // 2 : image_height, 0:image_width]
 
     return image_roi
+
+
+def enhance_contrast(image: np.ndarray) -> np.ndarray:
+    """
+    Enhance contrast using CLAHE for better OCR readability.
+
+    Parameters:
+        image(np.ndarray): Grayscale image
+
+    Returns:
+        np.ndarray: Contrast-enhanced image
+    """
+    if image is None:
+        raise ValueError("Image cannot be None")
+    if not isinstance(image, np.ndarray):
+        raise ValueError(f"Image must be NumPy array. Received: {type(image)}")
+
+    clahe = cv2.createCLAHE(clipLimit=2.0, tileGridSize=(8, 8))
+    return clahe.apply(image)
+
+
+def denoise_image(image: np.ndarray) -> np.ndarray:
+    """
+    Denoise image using Non-Local Means.
+
+    Parameters:
+        image(np.ndarray): Grayscale image
+
+    Returns:
+        np.ndarray: Denoised image
+    """
+    if image is None:
+        raise ValueError("Image cannot be None")
+    if not isinstance(image, np.ndarray):
+        raise ValueError(f"Image must be NumPy array. Received: {type(image)}")
+
+    return cv2.fastNlMeansDenoising(image, None, 10, 7, 21)
+
+
+def binarize_image(image: np.ndarray) -> np.ndarray:
+    """
+    Binarize image using adaptive thresholding for OCR.
+
+    Parameters:
+        image(np.ndarray): Grayscale image
+
+    Returns:
+        np.ndarray: Binarized image
+    """
+    if image is None:
+        raise ValueError("Image cannot be None")
+    if not isinstance(image, np.ndarray):
+        raise ValueError(f"Image must be NumPy array. Received: {type(image)}")
+
+    return cv2.adaptiveThreshold(
+        image, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C, cv2.THRESH_BINARY, 31, 10
+    )
+
+
+def preprocess_for_ocr(image: np.ndarray) -> np.ndarray:
+    """
+    Preprocess ROI image for OCR by chaining:
+    grayscale -> denoise -> contrast -> binarize
+
+    Parameters:
+        image(np.ndarray): BGR or grayscale image
+
+    Returns:
+        np.ndarray: Preprocessed binary image suitable for OCR
+    """
+    if image is None:
+        raise ValueError("Image cannot be None")
+    if not isinstance(image, np.ndarray):
+        raise ValueError(f"Image must be NumPy array. Received: {type(image)}")
+
+    # Convert to grayscale if needed
+    if len(image.shape) == 3 and image.shape[2] == 3:
+        gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+    else:
+        gray = image
+
+    gray = denoise_image(gray)
+    gray = enhance_contrast(gray)
+    binary = binarize_image(gray)
+
+    return binary

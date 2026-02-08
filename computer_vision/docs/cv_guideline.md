@@ -2,7 +2,7 @@
 
 ## Project: ID Card Kiosk - Computer Vision Module
 
-**Purpose:** Complete task list for implementing the barcode scanning system for automated ID card dispensing.
+**Purpose:** Complete task list for implementing the OCR-based ID detection system for automated ID card dispensing.
 
 **Estimated Total Time:** 3-4 weeks (working part-time)
 
@@ -17,7 +17,7 @@
 - [x] Update Raspberry Pi OS to latest version
 - [x] Install Python 3.9 or higher
 - [x] Install OpenCV library (`python3-opencv`)
-- [x] Install pyzbar library for barcode reading
+- [x] Install pytesseract library for OCR reading
 - [x] Install Pillow for image handling
 - [x] Install picamera2 (if using Pi Camera Module)
 - [x] Verify all installations with version checks
@@ -58,10 +58,10 @@
 
 ### Task 1.4: Prepare Test Data
 
-- [x] Obtain 5-10 sample ID cards (with permission) OR create mock cards with barcodes
+- [x] Obtain 5-10 sample ID cards (with permission)
 - [ ] Photograph sample cards at various angles (0°, 15°, 30°)
 - [x] Photograph cards under different lighting conditions
-- [x] Save images to `data/sample_barcodes/` directory
+- [x] Save images to `data/test_cards/` directory
 - [ ] Document each image (filename format: `card_ID_angle_lighting.jpg`)
 
 **Success Criteria:** At least 20 test images captured and organized
@@ -120,7 +120,7 @@
 
 ## Phase 3: Image Preprocessing
 
-**Goal:** Prepare images for reliable barcode detection
+**Goal:** Prepare images for reliable OCR detection
 
 ### Task 3.1: Implement Basic Preprocessing Functions
 
@@ -140,11 +140,11 @@
 
 - [ ] Add Gaussian blur function (reduce noise)
 - [ ] Add adaptive thresholding function (handle lighting variations)
-- [ ] Add morphological operations (close gaps in barcode lines)
+- [ ] Add morphological operations (enhance text lines and reduce noise)
 - [ ] Add contrast enhancement function
 - [ ] Test each function on sample images, compare before/after
 
-**Success Criteria:** Preprocessing improves barcode visibility in poor-quality images
+**Success Criteria:** Preprocessing improves text visibility in poor-quality images
 
 **Estimated Time:** 3 hours
 
@@ -178,33 +178,33 @@
 
 ---
 
-## Phase 4: Barcode Detection & Decoding
+## Phase 4: OCR Detection & Parsing
 
-**Goal:** Reliably find and read barcodes from ID cards
+**Goal:** Reliably read student ID text from ID cards using OCR
 
-### Task 4.1: Implement Basic Barcode Detection
+### Task 4.1: Implement Basic OCR Detection
 
-- [ ] Create `barcode_reader.py` file
-- [ ] Write function to detect barcode location in image (using pyzbar)
-- [ ] Extract bounding box coordinates (x, y, width, height)
+- [x] Create `ocr_reader.py` file
+- [x] Write function to detect ID text in image (using pytesseract)
+- [x] Extract bounding box coordinates (x, y, width, height)
 - [ ] Return confidence score if available
-- [ ] Handle case where no barcode is found
+- [ ] Handle case where no ID text is found
 
-**Success Criteria:** Detects barcode location in 90%+ of test images
+**Success Criteria:** Detects ID text region in 90%+ of test images
 
 **Estimated Time:** 2 hours
 
 ---
 
-### Task 4.2: Implement Barcode Decoding
+### Task 4.2: Implement OCR Parsing
 
-- [ ] Write function to decode barcode data from image
-- [ ] Extract barcode string (student ID)
-- [ ] Extract barcode type (Code128, QR, etc.)
+- [ ] Write function to parse OCR text from image
+- [ ] Extract student ID string
+- [ ] Validate student ID format
 - [ ] Validate decoded data format
 - [ ] Handle decoding failures gracefully
 
-**Success Criteria:** Decodes barcode data correctly from clear images
+**Success Criteria:** Extracts student ID correctly from clear images
 
 **Estimated Time:** 1.5 hours
 
@@ -214,11 +214,11 @@
 
 - [ ] Write combined function: `scan_card(image)`
 - [ ] Integrate preprocessing pipeline before detection
-- [ ] Return structured result: `{barcode_id, type, bbox, confidence}`
+- [ ] Return structured result: `{student_id, bbox, confidence}`
 - [ ] Add retry logic with different preprocessing (if first attempt fails)
 - [ ] Log all scan attempts and results
 
-**Success Criteria:** Single function call reliably returns barcode data
+**Success Criteria:** Single function call reliably returns OCR data
 
 **Estimated Time:** 2 hours
 
@@ -226,9 +226,9 @@
 
 ### Task 4.4: Handle Edge Cases
 
-- [ ] Handle multiple barcodes in single image
-- [ ] Handle partially visible barcodes
-- [ ] Handle damaged/worn barcodes
+- [ ] Handle multiple text regions in single image
+- [ ] Handle partially visible text
+- [ ] Handle damaged/worn text
 - [ ] Add minimum confidence threshold
 - [ ] Implement maximum retry attempts (3 retries)
 
@@ -238,9 +238,9 @@
 
 ---
 
-### Task 4.5: Test Barcode Reader
+### Task 4.5: Test OCR Reader
 
-- [ ] Create `tests/test_barcode_reader.py`
+- [ ] Create `tests/test_ocr_reader.py`
 - [ ] Test detection with clear images
 - [ ] Test detection with poor lighting
 - [ ] Test detection with angled cards
@@ -261,9 +261,9 @@
 ### Task 5.1: Define Custom Exceptions
 
 - [ ] Create `exceptions.py` file
-- [ ] Define `BarcodeNotFoundError` exception
-- [ ] Define `MultipleBarcodeError` exception
-- [ ] Define `BarcodeDecodeError` exception
+- [ ] Define `OCRNotFoundError` exception
+- [ ] Define `MultipleTextRegionError` exception
+- [ ] Define `OCRDecodeError` exception
 - [ ] Define `CameraError` exception
 - [ ] Add descriptive error messages for each
 
@@ -275,7 +275,7 @@
 
 ### Task 5.2: Integrate Exception Handling
 
-- [ ] Update `barcode_reader.py` to raise appropriate exceptions
+- [ ] Update `ocr_reader.py` to raise appropriate exceptions
 - [ ] Update `image_capture.py` to raise `CameraError` on failures
 - [ ] Add try-except blocks around all CV operations
 - [ ] Log exceptions with full context (timestamp, image path, error details)
@@ -321,9 +321,9 @@
 
 ### Task 6.2: Integration with Database
 
-- [ ] Define data structure for card mapping: `{slot_index: barcode_id}`
+- [ ] Define data structure for card mapping: `{slot_index: student_id}`
 - [ ] Write function to scan card and return mapping data
-- [ ] Write function to verify card matches expected barcode
+- [ ] Write function to verify card matches expected student ID
 - [ ] Add database logging for all scan operations
 - [ ] Test database writes and reads
 
@@ -338,7 +338,7 @@
 - [ ] Simulate staff card loading workflow
 - [ ] Scan 10 cards, store mappings
 - [ ] Simulate student retrieval workflow
-- [ ] Verify each card against expected barcode
+- [ ] Verify each card against expected student ID
 - [ ] Measure total time for complete workflow
 - [ ] Document any failures or issues
 
@@ -354,7 +354,7 @@
 - [ ] Measure detection success rate (target: >95%)
 - [ ] Measure false positive rate (target: <2%)
 - [ ] Test under different lighting conditions
-- [ ] Test with 50+ different barcode images
+- [ ] Test with 50+ different OCR images
 - [ ] Document results in `docs/performance_benchmarks.md`
 
 **Success Criteria:** System meets or exceeds performance targets
@@ -386,11 +386,11 @@
 
 - [ ] Load calibration data on system startup
 - [ ] Apply lens distortion correction to captured images
-- [ ] Compare barcode detection before/after correction
+- [ ] Compare OCR detection before/after correction
 - [ ] Measure performance improvement
 - [ ] Make calibration optional (config flag)
 
-**Success Criteria:** Calibrated system detects barcodes more reliably at angles
+**Success Criteria:** Calibrated system detects text more reliably at angles
 
 **Estimated Time:** 2 hours
 
@@ -449,7 +449,7 @@
 
 - [ ] Run all unit tests, ensure 100% pass
 - [ ] Run integration tests with real hardware
-- [ ] Test with 100+ barcode scans
+- [ ] Test with 100+ OCR scans
 - [ ] Verify error handling works correctly
 - [ ] Test recovery from camera disconnection
 - [ ] Document any known limitations
@@ -493,7 +493,7 @@
 ### Task 9.2: Implement Card Quality Check (Optional)
 
 - [ ] Detect if card is damaged or defaced
-- [ ] Check if barcode area is obscured
+- [ ] Check if text area is obscured
 - [ ] Warn staff about low-quality cards during mapping
 - [ ] Log quality metrics
 
@@ -517,7 +517,7 @@
 **Minimum Viable Product (MVP):**
 
 - [ ] All Phase 1-6 tasks completed
-- [ ] System scans barcodes reliably (>90% success rate)
+- [ ] System scans text reliably (>90% success rate)
 - [ ] Error handling works correctly
 - [ ] Integration with database functional
 - [ ] Basic documentation complete
@@ -541,7 +541,7 @@
 ## Progress Tracking
 
 **Week 1:** Phases 1-2 (Setup + Basic Capture)  
-**Week 2:** Phases 3-4 (Preprocessing + Barcode Reading)  
+**Week 2:** Phases 3-4 (Preprocessing + OCR Reading)  
 **Week 3:** Phases 5-6 (Error Handling + Integration)  
 **Week 4:** Phases 7-8 (Calibration + Documentation)
 

@@ -16,7 +16,7 @@ This project implements a **dual-controller architecture** for secure, auditable
 │   Raspberry Pi 5 (High-Level Control)   │
 │  • User Interface & Display             │
 │  • SMS OTP Authentication               │
-│  • Computer Vision (Barcode Scanning)   │
+│  • Computer Vision (OCR Detection)      │
 │  • Database & Audit Logging             │
 └────────────────────┬────────────────────┘
                      │ SPI (3.3V)
@@ -33,7 +33,7 @@ This project implements a **dual-controller architecture** for secure, auditable
 ## Key Features
 
 - **OTP Authentication**: SMS-based one-time passwords for student identity verification
-- **Computer Vision**: Barcode scanning with automatic preprocessing and retry logic
+- **Computer Vision**: OCR-based ID extraction with automatic preprocessing and retry logic
 - **Audit Trail**: Complete transaction logging with timestamps and user actions
 - **Safety Enforcement**: Mechanical limits, jam detection, and error recovery
 - **Mock Hardware**: Full testing without physical hardware
