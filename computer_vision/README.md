@@ -2,7 +2,7 @@
 
 ## Overview
 
-Image preprocessing and barcode detection module for the Automated Self-Service Student ID Card Issuance System. Handles image capture, preprocessing pipeline (grayscale conversion, resizing, ROI extraction), and barcode scanning for card identification and verification.
+Image preprocessing and OCR detection module for the Automated Self-Service Student ID Card Issuance System. Handles image capture, preprocessing pipeline (grayscale conversion, resizing, ROI extraction), and OCR-based ID extraction for card identification and verification.
 
 ---
 
@@ -14,7 +14,7 @@ Image preprocessing and barcode detection module for the Automated Self-Service 
 pip install -r requirements.txt
 ```
 
-Ensure `opencv-python`, `pyzbar`, and `pillow` are installed in your environment.
+Ensure `opencv-python`, `pytesseract`, and `pillow` are installed in your environment.
 
 ---
 
@@ -22,7 +22,7 @@ Ensure `opencv-python`, `pyzbar`, and `pillow` are installed in your environment
 
 ```bash
 computer_vision/
-├── core/              # Core CV functions (image_utils, barcode_reader)
+├── core/              # Core CV functions (image_utils, ocr tools)
 ├── pipeline/          # Processing pipeline orchestration
 ├── config/            # Configuration files (camera, processing params)
 ├── tests/             # Manual and automated tests
@@ -57,10 +57,10 @@ computer_vision/
 - ⏳ Processing pipeline
 - ⏳ Testing suite
 
-**Phase 4: Barcode Detection** ⏳ 0%
+**Phase 4: OCR Detection** ⏳ 0%
 
-- ⏳ Barcode detection
-- ⏳ Barcode decoding
+- ⏳ OCR detection
+- ⏳ OCR parsing/validation
 - ⏳ Edge case handling
 - ⏳ Testing suite
 
@@ -86,7 +86,7 @@ computer_vision/
 Place sample ID card images in:
 
 ```bash
-data/sample_barcodes/
+data/test_cards/
 ```
 
 ### Debug Outputs

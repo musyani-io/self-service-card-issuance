@@ -2,7 +2,7 @@
 
 ## Project: Self-Service Student ID Card Issuance - OCR Module
 
-**Purpose:** Step-by-step guide for implementing an OCR-based student ID extraction system to replace the failed barcode detection approach.
+**Purpose:** Step-by-step guide for implementing an OCR-based student ID extraction system to replace the previous detection approach.
 
 **Estimated Total Time:** 2-3 weeks (working part-time)
 
@@ -10,7 +10,7 @@
 
 ## Overview of OCR Approach
 
-Instead of relying on barcode scanning, we will use **Optical Character Recognition (OCR)** to directly read the student ID number printed on the card. This approach is more robust and doesn't depend on barcode quality.
+Instead of relying on legacy scanning, we will use **Optical Character Recognition (OCR)** to directly read the student ID number printed on the card. This approach is more robust and doesn't depend on printing quality.
 
 ### Pipeline Architecture
 
@@ -20,7 +20,7 @@ Raw Image → Card Detection → Perspective Correction → ROI Extraction → O
 
 **Key Advantages:**
 
-- No dependency on barcode quality or printing
+- No dependency on special symbology quality; OCR uses printed text directly
 - More robust to card orientation and lighting
 - Can extract additional information (name, program, etc.)
 - Provides fallback if one text region is damaged
@@ -301,12 +301,12 @@ def straighten_card(image: np.ndarray, corners: np.ndarray) -> np.ndarray:
 
 **Steps:**
 
-- [ ] Based on your card layout documentation, define ROI coordinates
+- [x] Based on your card layout documentation, define ROI coordinates
   - Student ID region (primary)
   - Name region (optional, for validation)
   - Program/year region (optional)
-- [ ] Implement ROI extraction function using array slicing
-- [ ] Add configuration file for ROI parameters:
+- [x] Implement ROI extraction function using array slicing
+- [x] Add configuration file for ROI parameters:
   - Create `config/ocr_config.py`
   - Define ROI as ratios of card dimensions:
 
@@ -357,17 +357,17 @@ def extract_roi(card_image: np.ndarray,
 
 **Steps:**
 
-- [ ] Create test script that:
+- [x] Create test script that:
   - Processes cards through detection → straightening → ROI extraction
   - Saves each ROI as separate image
   - Annotates original card with ROI boundaries
-- [ ] Visual verification:
+- [x] Visual verification:
   - Check that student ID is fully visible in extracted ROI
   - Verify no important text is cut off
   - Ensure minimal background noise
 - [ ] Test with 10+ different cards
-- [ ] Adjust ROI coordinates if needed
-- [ ] Document final ROI parameters
+- [x] Adjust ROI coordinates if needed
+- [x] Document final ROI parameters
 
 **Success Criteria:** Student ID is centered and complete in extracted ROI
 
@@ -509,13 +509,13 @@ def extract_roi(card_image: np.ndarray,
 
 **Steps:**
 
-- [ ] Define student ID pattern (regex):
+- [x] Define student ID pattern (regex):
   - Based on your card format documentation
   - Example: `r'\\d{4}-\\d{2}-\\d{5}'` for format "2020-04-12345"
   - Or: `r'\\d{4}/\\d{2}/\\d{5}'` for format "2020/04/12345"
   - Make it configurable in `config/ocr_config.py`
 
-- [ ] Implement extraction function:
+- [x] Implement extraction function:
 
   ```python
   def extract_student_id(roi: np.ndarray) -> Optional[str]:
@@ -688,7 +688,7 @@ def extract_student_id_robust(roi: np.ndarray,
 
 - [ ] Create test report template:
 
-  ```
+  ```bash
   ===== OCR Pipeline Test Report =====
   Total Images Tested: X
   Cards Detected: X (XX%)
