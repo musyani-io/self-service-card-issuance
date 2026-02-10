@@ -18,3 +18,7 @@ DESCRIPTION.md
 # Private files
 *research
 *manual_tests
+
+# Sensitive files
+*.env
+*uni_mock*
