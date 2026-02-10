@@ -102,48 +102,36 @@ These will be used to extract specific text regions during OCR.
 
 **Calculation method:** Coordinates as **percentage** of card width/height (0.0 to 1.0).
 
-### Primary ROI: Student ID Region
+### Anchor-Based ROI (Final Offsets)
+
+Anchor label: **NAME** (top-left of the anchor text box). Offsets are fractions of card width/height from the anchor top-left.
 
 ```python
-STUDENT_ID_ROI = {
-    'x_start': 0.017,  # % from left edge (1.5mm / 88mm)
-    'x_end': 0.278,    # % from left edge (24.5mm / 88mm)
-    'y_start': 0.527,  # % from top edge (29mm / 55mm)
-    'y_end': 0.591,    # % from top edge (32.5mm / 55mm)
-}
-```
-
-**Calculation:**
-
-- Student ID at 1.5mm from left, 29mm from top
-- Field dimensions: 23mm × 3.5mm
-- x_start = 1.5 / 88 ≈ 0.017
-- x_end = (1.5 + 23) / 88 = 24.5 / 88 ≈ 0.278
-- y_start = 29 / 55 ≈ 0.527
-- y_end = (29 + 3.5) / 55 = 32.5 / 55 ≈ 0.591
-
-### Secondary ROI: Other Fields (if needed)
-
-```python
-NAME_ROI = {
-    'x_start': 0.017,  # (1.5mm / 88mm)
-    'x_end': 0.665,    # (58.5mm / 88mm)
-    'y_start': 0.382,  # (21mm / 55mm)
-    'y_end': 0.455,    # (25mm / 55mm)
-}
-
-PROGRAM_ROI = {
-    'x_start': 0.017,  # (1.5mm / 88mm)
-    'x_end': 0.665,    # (58.5mm / 88mm)
-    'y_start': 0.673,  # (37mm / 55mm)
-    'y_end': 0.745,    # (41mm / 55mm)
-}
-
-EXPIRY_DATE_ROI = {
-    'x_start': 0.205,  # (18mm / 88mm)
-    'x_end': 0.443,    # (39mm / 88mm)
-    'y_start': 0.727,  # (40mm / 55mm)
-    'y_end': 0.800,    # (44mm / 55mm)
+ANCHOR_ROI_OFFSETS = {
+    'name': {
+        'dx': -0.008,
+        'dy': 0.064,
+        'w': 0.648,
+        'h': 0.073,
+    },
+    'student_id': {
+        'dx': -0.010,
+        'dy': 0.203,
+        'w': 0.261,
+        'h': 0.086,
+    },
+    'program': {
+        'dx': -0.013,
+        'dy': 0.322,
+        'w': 0.648,
+        'h': 0.072,
+    },
+    'expiry_date': {
+        'dx': 0.166,
+        'dy': 0.394,
+        'w': 0.238,
+        'h': 0.073,
+    },
 }
 ```
 

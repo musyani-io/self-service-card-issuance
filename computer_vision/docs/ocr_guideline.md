@@ -276,9 +276,9 @@ Raw Image → Card Detection → Perspective Correction → ROI Extraction → O
   - Check that student ID is fully visible in extracted ROI
   - Verify no important text is cut off
   - Ensure minimal background noise
-- [ ] Test with 10+ different cards
+- [x] Test with 10+ different cards
 - [x] Adjust ROI coordinates if needed
-- [ ] Document final ROI parameters
+- [x] Document final ROI parameters
 
 **Success Criteria:** Student ID is centered and complete in extracted ROI
 
@@ -296,7 +296,7 @@ Raw Image → Card Detection → Perspective Correction → ROI Extraction → O
 
 **Steps:**
 
-- [ ] Add preprocessing functions (contrast, denoise, binarize):
+- [x] Add preprocessing functions (contrast, denoise, binarize):
 
   **Contrast Enhancement:**
 
@@ -306,8 +306,8 @@ Raw Image → Card Detection → Perspective Correction → ROI Extraction → O
 
   **Deskewing (if text is slightly tilted):**
 
-- [ ] Create preprocessing pipeline:
-- [ ] Make pipeline configurable (enable/disable specific steps)
+- [x] Create preprocessing pipeline:
+- [x] Make pipeline configurable (enable/disable specific steps)
 
 **Success Criteria:**
 
@@ -327,14 +327,14 @@ Raw Image → Card Detection → Perspective Correction → ROI Extraction → O
 
 **Steps:**
 
-- [ ] Create test script that shows before/after:
+- [x] Create test script that shows before/after:
   - Original ROI
   - After each preprocessing step
   - Final preprocessed image
-- [ ] Save comparison images
-- [ ] Visual inspection of text clarity
-- [ ] Try different preprocessing combinations
-- [ ] Benchmark which combination works best:
+- [x] Save comparison images
+- [x] Visual inspection of text clarity
+- [x] Try different preprocessing combinations
+- [x] Benchmark which combination works best:
   - Test on 5 sample cards
   - Try different orders of operations
   - Document best pipeline

@@ -107,7 +107,11 @@ def crop_roi(image: np.ndarray) -> np.ndarray:
     return image_roi
 
 
-def enhance_contrast(image: np.ndarray) -> np.ndarray:
+def enhance_contrast(
+    image: np.ndarray,
+    clip_limit: float = 2.0,
+    tile_grid_size: tuple[int, int] = (8, 8),
+) -> np.ndarray:
     """
     Enhance contrast using CLAHE for better OCR readability.
 
@@ -122,11 +126,16 @@ def enhance_contrast(image: np.ndarray) -> np.ndarray:
     if not isinstance(image, np.ndarray):
         raise ValueError(f"Image must be NumPy array. Received: {type(image)}")
 
-    clahe = cv2.createCLAHE(clipLimit=2.0, tileGridSize=(8, 8))
+    clahe = cv2.createCLAHE(clipLimit=clip_limit, tileGridSize=tile_grid_size)
     return clahe.apply(image)
 
 
-def denoise_image(image: np.ndarray) -> np.ndarray:
+def denoise_image(
+    image: np.ndarray,
+    strength: int = 10,
+    template_window_size: int = 7,
+    search_window_size: int = 21,
+) -> np.ndarray:
     """
     Denoise image using Non-Local Means.
 
@@ -141,10 +150,16 @@ def denoise_image(image: np.ndarray) -> np.ndarray:
     if not isinstance(image, np.ndarray):
         raise ValueError(f"Image must be NumPy array. Received: {type(image)}")
 
-    return cv2.fastNlMeansDenoising(image, None, 10, 7, 21)
+    return cv2.fastNlMeansDenoising(
+        image, None, strength, template_window_size, search_window_size
+    )
 
 
-def binarize_image(image: np.ndarray) -> np.ndarray:
+def binarize_image(
+    image: np.ndarray,
+    block_size: int = 31,
+    c: int = 10,
+) -> np.ndarray:
     """
     Binarize image using adaptive thresholding for OCR.
 
@@ -159,12 +174,20 @@ def binarize_image(image: np.ndarray) -> np.ndarray:
     if not isinstance(image, np.ndarray):
         raise ValueError(f"Image must be NumPy array. Received: {type(image)}")
 
+    if block_size % 2 == 0 or block_size < 3:
+        raise ValueError("block_size must be an odd integer >= 3")
+
     return cv2.adaptiveThreshold(
-        image, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C, cv2.THRESH_BINARY, 31, 10
+        image,
+        255,
+        cv2.ADAPTIVE_THRESH_GAUSSIAN_C,
+        cv2.THRESH_BINARY,
+        block_size,
+        c,
     )
 
 
-def preprocess_for_ocr(image: np.ndarray) -> np.ndarray:
+def preprocess_for_ocr(image: np.ndarray, config: Optional[dict] = None) -> np.ndarray:
     """
     Preprocess ROI image for OCR by chaining:
     grayscale -> denoise -> contrast -> binarize
@@ -186,8 +209,32 @@ def preprocess_for_ocr(image: np.ndarray) -> np.ndarray:
     else:
         gray = image
 
-    gray = denoise_image(gray)
-    gray = enhance_contrast(gray)
-    binary = binarize_image(gray)
+    config = config or {}
+    enable_denoise = config.get("enable_denoise", True)
+    enable_contrast = config.get("enable_contrast", True)
+    enable_binarize = config.get("enable_binarize", True)
 
-    return binary
+    if enable_denoise:
+        gray = denoise_image(
+            gray,
+            strength=int(config.get("denoise_strength", 10)),
+            template_window_size=int(config.get("denoise_template_window", 7)),
+            search_window_size=int(config.get("denoise_search_window", 21)),
+        )
+
+    if enable_contrast:
+        gray = enhance_contrast(
+            gray,
+            clip_limit=float(config.get("clahe_clip_limit", 2.0)),
+            tile_grid_size=tuple(config.get("clahe_tile_grid_size", (8, 8))),
+        )
+
+    if enable_binarize:
+        binary = binarize_image(
+            gray,
+            block_size=int(config.get("binary_threshold_blocksize", 31)),
+            c=int(config.get("binary_threshold_c", 10)),
+        )
+        return binary
+
+    return gray
