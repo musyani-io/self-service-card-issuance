@@ -184,7 +184,6 @@
 
 ### Task 4.1: Implement Basic OCR Detection
 
-- [x] Create `ocr_reader.py` file
 - [x] Write function to detect ID text in image (using pytesseract)
 - [x] Extract bounding box coordinates (x, y, width, height)
 - [ ] Return confidence score if available
@@ -275,7 +274,7 @@
 
 ### Task 5.2: Integrate Exception Handling
 
-- [ ] Update `ocr_reader.py` to raise appropriate exceptions
+- [ ] Raise appropriate exceptions on OCR failures
 - [ ] Update `image_capture.py` to raise `CameraError` on failures
 - [ ] Add try-except blocks around all CV operations
 - [ ] Log exceptions with full context (timestamp, image path, error details)

@@ -95,6 +95,9 @@ FONT_PROPERTIES = {
 
 # Preprocessing Parameters
 PREPROCESSING = {
+    "enable_denoise": False,
+    "enable_contrast": True,
+    "enable_binarize": True,
     "denoise_strength": 10,  # fastNlMeansDenoising strength
     "clahe_clip_limit": 2.0,  # CLAHE contrast limit
     "clahe_tile_grid_size": (8, 8),  # CLAHE tile size

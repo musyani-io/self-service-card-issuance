@@ -14,9 +14,7 @@ Instead of relying on legacy scanning, we will use **Optical Character Recogniti
 
 ### Pipeline Architecture
 
-```
 Raw Image → Card Detection → Perspective Correction → ROI Extraction → OCR → Student ID
-```
 
 **Key Advantages:**
 
@@ -36,39 +34,10 @@ Raw Image → Card Detection → Perspective Correction → ROI Extraction → O
 **Steps:**
 
 - [x] Update system packages
-
-  ```bash
-  sudo apt-get update
-  sudo apt-get upgrade
-  ```
-
 - [x] Install Tesseract OCR engine
-
-  ```bash
-  sudo apt-get install tesseract-ocr
-  sudo apt-get install tesseract-ocr-eng  # English language pack
-  ```
-
 - [x] Verify Tesseract installation
-
-  ```bash
-  tesseract --version
-  # Should show version 4.x or 5.x
-  ```
-
 - [x] Install Python OCR library
-
-  ```bash
-  cd /path/to/project
-  source .venv/bin/activate
-  pip install pytesseract==0.3.13
-  ```
-
 - [x] Test pytesseract import
-
-  ```python
-  python3 -c "import pytesseract; print('Success!')"
-  ```
 
 **Success Criteria:** Tesseract and pytesseract are installed and importable
 
@@ -156,20 +125,6 @@ Raw Image → Card Detection → Perspective Correction → ROI Extraction → O
 
 **Function signature:**
 
-```python
-def detect_card(image: np.ndarray) -> Optional[np.ndarray]:
-    \"\"\"
-    Detect ID card in image
-
-    Args:
-        image: Input image (BGR format)
-
-    Returns:
-        Array of 4 corner points [(x,y), (x,y), (x,y), (x,y)]
-        or None if no card detected
-    \"\"\"
-```
-
 **Success Criteria:**
 
 - Detects card in 90%+ of test images
@@ -223,11 +178,6 @@ def detect_card(image: np.ndarray) -> Optional[np.ndarray]:
 
 - [x] Create helper function to order corner points consistently
 
-  ```python
-  def order_points(corners):
-      # Order: top-left, top-right, bottom-right, bottom-left
-  ```
-
 - [x] Implement perspective transformation:
   - Calculate output dimensions based on corner distances
   - Create destination rectangle coordinates
@@ -241,20 +191,6 @@ def detect_card(image: np.ndarray) -> Optional[np.ndarray]:
   - Check for black borders (indicate bad transformation)
 
 **Function signature:**
-
-```python
-def straighten_card(image: np.ndarray, corners: np.ndarray) -> np.ndarray:
-    \"\"\"
-    Apply perspective transform to get top-down view of card
-
-    Args:
-        image: Original image
-        corners: 4 corner points of card
-
-    Returns:
-        Straightened card image (standardized size)
-    \"\"\"
-```
 
 **Success Criteria:**
 
@@ -310,34 +246,9 @@ def straighten_card(image: np.ndarray, corners: np.ndarray) -> np.ndarray:
   - Create `config/ocr_config.py`
   - Define ROI as ratios of card dimensions:
 
-    ```python
-    STUDENT_ID_ROI = {
-        'x_start': 0.10,  # 10% from left
-        'x_end': 0.90,    # 90% from left
-        'y_start': 0.30,  # 30% from top
-        'y_end': 0.45     # 45% from top
-    }
-    ```
-
-- [ ] Make ROI extraction configurable for different card layouts
+- [x] Make ROI extraction configurable for different card layouts
 
 **Function signature:**
-
-```python
-def extract_roi(card_image: np.ndarray,
-                roi_config: Dict) -> Dict[str, np.ndarray]:
-    \"\"\"
-    Extract region of interest from straightened card
-
-    Args:
-        card_image: Straightened card image
-        roi_config: Dictionary with ROI coordinates
-
-    Returns:
-        Dictionary mapping region name to cropped image
-        e.g., {'student_id': np.ndarray, 'name': np.ndarray}
-    \"\"\"
-```
 
 **Success Criteria:**
 
@@ -365,7 +276,7 @@ def extract_roi(card_image: np.ndarray,
   - Check that student ID is fully visible in extracted ROI
   - Verify no important text is cut off
   - Ensure minimal background noise
-- [ ] Test with 10+ different cards
+- [x] Test with 10+ different cards
 - [x] Adjust ROI coordinates if needed
 - [x] Document final ROI parameters
 
@@ -385,44 +296,18 @@ def extract_roi(card_image: np.ndarray,
 
 **Steps:**
 
-- [ ] Add preprocessing functions:
+- [x] Add preprocessing functions (contrast, denoise, binarize):
 
   **Contrast Enhancement:**
 
-  ```python
-  def enhance_contrast(image: np.ndarray) -> np.ndarray:
-      # Use CLAHE (Contrast Limited Adaptive Histogram Equalization)
-  ```
-
   **Denoising:**
-
-  ```python
-  def denoise_image(image: np.ndarray) -> np.ndarray:
-      # Use fastNlMeansDenoising
-  ```
 
   **Binarization:**
 
-  ```python
-  def binarize_image(image: np.ndarray) -> np.ndarray:
-      # Use adaptive thresholding or Otsu's method
-  ```
-
   **Deskewing (if text is slightly tilted):**
 
-  ```python
-  def deskew_text(image: np.ndarray) -> np.ndarray:
-      # Detect text angle and rotate
-  ```
-
-- [ ] Create preprocessing pipeline:
-
-  ```python
-  def preprocess_for_ocr(roi: np.ndarray) -> np.ndarray:
-      # Chain: grayscale → denoise → enhance → binarize → deskew
-  ```
-
-- [ ] Make pipeline configurable (enable/disable specific steps)
+- [x] Create preprocessing pipeline:
+- [x] Make pipeline configurable (enable/disable specific steps)
 
 **Success Criteria:**
 
@@ -442,14 +327,14 @@ def extract_roi(card_image: np.ndarray,
 
 **Steps:**
 
-- [ ] Create test script that shows before/after:
+- [x] Create test script that shows before/after:
   - Original ROI
   - After each preprocessing step
   - Final preprocessed image
-- [ ] Save comparison images
-- [ ] Visual inspection of text clarity
-- [ ] Try different preprocessing combinations
-- [ ] Benchmark which combination works best:
+- [x] Save comparison images
+- [x] Visual inspection of text clarity
+- [x] Try different preprocessing combinations
+- [x] Benchmark which combination works best:
   - Test on 5 sample cards
   - Try different orders of operations
   - Document best pipeline
@@ -466,28 +351,16 @@ def extract_roi(card_image: np.ndarray,
 
 **Goal:** Extract text from preprocessed ROI
 
-**File to create:** `computer_vision/core/ocr_reader.py`
+**File to update:** Use pytesseract directly in the OCR step
 
 **Steps:**
 
 - [ ] Import pytesseract
 - [ ] Implement basic OCR function:
-
-  ```python
-  def extract_text(roi: np.ndarray,
-                   config: str = '') -> str:
-      \"\"\"Extract raw text from ROI using Tesseract\"\"\"
-  ```
-
 - [ ] Configure Tesseract for ID cards:
   - Page segmentation mode (PSM): Try PSM 6 (uniform block) or PSM 7 (single line)
   - OCR Engine Mode (OEM): Use OEM 3 (default)
   - Whitelist characters (only allow digits, letters, hyphens):
-
-    ```python
-    config = '--psm 6 -c tessedit_char_whitelist=0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ-/'
-    ```
-
 - [ ] Test different Tesseract configurations:
   - PSM 3, 6, 7, 11
   - Different whitelists
@@ -514,24 +387,7 @@ def extract_roi(card_image: np.ndarray,
   - Example: `r'\\d{4}-\\d{2}-\\d{5}'` for format "2020-04-12345"
   - Or: `r'\\d{4}/\\d{2}/\\d{5}'` for format "2020/04/12345"
   - Make it configurable in `config/ocr_config.py`
-
 - [x] Implement extraction function:
-
-  ```python
-  def extract_student_id(roi: np.ndarray) -> Optional[str]:
-      \"\"\"
-      Extract and validate student ID from ROI
-
-      Returns:
-          Student ID string or None if not found
-      \"\"\"
-      # 1. Preprocess ROI
-      # 2. Run OCR
-      # 3. Apply regex to extract ID
-      # 4. Validate format
-      # 5. Return first valid match
-  ```
-
 - [ ] Add validation checks:
   - Length validation
   - Year range validation (e.g., 2015-2030)
@@ -577,21 +433,6 @@ def extract_roi(card_image: np.ndarray,
   - Based on regex match strength
   - Based on voting consensus
 
-```python
-def extract_student_id_robust(roi: np.ndarray,
-                                max_retries: int = 3) -> Dict:
-    \"\"\"
-    Extract student ID with retry logic
-
-    Returns:
-        {
-            'student_id': str or None,
-            'confidence': float,
-            'method': str
-        }
-    \"\"\"
-```
-
 **Success Criteria:**
 
 - Increased accuracy through retries
@@ -612,28 +453,6 @@ def extract_student_id_robust(roi: np.ndarray,
 **Steps:**
 
 - [ ] Create pipeline class:
-
-  ```python
-  class CardOCRPipeline:
-      def __init__(self, config: Dict):
-          # Initialize components
-
-      def scan_card(self, image: np.ndarray) -> Dict:
-          \"\"\"
-          Complete pipeline: detection → correction → ROI → OCR
-
-          Returns:
-              {
-                  'success': bool,
-                  'student_id': str or None,
-                  'confidence': float,
-                  'method': str,
-                  'error': str or None,
-                  'processing_time_ms': float
-              }
-          \"\"\"
-  ```
-
 - [ ] Implement full pipeline flow:
   1. Detect card (raise CardNotFoundError if failed)
   2. Apply perspective correction
@@ -685,24 +504,7 @@ def extract_student_id_robust(roi: np.ndarray,
   - **Overall Success Rate:** End-to-end success
   - **Average Processing Time:** Mean time per card
   - **Confidence Distribution:** Histogram of confidence scores
-
 - [ ] Create test report template:
-
-  ```bash
-  ===== OCR Pipeline Test Report =====
-  Total Images Tested: X
-  Cards Detected: X (XX%)
-  IDs Extracted: X (XX%)
-  Correct Extractions: X (XX%)
-  Overall Success Rate: XX%
-  Average Time: XXX ms
-  Average Confidence: XX%
-
-  Failed Cases:
-  - image1.jpg: Card not detected
-  - image2.jpg: OCR failed
-  - image3.jpg: Wrong ID extracted (expected: XXX, got: YYY)
-  ```
 
 **Success Criteria:**
 
@@ -731,7 +533,6 @@ def extract_student_id_robust(roi: np.ndarray,
   - Which cards fail? Why?
   - Which preprocessing works best?
   - Which Tesseract config is optimal?
-
 - [ ] Optimization strategies:
   - **If detection failing:**
     - Adjust Canny thresholds
@@ -747,7 +548,6 @@ def extract_student_id_robust(roi: np.ndarray,
     - Process only necessary ROI
     - Skip unnecessary preprocessing steps
     - Cache preprocessing results
-
 - [ ] Iterate until targets are met
 - [ ] Document final configuration
 
@@ -827,32 +627,6 @@ def extract_student_id_robust(roi: np.ndarray,
 **Steps:**
 
 - [ ] Export main pipeline:
-
-  ```python
-  from computer_vision.pipeline.ocr_pipeline import CardOCRPipeline
-
-  # Convenience function
-  def scan_student_id_card(image: np.ndarray,
-                           config: Dict = None) -> Dict:
-      \"\"\"
-      Scan student ID card and extract student ID
-
-      Args:
-          image: Camera captured image (BGR format)
-          config: Optional configuration overrides
-
-      Returns:
-          {
-              'success': bool,
-              'student_id': str or None,
-              'confidence': float,
-              'error': str or None
-          }
-      \"\"\"
-      pipeline = CardOCRPipeline(config or DEFAULT_CONFIG)
-      return pipeline.scan_card(image)
-  ```
-
 - [ ] Create usage examples in `examples/basic_usage.py`
 - [ ] Document API in `docs/ocr_api_reference.md`
 
@@ -869,36 +643,11 @@ def extract_student_id_robust(roi: np.ndarray,
 **Steps:**
 
 - [ ] Define database schema for card mapping:
-
-  ```sql
-  CREATE TABLE card_inventory (
-      id INTEGER PRIMARY KEY,
-      student_id TEXT NOT NULL UNIQUE,
-      slot_index INTEGER NOT NULL UNIQUE,
-      scan_timestamp DATETIME,
-      scan_confidence REAL,
-      card_status TEXT  -- 'stored', 'dispensed', 'rejected'
-  );
-  ```
-
 - [ ] Create functions to:
   - Store scan result: `store_card_scan(student_id, slot_index, confidence)`
   - Verify card match: `verify_card(expected_id, scanned_id) -> bool`
   - Update card status: `mark_card_dispensed(student_id)`
-
 - [ ] Add transaction logging:
-
-  ```sql
-  CREATE TABLE scan_log (
-      id INTEGER PRIMARY KEY,
-      timestamp DATETIME,
-      student_id TEXT,
-      success BOOLEAN,
-      confidence REAL,
-      error_message TEXT,
-      processing_time_ms REAL
-  );
-  ```
 
 **Success Criteria:** OCR results persist to database
 
@@ -1006,52 +755,6 @@ def extract_student_id_robust(roi: np.ndarray,
 ### Key Configuration Parameters
 
 **`config/ocr_config.py`**
-
-```python
-# Card Detection
-CARD_DETECTION = {
-    'min_area': 10000,
-    'max_area': 500000,
-    'aspect_ratio': 1.586,
-    'aspect_ratio_tolerance': 0.3,
-    'canny_threshold1': 50,
-    'canny_threshold2': 150,
-}
-
-# Perspective Correction
-CARD_OUTPUT_SIZE = (856, 539)  # Width x Height in pixels
-
-# ROI Extraction (as fraction of card dimensions)
-ROIS = {
-    'student_id': {
-        'x_start': 0.10,
-        'x_end': 0.90,
-        'y_start': 0.30,
-        'y_end': 0.45,
-    },
-    'name': {
-        'x_start': 0.10,
-        'x_end': 0.90,
-        'y_start': 0.50,
-        'y_end': 0.65,
-    }
-}
-
-# OCR Settings
-TESSERACT_CONFIG = {
-    'psm': 6,  # Page segmentation mode
-    'oem': 3,  # OCR engine mode
-    'char_whitelist': '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ-/',
-}
-
-# Student ID Validation
-STUDENT_ID_PATTERN = r'\\d{4}-\\d{2}-\\d{5}'  # Adjust to your format
-VALID_YEAR_RANGE = (2015, 2030)
-
-# Performance
-MAX_RETRIES = 3
-PROCESSING_TIMEOUT_MS = 2000
-```
 
 ---
 
