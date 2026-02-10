@@ -1,5 +1,5 @@
 import re
-from typing import Optional, Tuple
+from typing import Optional, Tuple, List
 
 
 OCR_CORRECTIONS = {
@@ -77,3 +77,31 @@ def extract_and_validate_student_id(
         return candidate
 
     return None
+
+
+def extract_student_id_robust(
+    texts: List[str],
+    pattern: str,
+    valid_year_range: Tuple[int, int],
+    total_length: int,
+) -> Optional[str]:
+    """
+    Try multiple OCR outputs and return the most frequent valid student ID.
+    """
+    valid_ids: List[str] = []
+
+    for text in texts:
+        candidate = extract_and_validate_student_id(
+            text, pattern, valid_year_range, total_length
+        )
+        if candidate:
+            valid_ids.append(candidate)
+
+    if not valid_ids:
+        return None
+
+    counts: dict[str, int] = {}
+    for value in valid_ids:
+        counts[value] = counts.get(value, 0) + 1
+
+    return max(counts, key=counts.get)
