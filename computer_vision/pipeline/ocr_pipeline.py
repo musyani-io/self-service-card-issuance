@@ -9,7 +9,13 @@ from core.perspective_corrector import straighten_card
 from core.anchor_roi import find_anchor_box, derive_rois_from_anchor
 from core.image_utils import preprocess_for_ocr
 from core.student_id_validator import extract_student_id_robust
-from core.exceptions import CardNotFoundError, CardDetectionAmbiguousError, OCRExtractionError
+from core.exceptions import (
+    CardNotFoundError,
+    CardDetectionAmbiguousError,
+    OCRExtractionError,
+    PerspectiveCorrectionError,
+    InvalidStudentIDError,
+)
 
 
 class CardOCRPipeline:
@@ -31,7 +37,17 @@ class CardOCRPipeline:
         if corners is None:
             return self._result(False, None, 0.0, "card_detection", "No card detected", start)
 
-        straight = straighten_card(image, corners)
+        try:
+            straight = straighten_card(image, corners)
+        except Exception as e:
+            return self._result(
+                False,
+                None,
+                0.0,
+                "perspective",
+                str(PerspectiveCorrectionError(str(e))),
+                start,
+            )
 
         anchor_box = find_anchor_box(
             straight,
@@ -61,7 +77,14 @@ class CardOCRPipeline:
         )
 
         if not student_id:
-            return self._result(False, None, 0.0, "ocr", "Student ID not found", start)
+            return self._result(
+                False,
+                None,
+                0.0,
+                "ocr",
+                str(InvalidStudentIDError("Student ID not found")),
+                start,
+            )
 
         return self._result(True, student_id, 1.0, "ocr", None, start)
 
