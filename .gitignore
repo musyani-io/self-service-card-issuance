@@ -22,3 +22,4 @@ DESCRIPTION.md
 # Sensitive files
 *.env
 *uni_mock*
+*.rois.json

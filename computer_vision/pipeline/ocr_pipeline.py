@@ -4,12 +4,12 @@ from typing import Dict, Optional
 import cv2
 import pytesseract
 
-from core.card_detector import detect_card
-from core.perspective_corrector import straighten_card
-from core.anchor_roi import find_anchor_box, derive_rois_from_anchor
-from core.image_utils import preprocess_for_ocr, resize_image
-from core.student_id_validator import extract_student_id_robust
-from core.exceptions import (
+from ..core.card_detector import detect_card
+from ..core.perspective_corrector import straighten_card
+from ..core.anchor_roi import find_anchor_box, derive_rois_from_anchor
+from ..core.image_utils import preprocess_for_ocr, resize_image
+from ..core.student_id_validator import extract_student_id_robust
+from ..core.exceptions import (
     CardNotFoundError,
     CardDetectionAmbiguousError,
     OCRExtractionError,

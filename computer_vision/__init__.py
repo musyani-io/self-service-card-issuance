@@ -1,7 +1,7 @@
 from typing import Dict, Optional
 
-from config import ocr_config
-from pipeline.ocr_pipeline import CardOCRPipeline
+from .config import ocr_config
+from .pipeline.ocr_pipeline import CardOCRPipeline
 
 
 DEFAULT_CONFIG = ocr_config.__dict__
