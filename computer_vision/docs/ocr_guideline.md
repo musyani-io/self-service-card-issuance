@@ -351,7 +351,7 @@ Raw Image → Card Detection → Perspective Correction → ROI Extraction → O
 
 **Goal:** Extract text from preprocessed ROI
 
-**File to create:** `computer_vision/core/ocr_reader.py`
+**File to update:** Use pytesseract directly in the OCR step
 
 **Steps:**
 
