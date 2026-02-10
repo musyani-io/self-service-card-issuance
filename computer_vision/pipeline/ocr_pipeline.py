@@ -7,7 +7,7 @@ import pytesseract
 from core.card_detector import detect_card
 from core.perspective_corrector import straighten_card
 from core.anchor_roi import find_anchor_box, derive_rois_from_anchor
-from core.image_utils import preprocess_for_ocr
+from core.image_utils import preprocess_for_ocr, resize_image
 from core.student_id_validator import extract_student_id_robust
 from core.exceptions import (
     CardNotFoundError,
@@ -28,6 +28,33 @@ class CardOCRPipeline:
 
     def scan_card(self, image) -> Dict:
         start = time.perf_counter()
+
+        if image is None or getattr(image, "size", 0) == 0:
+            return self._result(
+                False,
+                None,
+                0.0,
+                "input",
+                "Invalid input image: None or empty",
+                start,
+            )
+
+        if len(image.shape) == 2:
+            image = cv2.cvtColor(image, cv2.COLOR_GRAY2BGR)
+
+        max_width = self.config.get("MAX_INPUT_WIDTH")
+        if max_width:
+            try:
+                image = resize_image(image, max_width=int(max_width))
+            except Exception as e:
+                return self._result(
+                    False,
+                    None,
+                    0.0,
+                    "preprocess",
+                    f"Resize failed: {e}",
+                    start,
+                )
 
         try:
             corners = detect_card(image)
