@@ -28,12 +28,12 @@ PCB layout, firmware, and mechanical design are explicitly out of scope at this 
 
 ### Tasks
 
-- [ ] Confirm single power supply strategy (12 V input).
-- [ ] Decide Raspberry Pi power input method (USB-C vs GPIO 5 V).
-- [ ] Confirm use of Pi Camera for computer vision (no barcode scanner).
-- [ ] Confirm MCU role as real-time controller only.
-- [ ] Define voltage domains: 12 V, 5 V, 3.3 V.
-- [ ] Define grounding strategy (star ground).
+- [x] Confirm single power supply strategy (12 V input).
+- [x] Decide Raspberry Pi power input method (USB-C vs GPIO 5 V) - USB-C
+- [x] Confirm use of Pi Camera for computer vision
+- [x] Confirm MCU role as real-time controller only (STM32 - Nucleo)
+- [x] Define voltage domains: 12 V, 5 V, 3.3 V.
+- [x] Define grounding strategy (star ground).
 
 ### Deliverables
 
@@ -51,8 +51,8 @@ PCB layout, firmware, and mechanical design are explicitly out of scope at this 
 
 ### Tasks
 
-- [ ] Create POWER schematic sheet.
-- [ ] Add 12 V DC input connector.
+- [x] Create POWER schematic sheet.
+- [x] Add 12 V DC input connector.
 - [ ] Add main input protection:
   - Fuse
   - Reverse polarity protection
