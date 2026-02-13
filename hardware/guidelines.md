@@ -53,10 +53,10 @@ PCB layout, firmware, and mechanical design are explicitly out of scope at this 
 
 - [x] Create POWER schematic sheet.
 - [x] Add 12 V DC input connector.
-- [ ] Add main input protection:
+- [x] Add main input protection:
   - Fuse
   - Reverse polarity protection
-- [ ] Define and label `GND_STAR`.
+- [x] Define and label `GND_STAR`.
 - [ ] Split power into two branches:
   - Motor/actuator branch
   - Logic branch
