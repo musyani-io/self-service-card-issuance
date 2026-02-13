@@ -57,12 +57,12 @@ PCB layout, firmware, and mechanical design are explicitly out of scope at this 
   - Fuse
   - Reverse polarity protection
 - [x] Define and label `GND_STAR`.
-- [ ] Split power into two branches:
+- [x] Split power into two branches:
   - Motor/actuator branch
   - Logic branch
-- [ ] Add logic branch fuse.
-- [ ] Add motor branch fuse.
-- [ ] Add bulk capacitors on:
+- [x] Add logic branch fuse.
+- [x] Add motor branch fuse.
+- [x] Add bulk capacitors on:
   - 12 V motor rail
   - 5 V logic rail
 - [ ] Place 12 V → 5 V buck regulator (rated ≥ Pi peak current).
