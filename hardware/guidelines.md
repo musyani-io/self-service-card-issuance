@@ -65,7 +65,7 @@ PCB layout, firmware, and mechanical design are explicitly out of scope at this 
 - [x] Add bulk capacitors on:
   - 12 V motor rail
   - 5 V logic rail
-- [ ] Place 12 V → 5 V buck regulator (rated ≥ Pi peak current).
+- [x] Place 12 V → 5 V buck regulator (rated ≥ Pi peak current).
 - [ ] Place 5 V → 3.3 V regulator for logic.
 - [ ] Add test points for all power rails.
 
