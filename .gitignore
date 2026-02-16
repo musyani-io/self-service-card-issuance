@@ -12,8 +12,9 @@ DESCRIPTION.md
 *.jpg
 *.jpeg
 
-# Cache files
+# Cache & Backup files
 *pycache*
+*backup
 
 # Private files
 *research
