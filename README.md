@@ -35,10 +35,12 @@ Communication occurs over a 3.3V SPI link with a message protocol and acknowledg
 
 ## Repository Structure
 
+- [DESCRIPTION.md](DESCRIPTION.md): Short project description and scope
 - [backend/](backend/): Raspberry Pi application (auth, dispense flow, logging, DB access, communications)
 - [computer_vision/](computer_vision/): CV pipeline for detection, OCR, and verification
 - [hardware/](hardware/): Schematics, PCB layouts, BOMs, and EasyEDA project files
 - [docs/](docs/): Research, system guidelines, and internal documentation
+- [usage/](usage/): Minimal usage examples and entry points
 
 ## Data Flow (High Level)
 
