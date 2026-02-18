@@ -1,0 +1,52 @@
+(kicad_sch
+	(version 20250114)
+	(generator "eeschema")
+	(generator_version "9.0")
+	(uuid "05a4ce2d-ba71-4a8f-b32e-fc6a0ed35450")
+	(paper "A4")
+	(lib_symbols)
+	(hierarchical_label "VOUT"
+		(shape input)
+		(at 135.89 104.14 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "2b6c44d4-2888-4786-9ac9-f9ef498f31f2")
+	)
+	(hierarchical_label "VIN"
+		(shape input)
+		(at 88.9 72.39 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "36eb9004-7efb-4806-9a7f-0ec9119ecffb")
+	)
+	(hierarchical_label "GND"
+		(shape input)
+		(at 130.81 125.73 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "3ed12881-2c74-4454-92fa-4756ea9f33e9")
+	)
+	(hierarchical_label "EN"
+		(shape input)
+		(at 187.96 101.6 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "98b2fa6e-45b8-4596-a595-0cb76c0754b2")
+	)
+)

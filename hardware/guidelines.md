@@ -57,7 +57,7 @@ Establish a clean schematic hierarchy and naming convention.
 
 ## Tasks
 
-- [ ] Create KiCad project.
+- [x] Create KiCad project.
 - [ ] Create hierarchical sheets:
   - `POWER.sch`
   - `RPI_INTERFACES.sch`

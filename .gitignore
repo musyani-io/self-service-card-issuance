@@ -14,9 +14,12 @@ DESCRIPTION.md
 
 # Cache & Backup files
 *pycache*
-*backup
+*backup*
 *Backups*
 *workspace*
+*autosave*
+*lck*
+*auto_save*
 
 # Private files
 *research
