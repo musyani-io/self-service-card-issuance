@@ -2,235 +2,303 @@
 
 ## Purpose
 
-This document defines the structured tasks and checkpoints for the **hardware design phase** of the Automated Student ID Card Dispensing System.  
-The scope of this document ends at **completion and validation of electronic schematics**.  
-PCB layout, firmware, and mechanical design are explicitly out of scope at this stage.
+This document defines the structured workflow and technical checkpoints for the **schematic design phase** of the Automated Student ID Card Dispensing System.
+
+This version is intentionally **component-agnostic**.  
+Specific ICs, regulators, and drivers will be selected during the design process based on validated requirements.
+
+Scope ends at:
+
+- Fully validated hierarchical schematics
+- Defensible power architecture
+- Electrically correct interfaces
+
+PCB layout, firmware, and mechanical integration are explicitly out of scope.
 
 ---
 
-## Design Principles (Must Be Followed)
+# Core System Architecture
 
-- Single power supply architecture (12 V input).
-- Clear separation of **logic power** and **actuator power**.
-- Deterministic communication between Raspberry Pi and MCU.
-- 3.3 V logic compliance for all MCU-connected peripherals.
-- Hierarchical schematics (not one flat page).
-- Design decisions justified before implementation.
+## Voltage Domains (Planned)
+
+- `VIN_12` — Raw 12 V input
+- `V12_LOGIC`
+- `V12_MOTOR`
+- `V5_PI` — 5 V rail for Raspberry Pi
+- `V3V3_LOGIC` — 3.3 V rail for MCU and sensors
+- `GND_LOGIC`
+- `GND_MOTOR`
+- `GND_STAR` — single-point ground reference
 
 ---
 
-## Phase 0 — Pre-Schematic Planning (Completed / In Progress)
+# Mandatory Design Principles
+
+1. Single 12 V supply input.
+2. Clear separation between:
+   - Logic power
+   - Actuator/motor power
+3. Raspberry Pi powered from regulated 5 V rail only.
+4. MCU powered from regulated 3.3 V rail only.
+5. No GPIO ever exposed to 5 V unless explicitly level shifted.
+6. Deterministic communication (SPI preferred).
+7. Hierarchical schematics — no single flat-page design.
+8. All control pins must be intentionally defined.
+9. All power rails must include local decoupling.
+10. All design decisions must be justified before implementation.
+
+---
+
+# PHASE 0 — Project Setup (KiCad Structure)
+
+## Objectives
+
+Establish a clean schematic hierarchy and naming convention.
+
+## Tasks
+
+- [ ] Create KiCad project.
+- [ ] Create hierarchical sheets:
+  - `POWER.sch`
+  - `RPI_INTERFACES.sch`
+  - `MCU_INTERFACES.sch`
+  - `COMMS.sch`
+  - `PERIPHERALS.sch` (optional, later)
+- [ ] Define standardized global net labels:
+  - `VIN_12`
+  - `V12_LOGIC`
+  - `V12_MOTOR`
+  - `V5_PI`
+  - `V3V3_LOGIC`
+  - `GND_LOGIC`
+  - `GND_MOTOR`
+- [ ] Plan star-ground strategy (implemented using net-tie in PCB phase).
+
+## Exit Criteria
+
+- No schematic content yet.
+- Clean structure.
+- Consistent net naming.
+
+---
+
+# PHASE 1 — Power Architecture Design (POWER.sch)
+
+This is the most critical phase.
+
+---
+
+## Section 1 — 12 V Input & Protection
 
 ### Objectives
 
-- Lock system assumptions before drawing.
-- Prevent redesign due to unclear requirements.
+Protect the system from wiring errors and faults.
 
 ### Tasks
 
-- [x] Confirm single power supply strategy (12 V input).
-- [x] Decide Raspberry Pi power input method (USB-C vs GPIO 5 V) - USB-C
-- [x] Confirm use of Pi Camera for computer vision
-- [x] Confirm MCU role as real-time controller only (STM32 - Nucleo)
-- [x] Define voltage domains: 12 V, 5 V, 3.3 V.
-- [x] Define grounding strategy (star ground).
+- [ ] Add 12 V input connector.
+- [ ] Add main fuse (rated above expected steady-state current).
+- [ ] Add reverse polarity protection (method to be selected later).
+- [ ] Define protected input net (`VIN_12_PROT`).
+- [ ] Define `GND_LOGIC` and `GND_MOTOR`.
 
-### Deliverables
+### Checks
 
-- Written design assumptions (notes or README).
-- Agreed-upon block diagram (conceptual).
+- Protection precedes branching.
+- Reverse polarity solution does not introduce excessive voltage drop.
+- Ground reference defined clearly.
 
 ---
 
-## Phase 1 — Power Architecture Design (FIRST SCHEMATIC PHASE)
+## Section 2 — Rail Separation
 
-### Objectives
+### Logic Branch
 
-- Design a stable, safe, and noise-resilient power system.
-- Ensure Raspberry Pi stability under load.
+- [ ] Add dedicated fuse.
+- [ ] Define `V12_LOGIC`.
+- [ ] Add bulk capacitor (energy reservoir).
+- [ ] Add test point.
 
-### Tasks
+### Motor Branch
 
-- [x] Create POWER schematic sheet.
-- [x] Add 12 V DC input connector.
-- [x] Add main input protection:
-  - Fuse
-  - Reverse polarity protection
-- [x] Define and label `GND_STAR`.
-- [x] Split power into two branches:
-  - Motor/actuator branch
-  - Logic branch
-- [x] Add logic branch fuse.
-- [x] Add motor branch fuse.
-- [x] Add bulk capacitors on:
-  - 12 V motor rail
-  - 5 V logic rail
-- [x] Place 12 V → 5 V buck regulator (rated ≥ Pi peak current).
-- [ ] Place 5 V → 3.3 V regulator for logic.
-- [ ] Add test points for all power rails.
+- [ ] Add dedicated fuse.
+- [ ] Define `V12_MOTOR`.
+- [ ] Add bulk capacitor.
+- [ ] Add test point.
 
-### Checks Before Proceeding
+### Checks
 
-- Motors are not powered from 5 V or 3.3 V.
-- Logic ground and motor ground meet only at `GND_STAR`.
-- All rails are clearly named and labeled.
-
-### Deliverables
-
-- POWER schematic (PDF export).
-- Annotated notes explaining power choices.
+- No direct cross-connection between logic and motor rails.
+- Grounds meet only at defined star point.
 
 ---
 
-## Phase 2 — Raspberry Pi Interface Schematic
+## Section 3 — 12 V → 5 V Regulator (Raspberry Pi Rail)
 
 ### Objectives
 
-- Define all electrical connections to the Raspberry Pi.
-- Avoid misuse of GPIO pins.
+Provide stable 5 V under peak load conditions.
 
 ### Tasks
 
-- [ ] Create RPI_INTERFACES schematic sheet.
-- [ ] Represent Raspberry Pi using a 40-pin GPIO header symbol.
+- [ ] Select regulator topology (buck converter expected).
+- [ ] Verify:
+  - Input voltage range ≥ 12 V
+  - Output current rating ≥ Pi peak load
+  - Protection features (OCP, OTP, UVLO)
+- [ ] Add required:
+  - Input capacitors (local ceramics mandatory)
+  - Output capacitors
+  - Feedback network (if adjustable)
+  - Enable configuration
+- [ ] Define `V5_PI`.
+- [ ] Add test point.
+
+### Checks
+
+- No motor loads powered from 5 V rail.
+- Regulator control pins not left floating.
+- Output current rating has margin.
+
+---
+
+## Section 4 — 12 V → 3.3 V Regulator (MCU Rail)
+
+### Objectives
+
+Provide clean, noise-resistant 3.3 V for MCU and sensors.
+
+### Tasks
+
+- [ ] Select regulator topology (buck preferred for efficiency).
+- [ ] Verify:
+  - Input range supports 12 V
+  - Output current ≥ MCU + sensor load
+- [ ] Add:
+  - Input capacitors (local)
+  - Inductor (if required)
+  - Output capacitors
+  - Feedback divider
+  - Enable configuration (always-on)
+- [ ] Define `V3V3_LOGIC`.
+- [ ] Add test point.
+
+### Checks
+
+- 3.3 V rail independent of 5 V rail.
+- Feedback network referenced to correct ground.
+- Output ripple acceptable for MCU operation.
+
+---
+
+# PHASE 2 — Raspberry Pi Interface
+
+## Objectives
+
+Safely interface Raspberry Pi.
+
+### Tasks
+
+- [ ] Represent Pi using 40-pin header.
 - [ ] Connect:
-  - 5 V input
-  - GND
-- [ ] Expose only required GPIOs:
-  - SPI (SCK, MOSI, MISO, CS)
-  - Optional interrupt line from MCU
-- [ ] Represent Pi Camera as CSI interface (no separate power).
-- [ ] Represent USB ports symbolically (no GPIO wiring).
+  - `V5_PI`
+  - `GND_LOGIC`
+- [ ] Expose required SPI pins.
+- [ ] Add series resistors (22–47 Ω) on high-speed lines.
+- [ ] Add optional interrupt line.
 
-### Checks Before Proceeding
+### Checks
 
-- No peripheral draws power directly from Pi GPIO pins.
-- No 5 V signals enter Pi GPIO.
-- Pi GPIO logic is treated as 3.3 V only.
-
-### Deliverables
-
-- Raspberry Pi interface schematic (PDF).
+- No GPIO exposed to 5 V.
+- Only one SPI master (Pi).
+- No external loads powered from GPIO pins.
 
 ---
 
-## Phase 3 — MCU (STM32 or Alternative) Interface Schematic
+# PHASE 3 — MCU Interface
 
-### Objectives
+## Objectives
 
-- Define MCU power and I/O clearly.
-- Prepare for clean actuator and sensor integration later.
+Define MCU electrical boundary clearly.
 
 ### Tasks
 
-- [ ] Create STM32_INTERFACES schematic sheet.
-- [ ] Represent MCU board (e.g., Nucleo) via headers.
-- [ ] Connect:
-  - 3.3 V logic power
-  - GND
-- [ ] Expose communication pins:
-  - SPI (slave mode)
-  - Optional UART for debugging
-- [ ] Expose GPIOs for:
-  - Motor control
+- [ ] Represent MCU board or chip.
+- [ ] Connect `V3V3_LOGIC`.
+- [ ] Connect `GND_LOGIC`.
+- [ ] Expose SPI (slave mode).
+- [ ] Expose GPIO for:
+  - Motor drivers
   - Sensors
-- [ ] Add decoupling (symbolic if using dev board).
+- [ ] Add symbolic decoupling (or explicit if bare MCU).
 
-### Checks Before Proceeding
+### Checks
 
-- All MCU GPIOs operate at 3.3 V.
-- No sensor powered at 5 V connects directly to MCU GPIO.
-
-### Deliverables
-
-- MCU interface schematic (PDF).
+- All MCU I/O at 3.3 V.
+- No 5 V peripherals directly connected.
 
 ---
 
-## Phase 4 — Pi ↔ MCU Communication Design
+# PHASE 4 — Communication Architecture
 
-### Objectives
+## Objectives
 
-- Ensure fast, reliable, deterministic communication.
+Ensure deterministic and robust data exchange.
 
 ### Tasks
 
-- [ ] Create COMMS schematic section or sheet.
-- [ ] Implement SPI bus:
-  - SCK
-  - MOSI
-  - MISO
-  - CS
-- [ ] Add series resistors on SPI lines (22–47 Ω).
-- [ ] Add optional MCU → Pi interrupt line.
-- [ ] Label signal direction clearly.
+- [ ] Implement SPI bus connections.
+- [ ] Add series resistors.
+- [ ] Label direction clearly.
+- [ ] Confirm ground reference consistency.
 
-### Checks Before Proceeding
+### Checks
 
-- Only one SPI master (Raspberry Pi).
-- No voltage level mismatch.
-- All communication signals reference logic ground.
-
-### Deliverables
-
-- Communication schematic (PDF).
+- Single SPI master.
+- No floating communication lines.
 
 ---
 
-## Phase 5 — Peripheral Power & Logic Compliance Review
+# PHASE 5 — Peripheral Compliance Review
 
-### Objectives
+## Objectives
 
-- Prevent GPIO damage and logic mismatch.
+Prevent voltage domain violations.
 
 ### Tasks
 
-- [ ] Verify all sensors connected to MCU are powered at 3.3 V.
-- [ ] Confirm pull-ups reference correct voltage rail.
-- [ ] Flag any 5 V peripherals requiring level shifting.
-- [ ] Document any exceptions explicitly.
-
-### Deliverables
-
-- Peripheral compliance checklist.
-- Notes for later motor/sensor integration.
+- [ ] Confirm all sensors operate at 3.3 V.
+- [ ] Identify required level shifting.
+- [ ] Ensure motor control signals go through drivers.
+- [ ] Confirm no direct exposure of logic to 12 V.
 
 ---
 
-## Phase 6 — Schematic Finalization & Review
+# PHASE 6 — Schematic Finalization
 
-### Objectives
+## Objectives
 
-- Lock schematics before PCB or firmware work begins.
+Lock schematic integrity before PCB layout.
 
 ### Tasks
 
-- [ ] Cross-check all net names and power rails.
-- [ ] Ensure no unconnected power pins.
-- [ ] Ensure all grounds are intentional.
-- [ ] Export final PDFs:
-  - POWER
-  - RPI_INTERFACES
-  - MCU_INTERFACES
-  - COMMS
-- [ ] Generate preliminary BOM from schematic.
-
-### Final Deliverables
-
-- Complete schematic set (PDF).
-- EasyEDA Pro project file.
-- Preliminary BOM.
-- Design notes ready for supervisor review.
+- [ ] Run ERC and resolve all warnings.
+- [ ] Verify all control pins defined.
+- [ ] Confirm all grounds intentional.
+- [ ] Ensure each power rail has test point.
+- [ ] Export schematic PDFs.
+- [ ] Generate preliminary BOM (component-agnostic placeholders allowed).
 
 ---
 
-## Exit Criteria (Schematics Phase Complete)
+# Exit Criteria
 
-Schematics are considered complete when:
+Schematics are complete when:
 
-- Power integrity is defensible.
-- All interfaces are electrically correct.
-- No assumptions remain undocumented.
-- Supervisor feedback is addressed.
+- Power system is technically defensible.
+- Voltage domains are cleanly separated.
+- Interfaces are electrically safe.
+- No undocumented assumptions remain.
+- Design is supervisor-ready.
 
-Only after this point may PCB layout begin.
+Only after this stage may PCB layout begin.
