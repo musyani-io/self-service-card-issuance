@@ -188,14 +188,14 @@ Provide clean 3.3 V with noise margin.
 
 ### Tasks
 
-- [ ] Select synchronous buck topology (preferred).
-- [ ] Input decoupling placed near regulator.
-- [ ] Inductor sized appropriately.
-- [ ] Output capacitors placed.
-- [ ] Configure feedback divider.
-- [ ] Configure EN (always-on).
-- [ ] Define `V3V3_LOGIC`.
-- [ ] Add test point.
+- [x] Select synchronous buck topology (preferred).
+- [x] Input decoupling placed near regulator.
+- [x] Inductor sized appropriately.
+- [x] Output capacitors placed.
+- [x] Configure feedback divider.
+- [x] Configure EN (always-on).
+- [x] Define `V3V3_LOGIC`.
+- [x] Add test point.
 
 ### Checks
 
