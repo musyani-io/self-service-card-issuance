@@ -653,6 +653,10 @@
     [
       "900cc117-784e-40e9-8730-d957525d55d8",
       "BUCK_3V3"
+    ],
+    [
+      "ad92768d-5c73-44ef-bcef-f44178d738b2",
+      "MOTORS"
     ]
   ],
   "text_variables": {}

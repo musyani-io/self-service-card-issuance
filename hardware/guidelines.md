@@ -154,8 +154,8 @@ Provide stable 5.1 V under peak load conditions (target ≥ 5 A continuous).
 
 ### Tasks
 
-- [ ] Select synchronous buck topology.
-- [ ] Ensure regulator supports:
+- [x] Select synchronous buck topology.
+- [x] Ensure regulator supports:
   - ≥12 V input
   - ≥8 A peak capability
   - Integrated or external MOSFET solution
