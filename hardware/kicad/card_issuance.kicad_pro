@@ -657,6 +657,10 @@
     [
       "ad92768d-5c73-44ef-bcef-f44178d738b2",
       "MOTORS"
+    ],
+    [
+      "cd523802-ff60-46d2-9bc3-ed925dd91a9c",
+      "KEYPAD_4X4"
     ]
   ],
   "text_variables": {}

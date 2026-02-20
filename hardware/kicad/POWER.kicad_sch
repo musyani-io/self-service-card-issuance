@@ -837,7 +837,7 @@
 		)
 	)
 	(rectangle
-		(start 54.61 104.14)
+		(start 67.945 104.14)
 		(end 119.38 133.35)
 		(stroke
 			(width 0)
@@ -848,9 +848,31 @@
 		)
 		(uuid 0ead8140-eab1-4e10-a9dc-5bd7cba0b467)
 	)
+	(rectangle
+		(start 170.815 94.615)
+		(end 222.25 119.38)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(fill
+			(type none)
+		)
+		(uuid a910a52e-f9c3-4c2a-82f1-92692e16e2ac)
+	)
+	(text "12V TO 5V CONVERTER\n"
+		(exclude_from_sim no)
+		(at 197.612 118.364 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+		(uuid "2815d259-457d-457e-bc1c-99fdc3b750e3")
+	)
 	(text "12 TO 3V3 CONVERTER\n"
 		(exclude_from_sim no)
-		(at 86.868 132.334 0)
+		(at 94.488 132.588 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -1828,7 +1850,7 @@
 				)
 			)
 		)
-		(property "Value" "Fuse"
+		(property "Value" "15A"
 			(at 93.98 67.31 90)
 			(effects
 				(font
