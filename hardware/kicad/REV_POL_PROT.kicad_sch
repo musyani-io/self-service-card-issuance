@@ -279,10 +279,528 @@
 			)
 			(embedded_fonts no)
 		)
+		(symbol "Switch:SW_SPST"
+			(pin_names
+				(offset 0)
+				(hide yes)
+			)
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(property "Reference" "SW"
+				(at 0 3.175 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Value" "SW_SPST"
+				(at 0 -2.54 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Footprint" ""
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Datasheet" "~"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Description" "Single Pole Single Throw (SPST) switch"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "ki_keywords" "switch lever"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(symbol "SW_SPST_0_0"
+				(circle
+					(center -2.032 0)
+					(radius 0.508)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy -1.524 0.254) (xy 1.524 1.778)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(circle
+					(center 2.032 0)
+					(radius 0.508)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+			)
+			(symbol "SW_SPST_1_1"
+				(pin passive line
+					(at -5.08 0 0)
+					(length 2.54)
+					(name "A"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 5.08 0 180)
+					(length 2.54)
+					(name "B"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+			(embedded_fonts no)
+		)
+		(symbol "Transistor_FET:IRF4905"
+			(pin_names
+				(hide yes)
+			)
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(property "Reference" "Q"
+				(at 5.08 1.905 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left)
+				)
+			)
+			(property "Value" "IRF4905"
+				(at 5.08 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left)
+				)
+			)
+			(property "Footprint" "Package_TO_SOT_THT:TO-220-3_Vertical"
+				(at 5.08 -1.905 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+						(italic yes)
+					)
+					(justify left)
+					(hide yes)
+				)
+			)
+			(property "Datasheet" "http://www.infineon.com/dgdl/irf4905.pdf?fileId=5546d462533600a4015355e32165197c"
+				(at 5.08 -3.81 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left)
+					(hide yes)
+				)
+			)
+			(property "Description" "-74A Id, -55V Vds, Single P-Channel HEXFET Power MOSFET, 20mOhm Ron, TO-220AB"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "ki_keywords" "Single P-Channel HEXFET Power MOSFET"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "ki_fp_filters" "TO?220*"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(symbol "IRF4905_0_1"
+				(polyline
+					(pts
+						(xy 0.254 1.905) (xy 0.254 -1.905)
+					)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 0.254 0) (xy -2.54 0)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 0.762 2.286) (xy 0.762 1.27)
+					)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 0.762 1.778) (xy 3.302 1.778) (xy 3.302 -1.778) (xy 0.762 -1.778)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 0.762 0.508) (xy 0.762 -0.508)
+					)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 0.762 -1.27) (xy 0.762 -2.286)
+					)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(circle
+					(center 1.651 0)
+					(radius 2.794)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 2.286 0) (xy 1.27 0.381) (xy 1.27 -0.381) (xy 2.286 0)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type outline)
+					)
+				)
+				(polyline
+					(pts
+						(xy 2.54 2.54) (xy 2.54 1.778)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(circle
+					(center 2.54 1.778)
+					(radius 0.254)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type outline)
+					)
+				)
+				(circle
+					(center 2.54 -1.778)
+					(radius 0.254)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type outline)
+					)
+				)
+				(polyline
+					(pts
+						(xy 2.54 -2.54) (xy 2.54 0) (xy 0.762 0)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 2.794 -0.508) (xy 2.921 -0.381) (xy 3.683 -0.381) (xy 3.81 -0.254)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 3.302 -0.381) (xy 2.921 0.254) (xy 3.683 0.254) (xy 3.302 -0.381)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+			)
+			(symbol "IRF4905_1_1"
+				(pin input line
+					(at -5.08 0 0)
+					(length 2.54)
+					(name "G"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 2.54 5.08 270)
+					(length 2.54)
+					(name "D"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 2.54 -5.08 90)
+					(length 2.54)
+					(name "S"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "3"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+			(embedded_fonts no)
+		)
+	)
+	(junction
+		(at 120.65 81.28)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "30837d72-11b4-4cd6-83db-06b9f2bd0682")
+	)
+	(junction
+		(at 120.65 93.98)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "4cd8e504-cf85-4a69-acc4-28f629662ea8")
+	)
+	(junction
+		(at 106.68 81.28)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "c10c87fb-e2e0-4b86-a71c-948a1d1b614d")
+	)
+	(junction
+		(at 106.68 93.98)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "f5a1761d-641c-4b27-bdb8-0b937945068d")
 	)
 	(wire
 		(pts
-			(xy 62.23 81.28) (xy 59.69 81.28)
+			(xy 120.65 93.98) (xy 125.73 93.98)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "03e402d5-eb7e-4cb0-a93c-0a160a531043")
+	)
+	(wire
+		(pts
+			(xy 133.35 93.98) (xy 135.89 93.98)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "0c7a8e21-ec22-459f-be97-9066082f4feb")
+	)
+	(wire
+		(pts
+			(xy 143.51 105.41) (xy 148.59 105.41)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "1f736c5e-4d52-41b2-a88b-a13088d221be")
+	)
+	(wire
+		(pts
+			(xy 143.51 81.28) (xy 143.51 88.9)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "4094963d-2ab7-4cf9-8439-db5163a01815")
+	)
+	(wire
+		(pts
+			(xy 106.68 81.28) (xy 120.65 81.28)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "55a3d453-985d-4fa0-8b1d-8515ea662ba5")
+	)
+	(wire
+		(pts
+			(xy 106.68 93.98) (xy 120.65 93.98)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "64fae7c7-90e2-43c7-ace3-3f4594bf984d")
+	)
+	(wire
+		(pts
+			(xy 106.68 93.98) (xy 104.14 93.98)
 		)
 		(stroke
 			(width 0)
@@ -292,7 +810,27 @@
 	)
 	(wire
 		(pts
-			(xy 55.88 68.58) (xy 62.23 68.58)
+			(xy 158.75 105.41) (xy 165.1 105.41)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "7390213b-c3c8-4273-9e4a-b5fded09f469")
+	)
+	(wire
+		(pts
+			(xy 120.65 91.44) (xy 120.65 93.98)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "76a93ed3-b9a6-41f3-8bfc-6fbc75060a67")
+	)
+	(wire
+		(pts
+			(xy 100.33 81.28) (xy 106.68 81.28)
 		)
 		(stroke
 			(width 0)
@@ -302,7 +840,27 @@
 	)
 	(wire
 		(pts
-			(xy 62.23 68.58) (xy 62.23 69.85)
+			(xy 120.65 81.28) (xy 120.65 83.82)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "8eb5e6e5-defd-4204-966e-c013fab7ced7")
+	)
+	(wire
+		(pts
+			(xy 143.51 99.06) (xy 143.51 105.41)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "8f967bd4-0dea-4863-a436-f9ce1326bdc2")
+	)
+	(wire
+		(pts
+			(xy 106.68 81.28) (xy 106.68 82.55)
 		)
 		(stroke
 			(width 0)
@@ -312,7 +870,7 @@
 	)
 	(wire
 		(pts
-			(xy 49.53 81.28) (xy 52.07 81.28)
+			(xy 93.98 93.98) (xy 96.52 93.98)
 		)
 		(stroke
 			(width 0)
@@ -322,7 +880,7 @@
 	)
 	(wire
 		(pts
-			(xy 62.23 77.47) (xy 62.23 81.28)
+			(xy 106.68 90.17) (xy 106.68 93.98)
 		)
 		(stroke
 			(width 0)
@@ -330,9 +888,19 @@
 		)
 		(uuid "c482c43b-44a2-4e9e-be99-a26597bebf28")
 	)
+	(wire
+		(pts
+			(xy 120.65 81.28) (xy 143.51 81.28)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "fbf0c792-14d5-40cd-8fa7-15e9d5fce605")
+	)
 	(hierarchical_label "V12_FUSED"
 		(shape input)
-		(at 55.88 68.58 180)
+		(at 100.33 81.28 180)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -343,7 +911,7 @@
 	)
 	(hierarchical_label "GND"
 		(shape input)
-		(at 49.53 81.28 180)
+		(at 93.98 93.98 180)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -354,7 +922,7 @@
 	)
 	(hierarchical_label "V12_PROT"
 		(shape input)
-		(at 173.99 76.2 0)
+		(at 165.1 105.41 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -365,15 +933,15 @@
 	)
 	(symbol
 		(lib_id "Device:R")
-		(at 55.88 81.28 270)
+		(at 100.33 93.98 270)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
 		(uuid "4df920e0-3dc3-4674-bfc8-11dfa704ae9f")
-		(property "Reference" "R46"
-			(at 55.88 87.63 90)
+		(property "Reference" "R9"
+			(at 100.33 100.33 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -381,7 +949,7 @@
 			)
 		)
 		(property "Value" "R"
-			(at 55.88 85.09 90)
+			(at 100.33 97.79 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -389,7 +957,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 55.88 79.502 90)
+			(at 100.33 92.202 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -398,7 +966,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 55.88 81.28 0)
+			(at 100.33 93.98 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -407,7 +975,7 @@
 			)
 		)
 		(property "Description" "Resistor"
-			(at 55.88 81.28 0)
+			(at 100.33 93.98 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -424,42 +992,39 @@
 		(instances
 			(project ""
 				(path "/0357579f-0f06-4880-b651-8e2778a9baa9/2731e8ed-07c3-48e2-8ff5-054edae4aa44/5139d80d-345d-42bc-baee-655042eeaf97"
-					(reference "R46")
+					(reference "R9")
 					(unit 1)
 				)
 			)
 		)
 	)
 	(symbol
-		(lib_id "Device:D_Zener")
-		(at 62.23 73.66 90)
+		(lib_id "Device:R")
+		(at 129.54 93.98 270)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "b7828732-c3dc-4c4b-b3f5-2c7c5a8c4904")
-		(property "Reference" "D1"
-			(at 64.77 72.3899 90)
+		(uuid "6105ca8a-48d3-4de7-b217-c929afcd91b2")
+		(property "Reference" "R10"
+			(at 129.54 99.06 90)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(justify right)
 			)
 		)
-		(property "Value" "D_Zener"
-			(at 64.77 74.9299 90)
+		(property "Value" "220R"
+			(at 129.54 96.52 90)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(justify right)
 			)
 		)
 		(property "Footprint" ""
-			(at 62.23 73.66 0)
+			(at 129.54 92.202 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -468,7 +1033,214 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 62.23 73.66 0)
+			(at 129.54 93.98 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Resistor"
+			(at 129.54 93.98 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "b82e28b6-853e-4e94-a3fd-f175272fcddf")
+		)
+		(pin "2"
+			(uuid "11d5dbc3-b7c8-4f56-bb53-e4b76e774fd7")
+		)
+		(instances
+			(project ""
+				(path "/0357579f-0f06-4880-b651-8e2778a9baa9/2731e8ed-07c3-48e2-8ff5-054edae4aa44/5139d80d-345d-42bc-baee-655042eeaf97"
+					(reference "R10")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:R")
+		(at 120.65 87.63 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "690c4131-9b48-44e2-bbd1-9e87cdddef8d")
+		(property "Reference" "R8"
+			(at 122.682 86.36 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "100k"
+			(at 122.682 88.9 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" ""
+			(at 118.872 87.63 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 120.65 87.63 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Resistor"
+			(at 120.65 87.63 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "c6abb930-a13b-4108-a21f-cc2d81a561bb")
+		)
+		(pin "2"
+			(uuid "48944dad-3037-4666-840c-9b7ef1bce30a")
+		)
+		(instances
+			(project ""
+				(path "/0357579f-0f06-4880-b651-8e2778a9baa9/2731e8ed-07c3-48e2-8ff5-054edae4aa44/5139d80d-345d-42bc-baee-655042eeaf97"
+					(reference "R8")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Switch:SW_SPST")
+		(at 153.67 105.41 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "80f049d4-e773-44f8-abc4-7240c65340a3")
+		(property "Reference" "SW1"
+			(at 153.67 99.06 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "SW_SPST"
+			(at 153.67 101.6 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 153.67 105.41 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 153.67 105.41 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Single Pole Single Throw (SPST) switch"
+			(at 153.67 105.41 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "2"
+			(uuid "94934afd-87db-45b0-a8f7-e04207c1eeff")
+		)
+		(pin "1"
+			(uuid "8d040e67-e1fc-4c89-919f-40a049749972")
+		)
+		(instances
+			(project ""
+				(path "/0357579f-0f06-4880-b651-8e2778a9baa9/2731e8ed-07c3-48e2-8ff5-054edae4aa44/5139d80d-345d-42bc-baee-655042eeaf97"
+					(reference "SW1")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:D_Zener")
+		(at 106.68 86.36 90)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "b7828732-c3dc-4c4b-b3f5-2c7c5a8c4904")
+		(property "Reference" "D1"
+			(at 109.22 85.0899 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Value" "D_Zener"
+			(at 109.22 87.6299 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Footprint" ""
+			(at 106.68 86.36 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 106.68 86.36 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -477,7 +1249,7 @@
 			)
 		)
 		(property "Description" "Zener diode"
-			(at 62.23 73.66 0)
+			(at 106.68 86.36 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -495,6 +1267,83 @@
 			(project ""
 				(path "/0357579f-0f06-4880-b651-8e2778a9baa9/2731e8ed-07c3-48e2-8ff5-054edae4aa44/5139d80d-345d-42bc-baee-655042eeaf97"
 					(reference "D1")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Transistor_FET:IRF4905")
+		(at 140.97 93.98 0)
+		(mirror x)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "d77c80f5-36ab-405e-bbca-ee54d17f2f16")
+		(property "Reference" "Q1"
+			(at 147.32 92.7099 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "IRF4905"
+			(at 147.32 95.2499 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "Package_TO_SOT_THT:TO-220-3_Vertical"
+			(at 146.05 92.075 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+					(italic yes)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "http://www.infineon.com/dgdl/irf4905.pdf?fileId=5546d462533600a4015355e32165197c"
+			(at 146.05 90.17 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+		(property "Description" "-74A Id, -55V Vds, Single P-Channel HEXFET Power MOSFET, 20mOhm Ron, TO-220AB"
+			(at 140.97 93.98 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "4f064cf0-18d9-4273-ad76-0d56545a6082")
+		)
+		(pin "2"
+			(uuid "3b838b2e-64c2-4010-90c2-6a737261abe6")
+		)
+		(pin "3"
+			(uuid "9e79218e-ca8f-40f8-b5b2-28a4c979302e")
+		)
+		(instances
+			(project ""
+				(path "/0357579f-0f06-4880-b651-8e2778a9baa9/2731e8ed-07c3-48e2-8ff5-054edae4aa44/5139d80d-345d-42bc-baee-655042eeaf97"
+					(reference "Q1")
 					(unit 1)
 				)
 			)

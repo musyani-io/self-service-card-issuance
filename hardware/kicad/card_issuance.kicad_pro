@@ -405,13 +405,13 @@
       "bus_entry_needed": "error",
       "bus_to_bus_conflict": "error",
       "bus_to_net_conflict": "error",
-      "different_unit_footprint": "error",
+      "different_unit_footprint": "warning",
       "different_unit_net": "error",
       "duplicate_reference": "error",
       "duplicate_sheet_names": "error",
       "endpoint_off_grid": "warning",
       "extra_units": "error",
-      "footprint_filter": "ignore",
+      "footprint_filter": "warning",
       "footprint_link_issues": "warning",
       "four_way_junction": "ignore",
       "global_label_dangling": "warning",
@@ -430,7 +430,7 @@
       "no_connect_dangling": "warning",
       "pin_not_connected": "error",
       "pin_not_driven": "error",
-      "pin_to_pin": "warning",
+      "pin_to_pin": "error",
       "power_pin_not_driven": "error",
       "same_local_global_label": "warning",
       "similar_label_and_power": "warning",
@@ -659,7 +659,7 @@
       "MOTORS"
     ],
     [
-      "cd523802-ff60-46d2-9bc3-ed925dd91a9c",
+      "1076efd2-bfaa-449f-bc2b-848a16dac785",
       "KEYPAD_4X4"
     ]
   ],
