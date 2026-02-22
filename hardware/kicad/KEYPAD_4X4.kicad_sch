@@ -5,7 +5,7 @@
 	(uuid "d7bbb112-bbce-4f28-8ece-1b983d441123")
 	(paper "A4")
 	(lib_symbols
-		(symbol "Connector_Generic_MountingPin:Conn_01x08_MountingPin"
+		(symbol "TPSM82903:Conn_01x08_MountingPin"
 			(pin_names
 				(offset 1.016)
 				(hide yes)
@@ -360,7 +360,7 @@
 			)
 			(embedded_fonts no)
 		)
-		(symbol "Device:R"
+		(symbol "TPSM82903:R"
 			(pin_numbers
 				(hide yes)
 			)
@@ -898,7 +898,7 @@
 		(uuid "ff08eef7-90cb-4561-836b-db53a0ef54ff")
 	)
 	(symbol
-		(lib_id "Device:R")
+		(lib_id "TPSM82903:R")
 		(at 168.91 73.66 0)
 		(unit 1)
 		(exclude_from_sim no)
@@ -967,7 +967,7 @@
 		)
 	)
 	(symbol
-		(lib_id "Device:R")
+		(lib_id "TPSM82903:R")
 		(at 138.43 73.66 0)
 		(unit 1)
 		(exclude_from_sim no)
@@ -1036,7 +1036,7 @@
 		)
 	)
 	(symbol
-		(lib_id "Device:R")
+		(lib_id "TPSM82903:R")
 		(at 153.67 73.66 0)
 		(unit 1)
 		(exclude_from_sim no)
@@ -1105,7 +1105,7 @@
 		)
 	)
 	(symbol
-		(lib_id "Device:R")
+		(lib_id "TPSM82903:R")
 		(at 146.05 73.66 0)
 		(unit 1)
 		(exclude_from_sim no)
@@ -1174,7 +1174,7 @@
 		)
 	)
 	(symbol
-		(lib_id "Connector_Generic_MountingPin:Conn_01x08_MountingPin")
+		(lib_id "TPSM82903:Conn_01x08_MountingPin")
 		(at 179.07 58.42 0)
 		(unit 1)
 		(exclude_from_sim no)
@@ -1265,7 +1265,7 @@
 		)
 	)
 	(symbol
-		(lib_id "Device:R")
+		(lib_id "TPSM82903:R")
 		(at 161.29 73.66 0)
 		(unit 1)
 		(exclude_from_sim no)
@@ -1334,7 +1334,7 @@
 		)
 	)
 	(symbol
-		(lib_id "Device:R")
+		(lib_id "TPSM82903:R")
 		(at 123.19 73.66 0)
 		(unit 1)
 		(exclude_from_sim no)
@@ -1403,7 +1403,7 @@
 		)
 	)
 	(symbol
-		(lib_id "Device:R")
+		(lib_id "TPSM82903:R")
 		(at 130.81 73.66 0)
 		(unit 1)
 		(exclude_from_sim no)
@@ -1472,7 +1472,7 @@
 		)
 	)
 	(symbol
-		(lib_id "Device:R")
+		(lib_id "TPSM82903:R")
 		(at 115.57 73.66 0)
 		(unit 1)
 		(exclude_from_sim no)

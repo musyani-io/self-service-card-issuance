@@ -5,7 +5,7 @@
 	(uuid "74e9d9ce-2253-4f5a-a12f-a2859e1a2d49")
 	(paper "A4")
 	(lib_symbols
-		(symbol "Connector_Generic_MountingPin:Conn_02x20_Counter_Clockwise_MountingPin"
+		(symbol "TPSM82903:Conn_02x20_Counter_Clockwise_MountingPin"
 			(pin_names
 				(offset 1.016)
 				(hide yes)
@@ -1288,7 +1288,7 @@
 			)
 			(embedded_fonts no)
 		)
-		(symbol "Device:R"
+		(symbol "TPSM82903:R"
 			(pin_numbers
 				(hide yes)
 			)
@@ -2407,7 +2407,7 @@
 		(uuid "959dcadb-a98f-4665-a07e-8e0b54e59f4d")
 	)
 	(symbol
-		(lib_id "Device:R")
+		(lib_id "TPSM82903:R")
 		(at 105.41 119.38 0)
 		(unit 1)
 		(exclude_from_sim no)
@@ -2477,7 +2477,7 @@
 		)
 	)
 	(symbol
-		(lib_id "Device:R")
+		(lib_id "TPSM82903:R")
 		(at 121.92 119.38 0)
 		(unit 1)
 		(exclude_from_sim no)
@@ -2547,7 +2547,7 @@
 		)
 	)
 	(symbol
-		(lib_id "Connector_Generic_MountingPin:Conn_02x20_Counter_Clockwise_MountingPin")
+		(lib_id "TPSM82903:Conn_02x20_Counter_Clockwise_MountingPin")
 		(at 91.44 88.9 0)
 		(unit 1)
 		(exclude_from_sim no)
@@ -2732,7 +2732,7 @@
 		)
 	)
 	(symbol
-		(lib_id "Device:R")
+		(lib_id "TPSM82903:R")
 		(at 113.03 119.38 0)
 		(unit 1)
 		(exclude_from_sim no)
@@ -2802,7 +2802,7 @@
 		)
 	)
 	(symbol
-		(lib_id "Device:R")
+		(lib_id "TPSM82903:R")
 		(at 129.54 119.38 0)
 		(unit 1)
 		(exclude_from_sim no)
@@ -2872,7 +2872,7 @@
 		)
 	)
 	(symbol
-		(lib_id "Device:R")
+		(lib_id "TPSM82903:R")
 		(at 78.74 119.38 0)
 		(unit 1)
 		(exclude_from_sim no)
