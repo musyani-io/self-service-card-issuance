@@ -31,3 +31,6 @@ DESCRIPTION.md
 *uni_mock*
 *.rois.json
 *lock*
+*cache*
+fp-lib-table
+sym-lib-table

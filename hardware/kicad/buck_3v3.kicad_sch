@@ -467,24 +467,6 @@
 						)
 					)
 				)
-				(pin unspecified line
-					(at 0 -25.4 0)
-					(length 5.08)
-					(name "SS_TR"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "5"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
 				(pin power_in line
 					(at 35.56 0 180)
 					(length 5.08)
@@ -539,24 +521,6 @@
 						)
 					)
 				)
-				(pin unspecified line
-					(at 35.56 -10.16 180)
-					(length 5.08)
-					(name "FB_VSET"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "7"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
 				(pin open_collector line
 					(at 35.56 -20.32 180)
 					(length 5.08)
@@ -586,6 +550,44 @@
 						)
 					)
 					(number "11"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+			(symbol "PTSM82903SISB2R_1_1"
+				(pin input line
+					(at 0 -25.4 0)
+					(length 5.08)
+					(name "SS_TR"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "5"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin input line
+					(at 35.56 -10.16 180)
+					(length 5.08)
+					(name "FB_VSET"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "7"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -930,16 +932,6 @@
 	)
 	(wire
 		(pts
-			(xy 156.21 97.79) (xy 173.99 97.79)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "82eb8294-8d1a-4795-8503-82c7dff83915")
-	)
-	(wire
-		(pts
 			(xy 184.15 72.39) (xy 184.15 80.01)
 		)
 		(stroke
@@ -1080,6 +1072,16 @@
 	)
 	(wire
 		(pts
+			(xy 156.21 97.79) (xy 173.99 97.79)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "d53b8b4a-af3d-4a88-a9d9-6725c385a9ab")
+	)
+	(wire
+		(pts
 			(xy 100.33 72.39) (xy 100.33 81.28)
 		)
 		(stroke
@@ -1138,6 +1140,28 @@
 		)
 		(uuid "f95e0294-7743-4eb6-b586-b2fb42b24747")
 	)
+	(global_label "GND_LOGIC"
+		(shape input)
+		(at 93.98 107.95 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "e1c26102-3f6a-45b8-963e-1582609c0234")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 80.6533 107.95 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+				(hide yes)
+			)
+		)
+	)
 	(hierarchical_label "VOUT"
 		(shape output)
 		(at 193.04 72.39 0)
@@ -1148,17 +1172,6 @@
 			(justify left)
 		)
 		(uuid "b4489ff5-05d3-4fb8-abda-49d3c5bf0763")
-	)
-	(hierarchical_label "GND"
-		(shape input)
-		(at 93.98 107.95 180)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify right)
-		)
-		(uuid "c620a88a-39ec-453b-803c-21718172f247")
 	)
 	(hierarchical_label "VIN"
 		(shape input)
@@ -1411,7 +1424,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Regulators:SIS0011A-MFG"
+		(property "Footprint" "Buck-3V3:SIS0011A-MFG"
 			(at 120.65 72.39 0)
 			(effects
 				(font
