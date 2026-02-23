@@ -1,5 +1,6 @@
 import sys
 from pathlib import Path
+from pprint import pprint
 
 import cv2
 
@@ -18,7 +19,7 @@ def main():
         return
 
     result = scan_student_id_card(image)
-    print(result)
+    pprint(result)
 
 
 if __name__ == "__main__":

@@ -837,8 +837,8 @@
 		)
 	)
 	(rectangle
-		(start 56.515 116.84)
-		(end 107.95 146.05)
+		(start 52.705 105.41)
+		(end 104.14 134.62)
 		(stroke
 			(width 0)
 			(type default)
@@ -873,8 +873,8 @@
 		(uuid 73494d94-426d-4b88-be91-ee812cb2b5e5)
 	)
 	(rectangle
-		(start 117.475 120.015)
-		(end 168.91 144.78)
+		(start 191.135 106.045)
+		(end 242.57 130.81)
 		(stroke
 			(width 0)
 			(type default)
@@ -898,7 +898,7 @@
 	)
 	(text "12V TO 5V CONVERTER\n"
 		(exclude_from_sim no)
-		(at 144.272 143.764 0)
+		(at 217.932 129.794 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -928,7 +928,7 @@
 	)
 	(text "12 TO 3V3 CONVERTER\n"
 		(exclude_from_sim no)
-		(at 83.058 145.288 0)
+		(at 79.248 133.858 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -1606,7 +1606,7 @@
 	)
 	(global_label "GND_LOGIC"
 		(shape input)
-		(at 76.2 130.81 180)
+		(at 72.39 119.38 180)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -1616,7 +1616,7 @@
 		)
 		(uuid "08f26b1f-532d-4054-92f4-3624e1a21a3d")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 62.8733 130.81 0)
+			(at 59.0633 119.38 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1672,7 +1672,7 @@
 	)
 	(global_label "V5_PI"
 		(shape input)
-		(at 151.13 129.54 0)
+		(at 224.79 115.57 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -1682,7 +1682,7 @@
 		)
 		(uuid "3d514313-7118-4e9f-b8f4-29949b56ced2")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 159.2557 129.54 0)
+			(at 232.9157 115.57 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1694,7 +1694,7 @@
 	)
 	(global_label "V12_LOGIC"
 		(shape input)
-		(at 137.16 127 180)
+		(at 210.82 113.03 180)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -1704,7 +1704,7 @@
 		)
 		(uuid "4cbff0e1-bab2-4998-8cf0-8193f3092adc")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 124.1962 127 0)
+			(at 197.8562 113.03 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1760,7 +1760,7 @@
 	)
 	(global_label "V3V3_LOGIC"
 		(shape input)
-		(at 90.17 128.27 0)
+		(at 86.36 116.84 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -1770,7 +1770,7 @@
 		)
 		(uuid "883c3130-7bdd-44d1-b6a4-24d97e44c4dc")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 104.2224 128.27 0)
+			(at 100.4124 116.84 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1782,7 +1782,7 @@
 	)
 	(global_label "V12_LOGIC"
 		(shape input)
-		(at 76.2 125.73 180)
+		(at 72.39 114.3 180)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -1792,7 +1792,7 @@
 		)
 		(uuid "9482d8ac-ce9a-4517-a826-1189f0ce5101")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 63.2362 125.73 0)
+			(at 59.4262 114.3 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1804,7 +1804,7 @@
 	)
 	(global_label "GND_LOGIC"
 		(shape input)
-		(at 137.16 132.08 180)
+		(at 210.82 118.11 180)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -1814,7 +1814,7 @@
 		)
 		(uuid "9e88e73d-c71c-4896-94e5-519f8583a004")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 123.8333 132.08 0)
+			(at 197.4933 118.11 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2960,7 +2960,7 @@
 		)
 	)
 	(sheet
-		(at 137.16 124.46)
+		(at 210.82 110.49)
 		(size 13.97 10.16)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -2976,7 +2976,7 @@
 		)
 		(uuid "0e10b1c0-ed63-4967-baf9-8f055769b033")
 		(property "Sheetname" "BUCK_5V"
-			(at 137.16 123.7484 0)
+			(at 210.82 109.7784 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2985,7 +2985,7 @@
 			)
 		)
 		(property "Sheetfile" "BUCK_5V.kicad_sch"
-			(at 137.16 135.2046 0)
+			(at 210.82 121.2346 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2994,7 +2994,7 @@
 			)
 		)
 		(pin "GND" input
-			(at 137.16 132.08 180)
+			(at 210.82 118.11 180)
 			(uuid "911f7e86-40ce-4468-bdc6-a95bb5d9ae17")
 			(effects
 				(font
@@ -3004,7 +3004,7 @@
 			)
 		)
 		(pin "V_IN" input
-			(at 137.16 127 180)
+			(at 210.82 113.03 180)
 			(uuid "910e320c-3bab-44a3-a7c5-17717bfc7cc5")
 			(effects
 				(font
@@ -3014,7 +3014,7 @@
 			)
 		)
 		(pin "V_OUT" input
-			(at 151.13 129.54 0)
+			(at 224.79 115.57 0)
 			(uuid "7d5a0dc4-b4bd-4b44-a513-c1b983044e4a")
 			(effects
 				(font
@@ -3104,7 +3104,7 @@
 		)
 	)
 	(sheet
-		(at 76.2 123.19)
+		(at 72.39 111.76)
 		(size 13.97 10.16)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -3120,7 +3120,7 @@
 		)
 		(uuid "900cc117-784e-40e9-8730-d957525d55d8")
 		(property "Sheetname" "BUCK_3V3"
-			(at 76.2 122.4784 0)
+			(at 72.39 111.0484 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3129,7 +3129,7 @@
 			)
 		)
 		(property "Sheetfile" "BUCK_3V3.kicad_sch"
-			(at 76.2 133.9346 0)
+			(at 72.39 122.5046 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3138,7 +3138,7 @@
 			)
 		)
 		(pin "GND" input
-			(at 76.2 130.81 180)
+			(at 72.39 119.38 180)
 			(uuid "c6eaa01b-902f-4ba4-a9fd-729e17323db4")
 			(effects
 				(font
@@ -3148,7 +3148,7 @@
 			)
 		)
 		(pin "VIN" input
-			(at 76.2 125.73 180)
+			(at 72.39 114.3 180)
 			(uuid "1f76059c-3e41-40fa-a71a-9140a97e46f3")
 			(effects
 				(font
@@ -3158,7 +3158,7 @@
 			)
 		)
 		(pin "VOUT" input
-			(at 90.17 128.27 0)
+			(at 86.36 116.84 0)
 			(uuid "c365a1f5-051c-4637-b75e-8e2146bd0b7a")
 			(effects
 				(font

@@ -30,3 +30,4 @@ DESCRIPTION.md
 *.env
 *uni_mock*
 *.rois.json
+*lock*
