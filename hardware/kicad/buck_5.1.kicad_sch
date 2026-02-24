@@ -1536,28 +1536,6 @@
 		)
 		(uuid "fdb757ff-3478-4ab1-81cf-c4176bd33f64")
 	)
-	(global_label "GND_LOGIC"
-		(shape input)
-		(at 66.04 92.71 180)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify right)
-		)
-		(uuid "81184bb2-5dc6-4aa1-a159-4ff444e972dc")
-		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 52.7133 92.71 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-				(hide yes)
-			)
-		)
-	)
 	(hierarchical_label "VIN"
 		(shape input)
 		(at 57.15 67.31 180)
@@ -1580,6 +1558,17 @@
 		)
 		(uuid "958320ef-7a65-467a-8513-df0a45054841")
 	)
+	(hierarchical_label "GND"
+		(shape input)
+		(at 66.04 92.71 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "aaa7a50b-a0d5-4abc-abfa-90f22e8c8303")
+	)
 	(symbol
 		(lib_id "Device:R")
 		(at 82.55 87.63 0)
@@ -1589,7 +1578,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "06be1509-bafc-4d2e-a98f-d76330d74dc4")
-		(property "Reference" "R12"
+		(property "Reference" "R10"
 			(at 80.518 87.63 90)
 			(effects
 				(font
@@ -1605,7 +1594,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P2.54mm_Vertical"
 			(at 80.772 87.63 90)
 			(effects
 				(font
@@ -1633,15 +1622,15 @@
 			)
 		)
 		(pin "1"
-			(uuid "1cfdb34e-3b5a-4478-a66d-d525bea23966")
+			(uuid "427df892-3237-4769-bdb1-60b60a5c2185")
 		)
 		(pin "2"
-			(uuid "dd32fca6-cc8b-4e03-a995-df76b0eb74f7")
+			(uuid "0dc85c28-3103-4db3-bd75-7e137654f4f6")
 		)
 		(instances
-			(project "card_issuance"
-				(path "/efd10ce8-d30e-4563-b475-2afafc95cd2b/d6ed446d-e13a-4330-af37-f0669133989b/5501bdb0-d5d4-479d-8ea5-83139bf20e95"
-					(reference "R12")
+			(project "card_issuance_power"
+				(path "/eccaacbb-6cc6-4795-9ce3-6b61aaecb3e3/8cc712a2-9e33-4f10-9d4a-c0c2a2a628a9"
+					(reference "R10")
 					(unit 1)
 				)
 			)
@@ -1656,7 +1645,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "15da6650-50cb-433e-a570-d5fe8221a611")
-		(property "Reference" "C8"
+		(property "Reference" "C13"
 			(at 185.674 72.39 0)
 			(effects
 				(font
@@ -1674,7 +1663,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_THT:C_Rect_L28.0mm_W8.0mm_P22.50mm_MKS4"
 			(at 183.8452 77.47 0)
 			(effects
 				(font
@@ -1702,15 +1691,15 @@
 			)
 		)
 		(pin "1"
-			(uuid "fedde427-7633-43f3-956f-83818362af8a")
+			(uuid "8dd22026-a151-47a5-a96a-1d009b3d2d1a")
 		)
 		(pin "2"
-			(uuid "2bfc15d9-b014-498c-b86e-771e81b5e0f1")
+			(uuid "aafa3846-fabf-4daf-b713-aed197531e1f")
 		)
 		(instances
-			(project ""
-				(path "/efd10ce8-d30e-4563-b475-2afafc95cd2b/d6ed446d-e13a-4330-af37-f0669133989b/5501bdb0-d5d4-479d-8ea5-83139bf20e95"
-					(reference "C8")
+			(project "card_issuance_power"
+				(path "/eccaacbb-6cc6-4795-9ce3-6b61aaecb3e3/8cc712a2-9e33-4f10-9d4a-c0c2a2a628a9"
+					(reference "C13")
 					(unit 1)
 				)
 			)
@@ -1725,7 +1714,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "1c86781e-10fa-4759-b8eb-0eec59e8bce0")
-		(property "Reference" "C9"
+		(property "Reference" "C12"
 			(at 174.244 72.39 0)
 			(effects
 				(font
@@ -1743,7 +1732,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_THT:C_Rect_L28.0mm_W8.0mm_P22.50mm_MKS4"
 			(at 172.4152 77.47 0)
 			(effects
 				(font
@@ -1771,15 +1760,15 @@
 			)
 		)
 		(pin "1"
-			(uuid "306260d9-0192-45ae-b348-9030c21a9a22")
+			(uuid "d8ebfa33-bc20-49df-8401-82c7d86635d0")
 		)
 		(pin "2"
-			(uuid "9583fdf0-a18e-49ce-bb85-a831c7401432")
+			(uuid "e00fc21e-368c-42d9-b2f3-efbbe5404ea3")
 		)
 		(instances
-			(project ""
-				(path "/efd10ce8-d30e-4563-b475-2afafc95cd2b/d6ed446d-e13a-4330-af37-f0669133989b/5501bdb0-d5d4-479d-8ea5-83139bf20e95"
-					(reference "C9")
+			(project "card_issuance_power"
+				(path "/eccaacbb-6cc6-4795-9ce3-6b61aaecb3e3/8cc712a2-9e33-4f10-9d4a-c0c2a2a628a9"
+					(reference "C12")
 					(unit 1)
 				)
 			)
@@ -1794,7 +1783,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "50ec0d2e-d5d8-4da3-89f1-4522c0ffc6ae")
-		(property "Reference" "C12"
+		(property "Reference" "C9"
 			(at 85.344 72.39 0)
 			(effects
 				(font
@@ -1812,7 +1801,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_THT:C_Rect_L4.0mm_W2.5mm_P2.50mm"
 			(at 83.5152 77.47 0)
 			(effects
 				(font
@@ -1840,15 +1829,15 @@
 			)
 		)
 		(pin "1"
-			(uuid "c1719840-cb77-493a-85b5-3dd74f620a9f")
+			(uuid "c59cf11f-e8a6-401a-883a-cc9d4901f0e8")
 		)
 		(pin "2"
-			(uuid "78919c7a-4e64-4c83-8e3c-75c9666f5b02")
+			(uuid "fc32f599-c537-41c5-b750-a10cc63e30e9")
 		)
 		(instances
-			(project ""
-				(path "/efd10ce8-d30e-4563-b475-2afafc95cd2b/d6ed446d-e13a-4330-af37-f0669133989b/5501bdb0-d5d4-479d-8ea5-83139bf20e95"
-					(reference "C12")
+			(project "card_issuance_power"
+				(path "/eccaacbb-6cc6-4795-9ce3-6b61aaecb3e3/8cc712a2-9e33-4f10-9d4a-c0c2a2a628a9"
+					(reference "C9")
 					(unit 1)
 				)
 			)
@@ -1864,7 +1853,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "6484f7a8-6695-4375-b124-4aff57fc3c5a")
-		(property "Reference" "C14"
+		(property "Reference" "C11"
 			(at 155.956 72.39 0)
 			(effects
 				(font
@@ -1882,7 +1871,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_THT:C_Rect_L4.6mm_W3.0mm_P2.50mm_MKS02_FKP02"
 			(at 157.7848 77.47 0)
 			(effects
 				(font
@@ -1910,15 +1899,15 @@
 			)
 		)
 		(pin "1"
-			(uuid "f5bb6928-5fe5-4e66-9698-a5c80d206f61")
+			(uuid "8624c9e8-2319-482d-8ba1-2cd6559d14f4")
 		)
 		(pin "2"
-			(uuid "a6a7217e-fc97-49a3-963f-aa81b613d156")
+			(uuid "e02ffce1-998f-4869-ba62-f22262f517e7")
 		)
 		(instances
-			(project "card_issuance"
-				(path "/efd10ce8-d30e-4563-b475-2afafc95cd2b/d6ed446d-e13a-4330-af37-f0669133989b/5501bdb0-d5d4-479d-8ea5-83139bf20e95"
-					(reference "C14")
+			(project "card_issuance_power"
+				(path "/eccaacbb-6cc6-4795-9ce3-6b61aaecb3e3/8cc712a2-9e33-4f10-9d4a-c0c2a2a628a9"
+					(reference "C11")
 					(unit 1)
 				)
 			)
@@ -1933,7 +1922,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "7d1591ae-7958-4f57-bcf6-9cfec3ce5342")
-		(property "Reference" "R10"
+		(property "Reference" "R12"
 			(at 163.068 73.66 90)
 			(effects
 				(font
@@ -1949,7 +1938,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P2.54mm_Vertical"
 			(at 163.322 73.66 90)
 			(effects
 				(font
@@ -1977,15 +1966,15 @@
 			)
 		)
 		(pin "1"
-			(uuid "292a4160-87d5-4afd-bfb0-23cfd699c86d")
+			(uuid "6bd30e98-174c-47b2-b719-1cc5615fbc79")
 		)
 		(pin "2"
-			(uuid "da4a8409-62a1-4a81-86c4-23156a70b898")
+			(uuid "75e190c4-def8-4262-b892-ba2f6695b902")
 		)
 		(instances
-			(project "card_issuance"
-				(path "/efd10ce8-d30e-4563-b475-2afafc95cd2b/d6ed446d-e13a-4330-af37-f0669133989b/5501bdb0-d5d4-479d-8ea5-83139bf20e95"
-					(reference "R10")
+			(project "card_issuance_power"
+				(path "/eccaacbb-6cc6-4795-9ce3-6b61aaecb3e3/8cc712a2-9e33-4f10-9d4a-c0c2a2a628a9"
+					(reference "R12")
 					(unit 1)
 				)
 			)
@@ -2000,7 +1989,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "8c7b81a0-3fc5-42f7-87b7-469e6c3c259e")
-		(property "Reference" "R11"
+		(property "Reference" "R13"
 			(at 163.068 85.09 90)
 			(effects
 				(font
@@ -2016,7 +2005,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P2.54mm_Vertical"
 			(at 163.322 85.09 90)
 			(effects
 				(font
@@ -2044,15 +2033,15 @@
 			)
 		)
 		(pin "1"
-			(uuid "a7d9c7fd-bed6-478b-b00c-583a448b61ab")
+			(uuid "e60d023f-639f-490d-8574-cf7e35a8ced9")
 		)
 		(pin "2"
-			(uuid "ed4b1ec1-d973-4018-bc01-35fe6b53567d")
+			(uuid "7cae9364-02ac-4743-924a-fdbc2592606c")
 		)
 		(instances
-			(project "card_issuance"
-				(path "/efd10ce8-d30e-4563-b475-2afafc95cd2b/d6ed446d-e13a-4330-af37-f0669133989b/5501bdb0-d5d4-479d-8ea5-83139bf20e95"
-					(reference "R11")
+			(project "card_issuance_power"
+				(path "/eccaacbb-6cc6-4795-9ce3-6b61aaecb3e3/8cc712a2-9e33-4f10-9d4a-c0c2a2a628a9"
+					(reference "R13")
 					(unit 1)
 				)
 			)
@@ -2112,11 +2101,11 @@
 			)
 		)
 		(pin "1"
-			(uuid "d15fa665-8212-4f1e-a071-c77edd6ed134")
+			(uuid "767532a7-52d7-4517-b3d8-6fe21854e63e")
 		)
 		(instances
-			(project ""
-				(path "/efd10ce8-d30e-4563-b475-2afafc95cd2b/d6ed446d-e13a-4330-af37-f0669133989b/5501bdb0-d5d4-479d-8ea5-83139bf20e95"
+			(project "card_issuance_power"
+				(path "/eccaacbb-6cc6-4795-9ce3-6b61aaecb3e3/8cc712a2-9e33-4f10-9d4a-c0c2a2a628a9"
 					(reference "#FLG03")
 					(unit 1)
 				)
@@ -2132,7 +2121,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "8cbb1c40-b7d2-455b-bbdb-54b5258a8efa")
-		(property "Reference" "R7"
+		(property "Reference" "R9"
 			(at 68.58 84.582 90)
 			(effects
 				(font
@@ -2148,7 +2137,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P2.54mm_Vertical"
 			(at 68.58 84.328 90)
 			(effects
 				(font
@@ -2176,15 +2165,15 @@
 			)
 		)
 		(pin "1"
-			(uuid "276e5f3e-23b7-41cf-8112-92df35120b1f")
+			(uuid "85fe5357-32a1-4cb1-93cd-1d674a366f64")
 		)
 		(pin "2"
-			(uuid "b703c811-75c8-4440-a37a-edde4ca92e53")
+			(uuid "e08fd0fd-53ac-4f02-93d0-089d71e50cae")
 		)
 		(instances
-			(project "card_issuance"
-				(path "/efd10ce8-d30e-4563-b475-2afafc95cd2b/d6ed446d-e13a-4330-af37-f0669133989b/5501bdb0-d5d4-479d-8ea5-83139bf20e95"
-					(reference "R7")
+			(project "card_issuance_power"
+				(path "/eccaacbb-6cc6-4795-9ce3-6b61aaecb3e3/8cc712a2-9e33-4f10-9d4a-c0c2a2a628a9"
+					(reference "R9")
 					(unit 1)
 				)
 			)
@@ -2246,44 +2235,44 @@
 			)
 		)
 		(pin "9"
-			(uuid "e97f93d7-89cb-4d6f-a9ba-8300f64718e3")
+			(uuid "6057b830-2f98-4d19-bdae-17cdfb6fe10d")
 		)
 		(pin "12"
-			(uuid "a6786784-31ec-4372-8fb5-67a0cd3e291d")
+			(uuid "fdabc572-b54d-4e27-9f67-fa6984a3e75b")
 		)
 		(pin "4"
-			(uuid "a590898b-ab70-4440-b245-942ca1bcc9ea")
+			(uuid "85ecaae6-a634-4918-9653-7cc87de125e3")
 		)
 		(pin "1"
-			(uuid "20773f07-06f2-4a84-ac35-15fbcd5463bb")
+			(uuid "6b22e530-917b-44cf-9e0d-711b031eb651")
 		)
 		(pin "7"
-			(uuid "0a6804fa-d8e1-4e38-b73b-e57bbc219dad")
+			(uuid "8ab85cd7-dbb8-4850-b2fd-aa3151153095")
 		)
 		(pin "6"
-			(uuid "4c3aac40-61e5-48b0-9d48-d077594478e0")
+			(uuid "7ffc688f-e534-4a97-89c7-806117b69fa9")
 		)
 		(pin "8"
-			(uuid "b445a911-940e-4c75-b19a-ef086996274a")
+			(uuid "944aeaf7-da9d-4cf1-b1c3-a3644d9969b7")
 		)
 		(pin "10"
-			(uuid "71a6d58d-abd3-4ae5-bf85-d66cf5b75c47")
+			(uuid "a4ddfb46-a9fb-42cb-986c-ef7856857f32")
 		)
 		(pin "3"
-			(uuid "3c300951-38a6-4354-9486-fca985a6a061")
+			(uuid "1d5ef21e-0751-43bf-a738-fbefeea7d08c")
 		)
 		(pin "5"
-			(uuid "e6936492-3873-4f5a-b933-efd2a461bc7c")
+			(uuid "57d56bd9-3514-4a5f-9eca-193fecc67af3")
 		)
 		(pin "2"
-			(uuid "f538f773-6932-410d-acb8-c4d9a0c2d2aa")
+			(uuid "1706d8f8-4ecd-4286-a79c-d2932ffe8e93")
 		)
 		(pin "11"
-			(uuid "f4edc56e-34ca-4b1b-aa36-71b3c84ff5e0")
+			(uuid "8670aa5a-8025-479c-88f2-9368a96f2c59")
 		)
 		(instances
-			(project ""
-				(path "/efd10ce8-d30e-4563-b475-2afafc95cd2b/d6ed446d-e13a-4330-af37-f0669133989b/5501bdb0-d5d4-479d-8ea5-83139bf20e95"
+			(project "card_issuance_power"
+				(path "/eccaacbb-6cc6-4795-9ce3-6b61aaecb3e3/8cc712a2-9e33-4f10-9d4a-c0c2a2a628a9"
 					(reference "U2")
 					(unit 1)
 				)
@@ -2300,7 +2289,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "c40b4b7b-2d38-44d5-aef6-5f3167696b99")
-		(property "Reference" "C13"
+		(property "Reference" "C10"
 			(at 147.066 83.82 0)
 			(effects
 				(font
@@ -2318,7 +2307,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_THT:C_Rect_L4.6mm_W3.0mm_P2.50mm_MKS02_FKP02"
 			(at 148.8948 88.9 0)
 			(effects
 				(font
@@ -2346,15 +2335,15 @@
 			)
 		)
 		(pin "1"
-			(uuid "cc0df9f9-7644-4719-94ba-67b943524222")
+			(uuid "48756908-9224-424f-8487-915ba417b212")
 		)
 		(pin "2"
-			(uuid "8622d837-7ecb-4324-83f9-c6fc9acabe42")
+			(uuid "577f969e-989f-4b65-8754-248b6a8de94a")
 		)
 		(instances
-			(project "card_issuance"
-				(path "/efd10ce8-d30e-4563-b475-2afafc95cd2b/d6ed446d-e13a-4330-af37-f0669133989b/5501bdb0-d5d4-479d-8ea5-83139bf20e95"
-					(reference "C13")
+			(project "card_issuance_power"
+				(path "/eccaacbb-6cc6-4795-9ce3-6b61aaecb3e3/8cc712a2-9e33-4f10-9d4a-c0c2a2a628a9"
+					(reference "C10")
 					(unit 1)
 				)
 			)
@@ -2369,7 +2358,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "d09f9096-b298-463e-ac6e-789f3ca6aae9")
-		(property "Reference" "R13"
+		(property "Reference" "R11"
 			(at 90.17 84.582 90)
 			(effects
 				(font
@@ -2385,7 +2374,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P2.54mm_Vertical"
 			(at 90.17 84.328 90)
 			(effects
 				(font
@@ -2413,15 +2402,15 @@
 			)
 		)
 		(pin "1"
-			(uuid "2c42d101-eac9-4eed-9a38-08ec67bf14ae")
+			(uuid "9b6d3398-d27f-48e0-a923-b24295aeaacd")
 		)
 		(pin "2"
-			(uuid "f6ce53fd-e6da-45f8-aa30-03cfacc88118")
+			(uuid "5f742e77-3ae4-469a-96ef-2a91e7e28ce5")
 		)
 		(instances
-			(project "card_issuance"
-				(path "/efd10ce8-d30e-4563-b475-2afafc95cd2b/d6ed446d-e13a-4330-af37-f0669133989b/5501bdb0-d5d4-479d-8ea5-83139bf20e95"
-					(reference "R13")
+			(project "card_issuance_power"
+				(path "/eccaacbb-6cc6-4795-9ce3-6b61aaecb3e3/8cc712a2-9e33-4f10-9d4a-c0c2a2a628a9"
+					(reference "R11")
 					(unit 1)
 				)
 			)
@@ -2436,7 +2425,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "e4da246e-7dea-49b2-b780-c255b26c86bf")
-		(property "Reference" "C11"
+		(property "Reference" "C8"
 			(at 74.93 72.39 0)
 			(effects
 				(font
@@ -2454,7 +2443,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_THT:C_Rect_L4.0mm_W2.5mm_P2.50mm"
 			(at 73.3552 77.47 0)
 			(effects
 				(font
@@ -2482,15 +2471,15 @@
 			)
 		)
 		(pin "2"
-			(uuid "ce9a20d7-86a5-4cff-9911-4ddbbd7c146d")
+			(uuid "68c2e311-de32-4391-9e77-ea72d777b7df")
 		)
 		(pin "1"
-			(uuid "6e94fd28-357e-49d7-bd55-91d4a3cf0fa8")
+			(uuid "8a0d4ddf-5816-48f1-add6-c0193207e935")
 		)
 		(instances
-			(project ""
-				(path "/efd10ce8-d30e-4563-b475-2afafc95cd2b/d6ed446d-e13a-4330-af37-f0669133989b/5501bdb0-d5d4-479d-8ea5-83139bf20e95"
-					(reference "C11")
+			(project "card_issuance_power"
+				(path "/eccaacbb-6cc6-4795-9ce3-6b61aaecb3e3/8cc712a2-9e33-4f10-9d4a-c0c2a2a628a9"
+					(reference "C8")
 					(unit 1)
 				)
 			)
@@ -2505,7 +2494,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "f0cee077-d484-47f5-9e11-7b7ebc768565")
-		(property "Reference" "C10"
+		(property "Reference" "C7"
 			(at 65.024 72.39 0)
 			(effects
 				(font
@@ -2523,7 +2512,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_THT:C_Rect_L4.0mm_W2.5mm_P2.50mm"
 			(at 63.1952 77.47 0)
 			(effects
 				(font
@@ -2551,15 +2540,15 @@
 			)
 		)
 		(pin "2"
-			(uuid "3131a648-9342-4a3b-a98d-600834d8c3aa")
+			(uuid "3174b5c2-db20-4b64-8028-c31d4c4b3adf")
 		)
 		(pin "1"
-			(uuid "8475dff9-94f4-411d-9597-e87c27082f4f")
+			(uuid "a36d6f15-bc20-4a71-9daa-d2ab087665a1")
 		)
 		(instances
-			(project ""
-				(path "/efd10ce8-d30e-4563-b475-2afafc95cd2b/d6ed446d-e13a-4330-af37-f0669133989b/5501bdb0-d5d4-479d-8ea5-83139bf20e95"
-					(reference "C10")
+			(project "card_issuance_power"
+				(path "/eccaacbb-6cc6-4795-9ce3-6b61aaecb3e3/8cc712a2-9e33-4f10-9d4a-c0c2a2a628a9"
+					(reference "C7")
 					(unit 1)
 				)
 			)

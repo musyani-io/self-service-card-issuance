@@ -1056,27 +1056,16 @@
 		)
 		(uuid "f95e0294-7743-4eb6-b586-b2fb42b24747")
 	)
-	(global_label "GND_LOGIC"
+	(hierarchical_label "GND"
 		(shape input)
 		(at 93.98 107.95 180)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
 			(justify right)
 		)
-		(uuid "e1c26102-3f6a-45b8-963e-1582609c0234")
-		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 80.6533 107.95 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-				(hide yes)
-			)
-		)
+		(uuid "57f55ff8-8583-4e61-ae91-5227f96d67e3")
 	)
 	(hierarchical_label "VOUT"
 		(shape output)
@@ -1120,7 +1109,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "28677fc7-929b-4389-aa7b-286ece7ecc92")
-		(property "Reference" "R9"
+		(property "Reference" "R7"
 			(at 161.29 90.678 90)
 			(effects
 				(font
@@ -1136,7 +1125,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P2.54mm_Vertical"
 			(at 161.29 90.932 90)
 			(effects
 				(font
@@ -1164,15 +1153,15 @@
 			)
 		)
 		(pin "1"
-			(uuid "ccdc89f9-0b20-434e-ad49-1a13986c1296")
+			(uuid "8aeafa98-555d-4f53-9378-ee7f5a3c363e")
 		)
 		(pin "2"
-			(uuid "a6d04083-05ce-40f0-83e5-d6ebb0cf783f")
+			(uuid "192f5183-13d8-40c9-ad30-1e47cd370c33")
 		)
 		(instances
-			(project "card_issuance"
-				(path "/efd10ce8-d30e-4563-b475-2afafc95cd2b/d6ed446d-e13a-4330-af37-f0669133989b/c173e131-e50a-4512-9a94-e35264276009"
-					(reference "R9")
+			(project "card_issuance_power"
+				(path "/eccaacbb-6cc6-4795-9ce3-6b61aaecb3e3/ff3970ec-c005-431d-9ba7-afce8ead4fbb"
+					(reference "R7")
 					(unit 1)
 				)
 			)
@@ -1233,14 +1222,14 @@
 			)
 		)
 		(pin "2"
-			(uuid "7fc232ee-ae2e-4cc7-8fc0-6c6ca20b05d2")
+			(uuid "61c33218-b262-4091-8791-473dfa4201d3")
 		)
 		(pin "1"
-			(uuid "d4ad020e-0f42-476b-8c26-b0bf7a89b2f4")
+			(uuid "f542bec9-3c78-4b37-956b-10379107fd2a")
 		)
 		(instances
-			(project "card_issuance"
-				(path "/efd10ce8-d30e-4563-b475-2afafc95cd2b/d6ed446d-e13a-4330-af37-f0669133989b/c173e131-e50a-4512-9a94-e35264276009"
+			(project "card_issuance_power"
+				(path "/eccaacbb-6cc6-4795-9ce3-6b61aaecb3e3/ff3970ec-c005-431d-9ba7-afce8ead4fbb"
 					(reference "C5")
 					(unit 1)
 				)
@@ -1272,7 +1261,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P2.54mm_Vertical"
 			(at 107.442 101.6 90)
 			(effects
 				(font
@@ -1300,14 +1289,14 @@
 			)
 		)
 		(pin "1"
-			(uuid "366c4409-40ab-47ad-bfb0-cea077751466")
+			(uuid "1c351b69-c80c-4df7-9cb3-a7a20c750f4b")
 		)
 		(pin "2"
-			(uuid "6624fae1-5a29-4612-a594-bf164bb92512")
+			(uuid "f653c325-61cb-4a70-9f86-ca5ef1447c17")
 		)
 		(instances
-			(project "card_issuance"
-				(path "/efd10ce8-d30e-4563-b475-2afafc95cd2b/d6ed446d-e13a-4330-af37-f0669133989b/c173e131-e50a-4512-9a94-e35264276009"
+			(project "card_issuance_power"
+				(path "/eccaacbb-6cc6-4795-9ce3-6b61aaecb3e3/ff3970ec-c005-431d-9ba7-afce8ead4fbb"
 					(reference "R6")
 					(unit 1)
 				)
@@ -1370,41 +1359,41 @@
 			)
 		)
 		(pin "2"
-			(uuid "da4d2a2e-03a9-430b-8cfd-5c6a7003eeca")
+			(uuid "eeeb9877-ba70-4829-881e-6885e16b0330")
 		)
 		(pin "3"
-			(uuid "5a3945d9-0fcc-4dbe-a0d6-e918cd23f5e8")
+			(uuid "051e4547-33a6-425f-8d93-60027cf19ee1")
 		)
 		(pin "4"
-			(uuid "575578a9-6bf0-4772-b698-e9c79f14544b")
+			(uuid "9b510e29-21c5-44a5-bc60-a9f020c89879")
 		)
 		(pin "5"
-			(uuid "baeff89d-7435-40f3-9eaa-48831e3a99a1")
+			(uuid "88bf7ad7-52e7-4057-b829-d10a5f491a6e")
 		)
 		(pin "9"
-			(uuid "85784f19-a737-4651-b318-9cba8801bc6f")
+			(uuid "8fedde14-47bf-4e7c-ac1e-779961f69d94")
 		)
 		(pin "6"
-			(uuid "fa3967e5-a6a9-4bac-b1c5-f74f1dfc9f9a")
+			(uuid "fc50f224-8190-4272-84e1-5d5a566a491b")
 		)
 		(pin "8"
-			(uuid "62769e75-6e35-4b9e-bfbd-8d34771a940f")
+			(uuid "9f76b063-88d6-4a83-8c20-7eaaff4c8828")
 		)
 		(pin "10"
-			(uuid "9614107a-0ee5-4579-a1a3-211051105b71")
+			(uuid "290899f5-b5c4-4b0f-ae87-b166b92ee7c7")
 		)
 		(pin "1"
-			(uuid "490d1319-773f-4af6-9004-a411d0469d0f")
+			(uuid "645770ad-9a51-450e-a8ed-ccd61ad2d2fb")
 		)
 		(pin "11"
-			(uuid "f4ea689f-adc2-4f55-9de4-b08174882976")
+			(uuid "98a67512-84a9-4d26-9610-1a833ba4e162")
 		)
 		(pin "7"
-			(uuid "8ef54704-e200-42b5-9704-4fb4de1c59b1")
+			(uuid "56b56a71-2337-44c9-9ec3-2b42d8022fd2")
 		)
 		(instances
-			(project ""
-				(path "/efd10ce8-d30e-4563-b475-2afafc95cd2b/d6ed446d-e13a-4330-af37-f0669133989b/c173e131-e50a-4512-9a94-e35264276009"
+			(project "card_issuance_power"
+				(path "/eccaacbb-6cc6-4795-9ce3-6b61aaecb3e3/ff3970ec-c005-431d-9ba7-afce8ead4fbb"
 					(reference "U1")
 					(unit 1)
 				)
@@ -1420,7 +1409,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "a3a5b692-961f-4cb1-ac18-c7dddb9976ae")
-		(property "Reference" "C7"
+		(property "Reference" "C6"
 			(at 186.944 82.55 0)
 			(effects
 				(font
@@ -1466,15 +1455,15 @@
 			)
 		)
 		(pin "2"
-			(uuid "04aca03a-16d5-490c-92c8-6d3f380fea9e")
+			(uuid "95c6f463-2257-482d-a4bb-96c000bd6667")
 		)
 		(pin "1"
-			(uuid "6342705b-6093-413f-838e-accd6050c1aa")
+			(uuid "20a33c3d-08ce-42f8-a00f-2e279831d11c")
 		)
 		(instances
-			(project "card_issuance"
-				(path "/efd10ce8-d30e-4563-b475-2afafc95cd2b/d6ed446d-e13a-4330-af37-f0669133989b/c173e131-e50a-4512-9a94-e35264276009"
-					(reference "C7")
+			(project "card_issuance_power"
+				(path "/eccaacbb-6cc6-4795-9ce3-6b61aaecb3e3/ff3970ec-c005-431d-9ba7-afce8ead4fbb"
+					(reference "C6")
 					(unit 1)
 				)
 			)
@@ -1534,11 +1523,11 @@
 			)
 		)
 		(pin "1"
-			(uuid "c28004a0-787d-48f9-8410-064d1c1f4447")
+			(uuid "4ed4ab8b-ccfa-4ea9-b17e-d54dc4444f60")
 		)
 		(instances
-			(project ""
-				(path "/efd10ce8-d30e-4563-b475-2afafc95cd2b/d6ed446d-e13a-4330-af37-f0669133989b/c173e131-e50a-4512-9a94-e35264276009"
+			(project "card_issuance_power"
+				(path "/eccaacbb-6cc6-4795-9ce3-6b61aaecb3e3/ff3970ec-c005-431d-9ba7-afce8ead4fbb"
 					(reference "#FLG02")
 					(unit 1)
 				)
@@ -1570,7 +1559,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P2.54mm_Vertical"
 			(at 172.212 87.63 90)
 			(effects
 				(font
@@ -1598,14 +1587,14 @@
 			)
 		)
 		(pin "1"
-			(uuid "2e8542e4-c32c-4cc7-a472-33ee5be81004")
+			(uuid "06461cf3-9a88-41cd-acab-4f830b63841c")
 		)
 		(pin "2"
-			(uuid "94ce86a2-90c1-4250-b4d3-a479f8e357fd")
+			(uuid "fd5fbb66-b7f2-4383-b996-c5eb76c79b18")
 		)
 		(instances
-			(project "card_issuance"
-				(path "/efd10ce8-d30e-4563-b475-2afafc95cd2b/d6ed446d-e13a-4330-af37-f0669133989b/c173e131-e50a-4512-9a94-e35264276009"
+			(project "card_issuance_power"
+				(path "/eccaacbb-6cc6-4795-9ce3-6b61aaecb3e3/ff3970ec-c005-431d-9ba7-afce8ead4fbb"
 					(reference "R8")
 					(unit 1)
 				)
