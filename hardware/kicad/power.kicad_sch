@@ -1409,6 +1409,18 @@
 		)
 		(uuid e1eccf1b-b5b2-4af1-8792-b00329f42fbc)
 	)
+	(rectangle
+		(start 218.44 29.21)
+		(end 265.43 58.42)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(fill
+			(type none)
+		)
+		(uuid fd679e99-4e06-493d-9002-f965236b5139)
+	)
 	(text "REVERSE POLARITY PROTECTION\n"
 		(exclude_from_sim no)
 		(at 71.628 66.294 0)
@@ -1418,6 +1430,16 @@
 			)
 		)
 		(uuid "470dfc6c-ed32-4bdd-8d28-6db835daa30e")
+	)
+	(text "BUCK CONVERTERS (12V TO 5.1V & 3.3V)"
+		(exclude_from_sim no)
+		(at 242.316 57.404 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+		(uuid "81864f41-7125-4f87-a469-f34cf126caa7")
 	)
 	(text "POWER RAIL SEPARATION"
 		(exclude_from_sim no)
@@ -1496,6 +1518,12 @@
 		(uuid "aeafe7e5-426e-4c2a-8633-60dd855b076d")
 	)
 	(junction
+		(at 222.25 41.91)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "c1fb0b9d-3ff1-4678-ab07-fb93a2700a7a")
+	)
+	(junction
 		(at 76.2 34.29)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -1571,7 +1599,7 @@
 	)
 	(wire
 		(pts
-			(xy 219.71 35.56) (xy 219.71 41.91)
+			(xy 222.25 35.56) (xy 222.25 41.91)
 		)
 		(stroke
 			(width 0)
@@ -1631,7 +1659,7 @@
 	)
 	(wire
 		(pts
-			(xy 243.84 35.56) (xy 245.11 35.56)
+			(xy 246.38 35.56) (xy 247.65 35.56)
 		)
 		(stroke
 			(width 0)
@@ -1681,7 +1709,7 @@
 	)
 	(wire
 		(pts
-			(xy 219.71 41.91) (xy 212.09 41.91)
+			(xy 222.25 41.91) (xy 212.09 41.91)
 		)
 		(stroke
 			(width 0)
@@ -1698,6 +1726,16 @@
 			(type default)
 		)
 		(uuid "471b9605-5565-4aa8-9e79-ed3b2bbdc94c")
+	)
+	(wire
+		(pts
+			(xy 222.25 41.91) (xy 222.25 46.99)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "4bac6a2c-c4ad-4eb2-ace1-e6d1b2b4e671")
 	)
 	(wire
 		(pts
@@ -1881,6 +1919,16 @@
 	)
 	(wire
 		(pts
+			(xy 226.06 46.99) (xy 222.25 46.99)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "9ce6378c-208e-47a3-9bcb-37ee52b6e97c")
+	)
+	(wire
+		(pts
 			(xy 57.15 44.45) (xy 60.96 44.45)
 		)
 		(stroke
@@ -1911,7 +1959,7 @@
 	)
 	(wire
 		(pts
-			(xy 219.71 35.56) (xy 223.52 35.56)
+			(xy 222.25 35.56) (xy 226.06 35.56)
 		)
 		(stroke
 			(width 0)
@@ -2101,6 +2149,16 @@
 	)
 	(wire
 		(pts
+			(xy 246.38 46.99) (xy 248.92 46.99)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "f00e3062-ce89-4be3-9909-a7942be8e521")
+	)
+	(wire
+		(pts
 			(xy 73.66 52.07) (xy 76.2 52.07)
 		)
 		(stroke
@@ -2131,7 +2189,7 @@
 	)
 	(global_label "V3V3_LOGIC"
 		(shape input)
-		(at 245.11 35.56 0)
+		(at 247.65 35.56 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -2141,7 +2199,7 @@
 		)
 		(uuid "8b5f0982-569d-4fca-bcfb-a93b284d9082")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 259.1624 35.56 0)
+			(at 261.7024 35.56 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2219,7 +2277,7 @@
 	)
 	(global_label "V5.1_LOGIC"
 		(shape input)
-		(at 246.38 46.99 0)
+		(at 248.92 46.99 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -2229,7 +2287,7 @@
 		)
 		(uuid "f1c3aeeb-44d6-414c-bd8c-bc7b2d027771")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 259.9486 46.99 0)
+			(at 262.4886 46.99 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3503,7 +3561,7 @@
 		)
 	)
 	(sheet
-		(at 223.52 44.45)
+		(at 226.06 44.45)
 		(size 20.32 5.08)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -3519,7 +3577,7 @@
 		)
 		(uuid "5501bdb0-d5d4-479d-8ea5-83139bf20e95")
 		(property "Sheetname" "BUCK_5.1"
-			(at 223.52 43.7384 0)
+			(at 226.06 43.7384 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3528,12 +3586,32 @@
 			)
 		)
 		(property "Sheetfile" "buck_5.1.kicad_sch"
-			(at 223.52 50.1146 0)
+			(at 226.06 50.1146 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify left top)
+			)
+		)
+		(pin "VIN" input
+			(at 226.06 46.99 180)
+			(uuid "650e95a2-20a4-44fa-8826-847b90a759df")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "VOUT" output
+			(at 246.38 46.99 0)
+			(uuid "4b4babcc-2544-40ef-8fe1-be0b83654576")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
 			)
 		)
 		(instances
@@ -3545,7 +3623,7 @@
 		)
 	)
 	(sheet
-		(at 223.52 33.02)
+		(at 226.06 33.02)
 		(size 20.32 5.08)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -3561,7 +3639,7 @@
 		)
 		(uuid "c173e131-e50a-4512-9a94-e35264276009")
 		(property "Sheetname" "BUCK_3V3"
-			(at 223.52 32.3084 0)
+			(at 226.06 32.3084 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3570,7 +3648,7 @@
 			)
 		)
 		(property "Sheetfile" "buck_3v3.kicad_sch"
-			(at 223.52 38.6846 0)
+			(at 226.06 38.6846 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3579,7 +3657,7 @@
 			)
 		)
 		(pin "VIN" input
-			(at 223.52 35.56 180)
+			(at 226.06 35.56 180)
 			(uuid "61217550-aa41-464d-b064-ffdf6f57fd43")
 			(effects
 				(font
@@ -3589,7 +3667,7 @@
 			)
 		)
 		(pin "VOUT" input
-			(at 243.84 35.56 0)
+			(at 246.38 35.56 0)
 			(uuid "117c0ef5-0067-4da2-8462-d89ce27eb78d")
 			(effects
 				(font
