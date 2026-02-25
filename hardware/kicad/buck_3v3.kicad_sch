@@ -1329,7 +1329,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Buck-3V3:SIS0011A-MFG"
+		(property "Footprint" "Buck 3V3:SIS0011A-MFG"
 			(at 120.65 72.39 0)
 			(effects
 				(font

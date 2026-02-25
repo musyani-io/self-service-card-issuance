@@ -2205,7 +2205,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Buck-5V:NDY0011A_N"
+		(property "Footprint" "Buck 5V:NDY0011A_N"
 			(at 116.84 74.93 0)
 			(effects
 				(font
