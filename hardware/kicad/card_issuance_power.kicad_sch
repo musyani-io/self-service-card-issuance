@@ -1458,12 +1458,6 @@
 		(uuid "032cfbb1-9f71-467b-bf97-3408c1ee9d1e")
 	)
 	(junction
-		(at 170.18 69.85)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "0906166a-85be-4c1c-baa8-795e2dbe9252")
-	)
-	(junction
 		(at 76.2 64.77)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -1512,6 +1506,12 @@
 		(uuid "3bd662e8-9260-4a1a-bfe7-d4cd648bbd99")
 	)
 	(junction
+		(at 170.18 59.69)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "46bf4d51-ca20-4bc4-afc7-e96e29f3f51b")
+	)
+	(junction
 		(at 153.67 58.42)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -1558,12 +1558,6 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "b2d681f8-504e-4794-a34e-5bd3916b2fc0")
-	)
-	(junction
-		(at 50.8 54.61)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "d0f68c62-1553-4891-bfbf-c2b54f7453e2")
 	)
 	(wire
 		(pts
@@ -1757,16 +1751,6 @@
 	)
 	(wire
 		(pts
-			(xy 45.72 54.61) (xy 50.8 54.61)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "459b0af2-d100-4ee9-92c3-2a3f5a7e3137")
-	)
-	(wire
-		(pts
 			(xy 66.04 54.61) (xy 76.2 54.61)
 		)
 		(stroke
@@ -1837,6 +1821,16 @@
 	)
 	(wire
 		(pts
+			(xy 66.04 52.07) (xy 66.04 54.61)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "56729d2f-e5f6-401d-bd55-6306774565a4")
+	)
+	(wire
+		(pts
 			(xy 93.98 76.2) (xy 93.98 69.85)
 		)
 		(stroke
@@ -1874,16 +1868,6 @@
 			(type default)
 		)
 		(uuid "651cf260-c704-4a93-ac4e-7632b914811e")
-	)
-	(wire
-		(pts
-			(xy 165.1 69.85) (xy 170.18 69.85)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "6a42858e-b77d-4d01-b45b-1c1ff92243ae")
 	)
 	(wire
 		(pts
@@ -2047,6 +2031,16 @@
 	)
 	(wire
 		(pts
+			(xy 166.37 59.69) (xy 170.18 59.69)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "acd4e9c1-b357-4218-9b72-2c58a950e00f")
+	)
+	(wire
+		(pts
 			(xy 76.2 64.77) (xy 77.47 64.77)
 		)
 		(stroke
@@ -2124,6 +2118,26 @@
 			(type default)
 		)
 		(uuid "c2ca92b4-a2ed-4c37-b3cc-4c1f46f84b55")
+	)
+	(wire
+		(pts
+			(xy 165.1 69.85) (xy 166.37 69.85)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "c2ef11f5-df9c-4a00-bf1a-552f8fbf7049")
+	)
+	(wire
+		(pts
+			(xy 166.37 69.85) (xy 166.37 59.69)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "c58173a6-f4ce-4fe8-98cf-97f46432d55c")
 	)
 	(wire
 		(pts
@@ -3324,7 +3338,7 @@
 	)
 	(symbol
 		(lib_id "Connector:TestPoint")
-		(at 45.72 54.61 90)
+		(at 66.04 52.07 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -3332,7 +3346,7 @@
 		(dnp no)
 		(uuid "c76dfef3-90d5-4d9c-b496-018e71f29b1a")
 		(property "Reference" "TP1"
-			(at 42.164 50.038 90)
+			(at 62.992 48.768 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3340,7 +3354,7 @@
 			)
 		)
 		(property "Value" "V12_IN"
-			(at 42.164 52.578 90)
+			(at 61.722 50.546 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3348,7 +3362,7 @@
 			)
 		)
 		(property "Footprint" "TestPoint:TestPoint_THTPad_2.0x2.0mm_Drill1.0mm"
-			(at 45.72 49.53 0)
+			(at 71.12 52.07 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3357,7 +3371,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 45.72 49.53 0)
+			(at 71.12 52.07 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3366,7 +3380,7 @@
 			)
 		)
 		(property "Description" "test point"
-			(at 45.72 54.61 0)
+			(at 66.04 52.07 0)
 			(effects
 				(font
 					(size 1.27 1.27)

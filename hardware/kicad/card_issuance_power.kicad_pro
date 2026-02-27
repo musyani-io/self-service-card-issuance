@@ -501,7 +501,9 @@
         "pcb_color": "rgba(0, 0, 0, 0.000)",
         "priority": 1,
         "schematic_color": "rgba(0, 0, 0, 0.000)",
-        "track_width": 3.0
+        "track_width": 3.0,
+        "via_diameter": 0.6,
+        "via_drill": 0.3
       },
       {
         "clearance": 0.4,
@@ -510,7 +512,8 @@
         "priority": 2,
         "schematic_color": "rgba(0, 0, 0, 0.000)",
         "track_width": 4.0,
-        "via_diameter": 0.8
+        "via_diameter": 0.8,
+        "via_drill": 0.4
       },
       {
         "clearance": 0.5,
@@ -518,7 +521,9 @@
         "pcb_color": "rgba(0, 0, 0, 0.000)",
         "priority": 0,
         "schematic_color": "rgba(0, 0, 0, 0.000)",
-        "track_width": 8.0
+        "track_width": 8.0,
+        "via_diameter": 0.8,
+        "via_drill": 0.4
       },
       {
         "clearance": 0.2,
@@ -552,6 +557,14 @@
       {
         "netclass": "PWR_5V",
         "pattern": "V5.1_OUT, V12_PROT_5V"
+      },
+      {
+        "netclass": "PWR_3V3",
+        "pattern": "/V12_IN"
+      },
+      {
+        "netclass": "PWR_VIN",
+        "pattern": "/V12_IN"
       }
     ]
   },
