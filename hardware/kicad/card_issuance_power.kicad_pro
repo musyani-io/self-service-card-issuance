@@ -187,7 +187,10 @@
         }
       ],
       "track_widths": [
-        0.0
+        0.0,
+        0.7,
+        2.4,
+        4.7
       ],
       "tuning_pattern_settings": {
         "diff_pair_defaults": {
@@ -493,7 +496,9 @@
         "pcb_color": "rgba(0, 0, 0, 0.000)",
         "priority": 3,
         "schematic_color": "rgba(0, 0, 0, 0.000)",
-        "track_width": 0.5
+        "track_width": 0.7,
+        "via_diameter": 0.6,
+        "via_drill": 0.3
       },
       {
         "clearance": 0.3,
@@ -516,7 +521,7 @@
         "via_drill": 0.4
       },
       {
-        "clearance": 0.5,
+        "clearance": 0.3,
         "name": "PWR_VIN",
         "pcb_color": "rgba(0, 0, 0, 0.000)",
         "priority": 0,
@@ -544,7 +549,7 @@
     "netclass_patterns": [
       {
         "netclass": "PWR_VIN",
-        "pattern": "V12_IN, V12_PROT"
+        "pattern": "V12_IN, V12_PROT, V12_FUSED"
       },
       {
         "netclass": "PWR_MOTOR",
@@ -557,14 +562,6 @@
       {
         "netclass": "PWR_5V",
         "pattern": "V5.1_OUT, V12_PROT_5V"
-      },
-      {
-        "netclass": "PWR_3V3",
-        "pattern": "/V12_IN"
-      },
-      {
-        "netclass": "PWR_VIN",
-        "pattern": "/V12_IN"
       }
     ]
   },
