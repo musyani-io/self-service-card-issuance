@@ -1028,45 +1028,46 @@
 			)
 			(embedded_fonts no)
 		)
-		(symbol "Power Jack:PRT-10811"
+		(symbol "Power Jack:DC-005-5A-2.0"
 			(pin_names
-				(offset 0.254)
+				(offset 1.016)
 			)
 			(exclude_from_sim no)
 			(in_bom yes)
 			(on_board yes)
 			(property "Reference" "J"
-				(at -17.78 7.62 0)
+				(at -5.08 5.08 0)
 				(effects
 					(font
-						(size 1.524 1.524)
+						(size 1.27 1.27)
 					)
+					(justify left bottom)
 				)
 			)
-			(property "Value" "PRT-10811"
-				(at -17.78 5.08 0)
+			(property "Value" "DC-005-5A-2.0"
+				(at -5.08 -5.08 0)
 				(effects
 					(font
-						(size 1.524 1.524)
+						(size 1.27 1.27)
 					)
+					(justify left top)
 				)
 			)
-			(property "Footprint" "PRT-10811_SPK"
+			(property "Footprint" "DC-005-5A-2.0:XKB_DC-005-5A-2.0"
 				(at 0 0 0)
 				(effects
 					(font
 						(size 1.27 1.27)
-						(italic yes)
 					)
+					(justify bottom)
 					(hide yes)
 				)
 			)
-			(property "Datasheet" "PRT-10811"
+			(property "Datasheet" ""
 				(at 0 0 0)
 				(effects
 					(font
 						(size 1.27 1.27)
-						(italic yes)
 					)
 					(hide yes)
 				)
@@ -1080,39 +1081,133 @@
 					(hide yes)
 				)
 			)
-			(property "ki_locked" ""
+			(property "MF" "XKB Industrial Precision"
 				(at 0 0 0)
 				(effects
 					(font
 						(size 1.27 1.27)
 					)
-				)
-			)
-			(property "ki_keywords" "PRT-10811"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
+					(justify bottom)
 					(hide yes)
 				)
 			)
-			(property "ki_fp_filters" "PRT-10811_SPK"
+			(property "MAXIMUM_PACKAGE_HEIGHT" "11 mm"
 				(at 0 0 0)
 				(effects
 					(font
 						(size 1.27 1.27)
 					)
+					(justify bottom)
 					(hide yes)
 				)
 			)
-			(symbol "PRT-10811_0_1"
+			(property "Package" "Package"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify bottom)
+					(hide yes)
+				)
+			)
+			(property "Price" "None"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify bottom)
+					(hide yes)
+				)
+			)
+			(property "Check_prices" "https://www.snapeda.com/parts/DC-005-5A-2.0/XKB+Connection/view-part/?ref=eda"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify bottom)
+					(hide yes)
+				)
+			)
+			(property "STANDARD" "Manufacturer Recommendations"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify bottom)
+					(hide yes)
+				)
+			)
+			(property "PARTREV" "A0"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify bottom)
+					(hide yes)
+				)
+			)
+			(property "SnapEDA_Link" "https://www.snapeda.com/parts/DC-005-5A-2.0/XKB+Connection/view-part/?ref=snap"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify bottom)
+					(hide yes)
+				)
+			)
+			(property "MP" "DC-005-5A-2.0"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify bottom)
+					(hide yes)
+				)
+			)
+			(property "Description_1" "DC Power Receptacle Jack, Through Hole，Right Angle"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify bottom)
+					(hide yes)
+				)
+			)
+			(property "Availability" "Not in stock"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify bottom)
+					(hide yes)
+				)
+			)
+			(property "MANUFACTURER" "XKB"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify bottom)
+					(hide yes)
+				)
+			)
+			(symbol "DC-005-5A-2.0_0_0"
 				(polyline
 					(pts
-						(xy -30.48 2.54) (xy -30.48 -7.62)
+						(xy -4.445 3.175) (xy 1.27 3.175)
 					)
 					(stroke
-						(width 0.127)
+						(width 0.254)
 						(type default)
 					)
 					(fill
@@ -1121,10 +1216,10 @@
 				)
 				(polyline
 					(pts
-						(xy -30.48 -7.62) (xy -7.62 -7.62)
+						(xy -4.445 1.905) (xy 1.27 1.905)
 					)
 					(stroke
-						(width 0.127)
+						(width 0.254)
 						(type default)
 					)
 					(fill
@@ -1132,11 +1227,11 @@
 					)
 				)
 				(arc
-					(start -27.178 -1.016)
-					(mid -28.1895 0)
-					(end -27.178 1.016)
+					(start -4.445 1.905)
+					(mid -5.0772 2.54)
+					(end -4.445 3.175)
 					(stroke
-						(width 0.127)
+						(width 0.254)
 						(type default)
 					)
 					(fill
@@ -1145,10 +1240,10 @@
 				)
 				(polyline
 					(pts
-						(xy -26.67 -2.54) (xy -27.94 -5.08)
+						(xy -3.81 -1.27) (xy -5.08 -2.54)
 					)
 					(stroke
-						(width 0.127)
+						(width 0.254)
 						(type default)
 					)
 					(fill
@@ -1157,34 +1252,33 @@
 				)
 				(polyline
 					(pts
-						(xy -25.4 -5.08) (xy -26.67 -2.54)
+						(xy -2.54 -2.54) (xy -3.81 -1.27)
 					)
 					(stroke
-						(width 0.127)
+						(width 0.254)
 						(type default)
 					)
 					(fill
 						(type none)
 					)
 				)
-				(polyline
-					(pts
-						(xy -18.288 -3.81) (xy -17.78 -5.08)
-					)
+				(rectangle
+					(start -1.5421 -3.3564)
+					(end 3.5379 2.9936)
 					(stroke
-						(width 0.127)
+						(width 0.254)
 						(type default)
 					)
 					(fill
-						(type none)
+						(type background)
 					)
 				)
 				(polyline
 					(pts
-						(xy -18.288 -3.81) (xy -17.272 -3.81) (xy -17.78 -5.08)
+						(xy -0.635 -1.27) (xy 0.635 -1.27) (xy 0 -2.54) (xy -0.635 -1.27)
 					)
 					(stroke
-						(width 0)
+						(width 0.1524)
 						(type default)
 					)
 					(fill
@@ -1193,10 +1287,10 @@
 				)
 				(polyline
 					(pts
-						(xy -17.78 -2.54) (xy -17.78 -5.08)
+						(xy 0 0) (xy 0 -2.54)
 					)
 					(stroke
-						(width 0.127)
+						(width 0.254)
 						(type default)
 					)
 					(fill
@@ -1205,10 +1299,10 @@
 				)
 				(polyline
 					(pts
-						(xy -17.78 -5.08) (xy -17.272 -3.81)
+						(xy 1.27 3.81) (xy 1.27 3.175)
 					)
 					(stroke
-						(width 0.127)
+						(width 0.254)
 						(type default)
 					)
 					(fill
@@ -1217,10 +1311,10 @@
 				)
 				(polyline
 					(pts
-						(xy -17.272 -3.81) (xy -18.288 -3.81)
+						(xy 1.27 3.175) (xy 1.27 1.905)
 					)
 					(stroke
-						(width 0.127)
+						(width 0.254)
 						(type default)
 					)
 					(fill
@@ -1229,10 +1323,10 @@
 				)
 				(polyline
 					(pts
-						(xy -15.748 1.27) (xy -15.748 -1.27)
+						(xy 1.27 1.905) (xy 1.27 1.27)
 					)
 					(stroke
-						(width 0.127)
+						(width 0.254)
 						(type default)
 					)
 					(fill
@@ -1241,10 +1335,10 @@
 				)
 				(polyline
 					(pts
-						(xy -15.748 1.016) (xy -27.178 1.016)
+						(xy 1.27 1.27) (xy 2.54 1.27)
 					)
 					(stroke
-						(width 0.127)
+						(width 0.254)
 						(type default)
 					)
 					(fill
@@ -1253,164 +1347,66 @@
 				)
 				(polyline
 					(pts
-						(xy -15.748 -1.016) (xy -27.178 -1.016)
+						(xy 2.54 0) (xy 0 0)
 					)
 					(stroke
-						(width 0.127)
+						(width 0.254)
 						(type default)
 					)
 					(fill
 						(type none)
 					)
 				)
-				(polyline
-					(pts
-						(xy -15.748 -1.27) (xy -15.24 -1.27)
-					)
-					(stroke
-						(width 0.127)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy -15.24 1.27) (xy -15.748 1.27)
-					)
-					(stroke
-						(width 0.127)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy -15.24 1.27) (xy -15.24 -1.27)
-					)
-					(stroke
-						(width 0.127)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy -7.62 2.54) (xy -30.48 2.54)
-					)
-					(stroke
-						(width 0.127)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy -7.62 0) (xy -15.24 0)
-					)
-					(stroke
-						(width 0.127)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy -7.62 -2.54) (xy -17.78 -2.54)
-					)
-					(stroke
-						(width 0.127)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy -7.62 -5.08) (xy -25.4 -5.08)
-					)
-					(stroke
-						(width 0.127)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy -7.62 -7.62) (xy -7.62 2.54)
-					)
-					(stroke
-						(width 0.127)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-			)
-			(symbol "PRT-10811_1_1"
-				(pin power_in line
-					(at 0 0 180)
-					(length 7.62)
-					(name "1"
+				(pin passive line
+					(at 7.62 2.54 180)
+					(length 5.08)
+					(name "~"
 						(effects
 							(font
-								(size 1.27 1.27)
+								(size 1.016 1.016)
 							)
 						)
 					)
 					(number "1"
 						(effects
 							(font
-								(size 1.27 1.27)
+								(size 1.016 1.016)
 							)
 						)
 					)
 				)
-				(pin power_in line
-					(at 0 -2.54 180)
-					(length 7.62)
-					(name "3"
+				(pin passive line
+					(at 7.62 0 180)
+					(length 5.08)
+					(name "~"
 						(effects
 							(font
-								(size 1.27 1.27)
+								(size 1.016 1.016)
 							)
 						)
 					)
 					(number "3"
 						(effects
 							(font
-								(size 1.27 1.27)
+								(size 1.016 1.016)
 							)
 						)
 					)
 				)
-				(pin power_in line
-					(at 0 -5.08 180)
-					(length 7.62)
-					(name "2"
+				(pin passive line
+					(at 7.62 -2.54 180)
+					(length 5.08)
+					(name "~"
 						(effects
 							(font
-								(size 1.27 1.27)
+								(size 1.016 1.016)
 							)
 						)
 					)
 					(number "2"
 						(effects
 							(font
-								(size 1.27 1.27)
+								(size 1.016 1.016)
 							)
 						)
 					)
@@ -2767,6 +2763,66 @@
 		)
 		(uuid "fddc45f9-bda9-49a1-885e-bb91d87c10c7")
 	)
+	(label "IN3"
+		(at 93.98 77.47 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "15a35a22-8f01-4867-8af2-d5d413c8011d")
+	)
+	(label "+5V_COM"
+		(at 138.43 67.31 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "21307aaf-ae25-4e94-952c-7fb0f52a31f5")
+	)
+	(label "IN4"
+		(at 93.98 80.01 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "521aa396-e87d-443d-95eb-d31a16ace044")
+	)
+	(label "GND"
+		(at 93.98 82.55 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "743846e6-7608-4a45-9370-0f8d7ed6956d")
+	)
+	(label "IN2"
+		(at 93.98 74.93 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "bccbeefa-86d8-4b0a-be86-1e616794fb10")
+	)
+	(label "IN1"
+		(at 93.98 72.39 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "c2e05f4d-1b78-43d7-ad84-ce0a10787b7c")
+	)
 	(symbol
 		(lib_id "Device:C")
 		(at 147.32 85.09 0)
@@ -3117,81 +3173,6 @@
 			(project "motor_driver"
 				(path "/b7a12314-1361-4fdf-a1f9-9f4ac4cac78f"
 					(reference "R4")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Power Jack:PRT-10811")
-		(at 180.34 45.72 180)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "3cc5c2eb-f7b7-4d2d-8695-a80c67af30b5")
-		(property "Reference" "J4"
-			(at 212.09 41.9099 0)
-			(effects
-				(font
-					(size 1.524 1.524)
-				)
-				(justify right)
-			)
-		)
-		(property "Value" "PRT-10811"
-			(at 212.09 44.4499 0)
-			(effects
-				(font
-					(size 1.524 1.524)
-				)
-				(justify right)
-			)
-		)
-		(property "Footprint" "Power Jack:PRT-10811_SPK"
-			(at 180.34 45.72 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-					(italic yes)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "PRT-10811"
-			(at 180.34 45.72 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-					(italic yes)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" ""
-			(at 180.34 45.72 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "3"
-			(uuid "873b59b8-7291-44f6-8cd9-5fb5a66bba8c")
-		)
-		(pin "2"
-			(uuid "bb072330-3e18-4430-9136-30ffd93cbf09")
-		)
-		(pin "1"
-			(uuid "a86008d3-b556-4912-9a7a-bcb1173c1b43")
-		)
-		(instances
-			(project ""
-				(path "/b7a12314-1361-4fdf-a1f9-9f4ac4cac78f"
-					(reference "J4")
 					(unit 1)
 				)
 			)
@@ -3708,6 +3689,197 @@
 			(project "motor_driver"
 				(path "/b7a12314-1361-4fdf-a1f9-9f4ac4cac78f"
 					(reference "R6")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Power Jack:DC-005-5A-2.0")
+		(at 187.96 43.18 180)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "baa909b5-ae75-4748-a166-f17d4358e6e4")
+		(property "Reference" "J4"
+			(at 188.7311 52.07 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "DC-005-5A-2.0"
+			(at 188.7311 49.53 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "DC-005-5A-2.0:XKB_DC-005-5A-2.0"
+			(at 187.96 43.18 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 187.96 43.18 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" ""
+			(at 187.96 43.18 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MF" "XKB Industrial Precision"
+			(at 187.96 43.18 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+				(hide yes)
+			)
+		)
+		(property "MAXIMUM_PACKAGE_HEIGHT" "11 mm"
+			(at 187.96 43.18 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+				(hide yes)
+			)
+		)
+		(property "Package" "Package"
+			(at 187.96 43.18 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+				(hide yes)
+			)
+		)
+		(property "Price" "None"
+			(at 187.96 43.18 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+				(hide yes)
+			)
+		)
+		(property "Check_prices" "https://www.snapeda.com/parts/DC-005-5A-2.0/XKB+Connection/view-part/?ref=eda"
+			(at 187.96 43.18 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+				(hide yes)
+			)
+		)
+		(property "STANDARD" "Manufacturer Recommendations"
+			(at 187.96 43.18 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+				(hide yes)
+			)
+		)
+		(property "PARTREV" "A0"
+			(at 187.96 43.18 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+				(hide yes)
+			)
+		)
+		(property "SnapEDA_Link" "https://www.snapeda.com/parts/DC-005-5A-2.0/XKB+Connection/view-part/?ref=snap"
+			(at 187.96 43.18 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+				(hide yes)
+			)
+		)
+		(property "MP" "DC-005-5A-2.0"
+			(at 187.96 43.18 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+				(hide yes)
+			)
+		)
+		(property "Description_1" "DC Power Receptacle Jack, Through Hole，Right Angle"
+			(at 187.96 43.18 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+				(hide yes)
+			)
+		)
+		(property "Availability" "Not in stock"
+			(at 187.96 43.18 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+				(hide yes)
+			)
+		)
+		(property "MANUFACTURER" "XKB"
+			(at 187.96 43.18 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "576eace8-58b5-4890-9b28-782f924c133d")
+		)
+		(pin "3"
+			(uuid "e4e57862-a1fb-47f0-8234-107532e6a548")
+		)
+		(pin "2"
+			(uuid "89bffad0-9a6b-4546-83a4-8c7e64b6b261")
+		)
+		(instances
+			(project ""
+				(path "/b7a12314-1361-4fdf-a1f9-9f4ac4cac78f"
+					(reference "J4")
 					(unit 1)
 				)
 			)
