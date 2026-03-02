@@ -25,6 +25,7 @@ DESCRIPTION.md
 *research
 *manual_tests
 *.zip
+*.xml
 
 # Sensitive files
 *.env
