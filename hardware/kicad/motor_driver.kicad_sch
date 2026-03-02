@@ -1035,22 +1035,20 @@
 			(exclude_from_sim no)
 			(in_bom yes)
 			(on_board yes)
-			(property "Reference" "J4"
-				(at -31.75 -3.8101 0)
+			(property "Reference" "J"
+				(at -17.78 7.62 0)
 				(effects
 					(font
 						(size 1.524 1.524)
 					)
-					(justify right)
 				)
 			)
 			(property "Value" "PRT-10811"
-				(at -31.75 -1.2701 0)
+				(at -17.78 5.08 0)
 				(effects
 					(font
 						(size 1.524 1.524)
 					)
-					(justify right)
 				)
 			)
 			(property "Footprint" "PRT-10811_SPK"
@@ -1361,6 +1359,8 @@
 						(type none)
 					)
 				)
+			)
+			(symbol "PRT-10811_1_1"
 				(pin power_in line
 					(at 0 0 180)
 					(length 7.62)
@@ -1379,8 +1379,6 @@
 						)
 					)
 				)
-			)
-			(symbol "PRT-10811_1_1"
 				(pin power_in line
 					(at 0 -2.54 180)
 					(length 7.62)
@@ -2020,10 +2018,10 @@
 			(embedded_fonts no)
 		)
 	)
-	(text_box "Improvements - next version:\n> Fuse protection (PTC)\n> Put MOSFETs for reverse polarity protection\n> Use one power source for up to 5 motor drivers (connected to each other)\n> Add USB-C as a power source (5V)"
+	(text_box "Features for this driver:\n> ULN2003A chip\n> 5 pin motors (28BYJ-48 specifically)\n> Dual power input (terminals or power jack - from adapter)\n> Back-feed protection\n\nImprovements - next version:\n> Fuse protection (PTC)\n> Put MOSFETs for reverse polarity protection\n> Use one power source for up to 5 motor drivers (connected to each other)\n> Add USB-C as a power source (5V)"
 		(exclude_from_sim no)
 		(at 15.24 13.97 0)
-		(size 55.88 13.97)
+		(size 55.88 38.1)
 		(margins 0.9525 0.9525 0.9525 0.9525)
 		(stroke
 			(width 0)
@@ -2797,7 +2795,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_THT:C_Rect_L4.6mm_W3.0mm_P2.50mm_MKS02_FKP02"
 			(at 146.3548 88.9 0)
 			(effects
 				(font
@@ -2865,7 +2863,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Diode_THT:D_DO-201AD_P15.24mm_Horizontal"
 			(at 168.91 45.72 0)
 			(effects
 				(font
@@ -3014,7 +3012,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_THT:CP_Radial_D8.0mm_P3.50mm"
 			(at 154.6352 88.9 0)
 			(effects
 				(font
@@ -3082,7 +3080,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal"
 			(at 100.33 81.788 90)
 			(effects
 				(font
@@ -3152,7 +3150,7 @@
 				(justify right)
 			)
 		)
-		(property "Footprint" "PRT-10811_SPK"
+		(property "Footprint" "Power Jack:PRT-10811_SPK"
 			(at 180.34 45.72 0)
 			(effects
 				(font
@@ -3290,7 +3288,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal"
 			(at 107.188 93.98 90)
 			(effects
 				(font
@@ -3358,7 +3356,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal"
 			(at 100.33 74.168 90)
 			(effects
 				(font
@@ -3494,7 +3492,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal"
 			(at 109.728 93.98 90)
 			(effects
 				(font
@@ -3673,7 +3671,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal"
 			(at 112.268 93.98 90)
 			(effects
 				(font
@@ -3806,7 +3804,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal"
 			(at 100.33 79.248 90)
 			(effects
 				(font
@@ -3874,7 +3872,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Diode_THT:D_DO-201AD_P15.24mm_Horizontal"
 			(at 170.18 62.23 0)
 			(effects
 				(font
@@ -4019,7 +4017,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal"
 			(at 114.808 93.98 90)
 			(effects
 				(font
@@ -4087,7 +4085,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal"
 			(at 100.33 76.708 90)
 			(effects
 				(font
