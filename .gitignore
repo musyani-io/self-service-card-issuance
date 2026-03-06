@@ -8,9 +8,10 @@ DESCRIPTION.md
 .vscode
 
 # Pictures used
-*.png
-*.jpg
-*.jpeg
+computer_vision/data/*.png
+computer_vision/data/*.jpg
+computer_vision/data/*.jpeg
+*sample*
 
 # Cache & Backup files
 *pycache*
