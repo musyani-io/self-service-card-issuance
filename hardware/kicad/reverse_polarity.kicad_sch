@@ -2312,7 +2312,7 @@
     (property "Reference" "J1" (at 187.96 75.565 0)
       (effects (font (size 1.27 1.27)))
     )
-    (property "Value" "12V_IN" (at 187.96 78.105 0)
+    (property "Value" "12V_OUT" (at 187.96 78.105 0)
       (effects (font (size 1.27 1.27)))
     )
     (property "Footprint" "Terminals:CUI_TB002-500-02BE" (at 187.96 84.455 0)
