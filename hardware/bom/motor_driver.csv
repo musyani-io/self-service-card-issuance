@@ -1,19 +1,12 @@
-"Date:","Mon 02 Mar 2026 18:24:23 EAT"
-"Tool:","Eeschema 7.0.11+dfsg-1build4"
-"Generator:","/usr/share/kicad/plugins/bom_csv_grouped_by_value.py"
-"Component Count:","17"
-
-"Collated Components:"
-
-"Item","Qty","Reference(s)","Value","LibPart","Footprint","Datasheet","DNP"
-"1","1","C1","0.1uF","Device:C","Capacitor_THT:C_Rect_L7.2mm_W3.5mm_P5.00mm_FKS2_FKP2_MKS2_MKP2","~",""
-"2","1","C2","470uF","Device:C_Polarized","Capacitor_THT:CP_Radial_D10.0mm_P5.00mm","~",""
-"3","2","D1, D2","Schottky","Device:D_Schottky","Diode_THT:D_DO-201AD_P15.24mm_Horizontal","~",""
-"4","1","J1","5V_ADAPTER","Connector:Barrel_Jack_Switch","Connector_BarrelJack:BarrelJack_GCT_DCJ200-10-A_Horizontal","~",""
-"5","1","J2","5V_IN","Connector:Conn_01x02_Pin","Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical","~",""
-"6","1","J3","TO_MOTOR","Connector_Generic:Conn_01x05","Connector_JST:JST_XH_B5B-XH-A_1x05_P2.50mm_Vertical","~",""
-"7","1","J4","FROM_MCU","Connector_Generic:Conn_01x05","Connector_PinHeader_2.54mm:PinHeader_1x05_P2.54mm_Vertical","~",""
-"8","3","R1, R2, R4","1.5k","Device:R","Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal","~",""
-"9","1","R3","1,5k","Device:R","Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal","~",""
-"10","4","R5, R6, R7, R8","100k","Device:R","Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal","~",""
-"11","1","U1","ULN2003A","Transistor_Array:ULN2003A","Package_DIP:DIP-16_W7.62mm_Socket","http://www.ti.com/lit/ds/symlink/uln2003a.pdf",""
+"Id";"Designator";"Footprint";"Quantity";"Designation";"Supplier and ref";
+1;"U1";"DIP-16_W7.62mm_Socket";1;"ULN2003A";;;
+2;"R8,R7,R6,R5";"R_0805_2012Metric_Pad1.20x1.40mm_HandSolder";4;"100k";;;
+3;"R4,R2,R1";"R_0805_2012Metric_Pad1.20x1.40mm_HandSolder";3;"1.5k";;;
+4;"R3";"R_0805_2012Metric_Pad1.20x1.40mm_HandSolder";1;"1,5k";;;
+5;"J4";"PinHeader_1x05_P2.54mm_Vertical";1;"FROM_MCU";;;
+6;"J3";"JST_XH_B5B-XH-A_1x05_P2.50mm_Vertical";1;"TO_MOTOR";;;
+7;"J2";"PinHeader_1x02_P2.54mm_Vertical";1;"5V_IN";;;
+8;"J1";"BarrelJack_GCT_DCJ200-10-A_Horizontal";1;"5V_ADAPTER";;;
+9;"D2,D1";"D_DO-201AD_P15.24mm_Horizontal";2;"Schottky";;;
+10;"C2";"CP_Radial_D10.0mm_P5.00mm";1;"470uF";;;
+11;"C1";"C_0805_2012Metric_Pad1.18x1.45mm_HandSolder";1;"0.1uF";;;
