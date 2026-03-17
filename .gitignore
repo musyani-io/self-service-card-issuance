@@ -27,6 +27,7 @@ computer_vision/data/*.jpeg
 *manual_tests
 *.zip
 *.xml
+*firmware/docs
 
 # Sensitive files
 *.env
